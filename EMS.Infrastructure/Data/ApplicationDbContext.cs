@@ -97,143 +97,144 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext>options)
 
         var employees = new[]
         {
-            new Employee
-            {
-                Id = personalDetails1.Id,
-                Name = "Alice Johnson",
-                EmployeeTypeId = employeeType1.EmployeeTypeId,
-                PersonalDetails = personalDetails1,
-                Salary = 60000m
-            },
-            new Employee
-            {
-                Id = personalDetails2.Id,
-                Name = "Bob Smith",
-                EmployeeTypeId = employeeType2.EmployeeTypeId,
-                PersonalDetails = personalDetails2,
-                Salary = 45000m
-            },
-            new Employee
-            {
-                Id = personalDetails3.Id,
-                Name = "Charlie Davis",
-                EmployeeTypeId = employeeType1.EmployeeTypeId,
-                PersonalDetails = personalDetails3,
-                Salary = 55000m
-            },
-            new Employee
-            {
-                Id = personalDetails4.Id,
-                Name = "Diana Prince",
-                EmployeeTypeId = employeeType2.EmployeeTypeId,
-                PersonalDetails = personalDetails4,
-                Salary = 40000m
-            },
-            new Employee
-            {
-                Id = personalDetails5.Id,
-                Name = "Eve Adams",
-                EmployeeTypeId = employeeType1.EmployeeTypeId,
-                PersonalDetails = personalDetails5,
-                Salary = 62000m
-            }
-        };
+        new Employee
+        {
+            Id = Guid.NewGuid(),
+            Name = "Alice Johnson",
+            EmployeeTypeId = employeeType1.EmployeeTypeId,
+            PersonalDetailsId = personalDetails1.Id,
+            Salary = 60000m
+        },
+        new Employee
+        {
+            Id = Guid.NewGuid(),
+            Name = "Bob Smith",
+            EmployeeTypeId = employeeType2.EmployeeTypeId,
+            PersonalDetailsId = personalDetails2.Id,
+            Salary = 45000m
+        },
+        new Employee
+        {
+            Id = Guid.NewGuid(),
+            Name = "Charlie Davis",
+            EmployeeTypeId = employeeType1.EmployeeTypeId,
+            PersonalDetailsId = personalDetails3.Id,
+            Salary = 55000m
+        },
+        new Employee
+        {
+            Id = Guid.NewGuid(),
+            Name = "Diana Prince",
+            EmployeeTypeId = employeeType2.EmployeeTypeId,
+            PersonalDetailsId = personalDetails4.Id,
+            Salary = 40000m
+        },
+        new Employee
+        {
+            Id = Guid.NewGuid(),
+            Name = "Eve Adams",
+            EmployeeTypeId = employeeType1.EmployeeTypeId,
+            PersonalDetailsId = personalDetails5.Id,
+            Salary = 62000m
+        }
+    };
 
         var qualifications = new[]
         {
-            new Qualification
-            {
-                Id = Guid.NewGuid(),
-                Degree = "BSc Computer Science",
-                Institution = "University of Example",
-                GraduationDate = new DateTime(2007, 6, 15),
-                Grade = "First Class",
-                EmployeeId = employees[0].Id
-            },
-            new Qualification
-            {
-                Id = Guid.NewGuid(),
-                Degree = "MBA",
-                Institution = "Business School Example",
-                GraduationDate = new DateTime(2012, 5, 20),
-                Grade = "Distinction",
-                EmployeeId = employees[1].Id
-            }
-        };
+        new Qualification
+        {
+            Id = Guid.NewGuid(),
+            Degree = "BSc Computer Science",
+            Institution = "University of Example",
+            GraduationDate = new DateTime(2007, 6, 15),
+            Grade = "First Class",
+            EmployeeId = employees[0].Id
+        },
+        new Qualification
+        {
+            Id = Guid.NewGuid(),
+            Degree = "MBA",
+            Institution = "Business School Example",
+            GraduationDate = new DateTime(2012, 5, 20),
+            Grade = "Distinction",
+            EmployeeId = employees[1].Id
+        }
+    };
 
         var experiences = new[]
         {
-            new Experience
-            {
-                Id = 1,
-                CompanyName = "Tech Corp",
-                JobTitle = "Software Developer",
-                StartDate = new DateTime(2008, 1, 1),
-                EndDate = new DateTime(2012, 12, 31),
-                Responsibilities = "Developing software",
-                EmployeeId = employees[0].Id
-            },
-            new Experience
-            {
-                Id = 2,
-                CompanyName = "Business Inc.",
-                JobTitle = "Marketing Manager",
-                StartDate = new DateTime(2013, 1, 1),
-                EndDate = new DateTime(2018, 12, 31),
-                Responsibilities = "Managing marketing campaigns",
-                EmployeeId = employees[1].Id
-            }
-        };
+        new Experience
+        {
+            Id = 1,
+            CompanyName = "Tech Corp",
+            JobTitle = "Software Developer",
+            StartDate = new DateTime(2008, 1, 1),
+            EndDate = new DateTime(2012, 12, 31),
+            Responsibilities = "Developing software",
+            EmployeeId = employees[0].Id
+        },
+        new Experience
+        {
+            Id = 2,
+            CompanyName = "Business Inc.",
+            JobTitle = "Marketing Manager",
+            StartDate = new DateTime(2013, 1, 1),
+            EndDate = new DateTime(2018, 12, 31),
+            Responsibilities = "Managing marketing campaigns",
+            EmployeeId = employees[1].Id
+        }
+    };
 
         var governmentDocuments = new[]
         {
-            new GovernmentDocument
-            {
-                Id = 1,
-                DocumentType = "Passport",
-                DocumentNumber = "A1234567",
-                IssueDate = new DateTime(2015, 1, 1),
-                ExpiryDate = new DateTime(2025, 1, 1),
-                EmployeeId = employees[0].Id
-            },
-            new GovernmentDocument
-            {
-                Id = 2,
-                DocumentType = "Driver's License",
-                DocumentNumber = "B7654321",
-                IssueDate = new DateTime(2014, 1, 1),
-                ExpiryDate = new DateTime(2024, 1, 1),
-                EmployeeId = employees[1].Id
-            }
-        };
+        new GovernmentDocument
+        {
+            Id = 1,
+            DocumentType = "Passport",
+            DocumentNumber = "A1234567",
+            IssueDate = new DateTime(2015, 1, 1),
+            ExpiryDate = new DateTime(2025, 1, 1),
+            EmployeeId = employees[0].Id
+        },
+        new GovernmentDocument
+        {
+            Id = 2,
+            DocumentType = "Driver's License",
+            DocumentNumber = "B7654321",
+            IssueDate = new DateTime(2014, 1, 1),
+            ExpiryDate = new DateTime(2024, 1, 1),
+            EmployeeId = employees[1].Id
+        }
+    };
 
         var certifications = new[]
         {
-            new Certification
-            {
-                Id = 1,
-                CertificationName = "Certified Kubernetes Administrator",
-                IssuingOrganization = "CNCF",
-                IssueDate = new DateTime(2019, 7, 1),
-                ExpiryDate = new DateTime(2022, 7, 1),
-                EmployeeId = employees[0].Id
-            },
-            new Certification
-            {
-                Id = 2,
-                CertificationName = "Project Management Professional",
-                IssuingOrganization = "PMI",
-                IssueDate = new DateTime(2018, 8, 1),
-                ExpiryDate = new DateTime(2021, 8, 1),
-                EmployeeId = employees[1].Id
-            }
-        };
+        new Certification
+        {
+            Id = 1,
+            CertificationName = "Certified Kubernetes Administrator",
+            IssuingOrganization = "CNCF",
+            IssueDate = new DateTime(2019, 7, 1),
+            ExpiryDate = new DateTime(2022, 7, 1),
+            EmployeeId = employees[0].Id
+        },
+        new Certification
+        {
+            Id = 2,
+            CertificationName = "Project Management Professional",
+            IssuingOrganization = "PMI",
+            IssueDate = new DateTime(2018, 8, 1),
+            ExpiryDate = new DateTime(2021, 8, 1),
+            EmployeeId = employees[1].Id
+        }
+    };
 
-        modelBuilder.Entity<EmployeeType>().HasData(employeeType1, employeeType2);
-        modelBuilder.Entity<Employee>().HasData(employees);
-        modelBuilder.Entity<Qualification>().HasData(qualifications);
-        modelBuilder.Entity<Experience>().HasData(experiences);
-        modelBuilder.Entity<GovernmentDocument>().HasData(governmentDocuments);
-        modelBuilder.Entity<Certification>().HasData(certifications);
+        //modelBuilder.Entity<EmployeeType>().HasData(employeeType1, employeeType2);
+        //modelBuilder.Entity<PersonalDetails>().HasData(personalDetails1, personalDetails2, personalDetails3, personalDetails4, personalDetails5);
+        //modelBuilder.Entity<Employee>().HasData(employees);
+        //modelBuilder.Entity<Qualification>().HasData(qualifications);
+        //modelBuilder.Entity<Experience>().HasData(experiences);
+        //modelBuilder.Entity<GovernmentDocument>().HasData(governmentDocuments);
+        //modelBuilder.Entity<Certification>().HasData(certifications);
     }
 }

@@ -13,6 +13,9 @@ public class Employee
 
     public EmployeeType EmployeeType { get; set; }
 
+    [ForeignKey("PersonalDetails")]
+    public Guid PersonalDetailsId { get; set; }
+
     [Required]
     public PersonalDetails PersonalDetails { get; set; }
 
