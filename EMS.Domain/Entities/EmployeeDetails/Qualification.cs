@@ -4,24 +4,23 @@ namespace EMS.Domain.Entities.EmployeeDetails;
 public class Qualification
 {
     [Key]
-    // Unique identifier for the qualification
     public Guid Id { get; set; }
-    
-    // The degree or qualification obtained (e.g., BSc, MSc, PhD)
+
+    [Required]
     public string Degree { get; set; }
     
-    // The institution where the qualification was obtained
+    [Required]
     public string Institution { get; set; }
     
-    // The date when the employee graduated or obtained the qualification
+    [Required]
     public DateTime GraduationDate { get; set; }
     
-    // The grade or classification obtained for the qualification (e.g., First Class)
+    [Required]
     public string Grade { get; set; }
+
+    [ForeignKey("Employee")]
+    public Guid EmployeeId { get; set; }
     
-    // Foreign key for the associated employee
-    public int EmployeeId { get; set; }
-    
-    // Navigation property to the related Employee entity
     public Employee Employee { get; set; }
 }
+
