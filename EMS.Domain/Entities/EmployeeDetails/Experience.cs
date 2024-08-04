@@ -3,25 +3,15 @@ namespace EMS.Domain.Entities.EmployeeDetails;
 public class Experience
 {
     [Key]
-    public int Id { get; set; }
-    
-    [Required]
-    public string CompanyName { get; set; }
-    
-    [Required]
-    public string JobTitle { get; set; }
-    
-    [Required]
-    public DateTime StartDate { get; set; }
-    
-    public DateTime EndDate { get; set; }
-    
-    [Required]
-    public string Responsibilities { get; set; }
-    
-    [ForeignKey("Employee")]
+    public Guid ExperienceId { get; set; }
     public Guid EmployeeId { get; set; }
-    
+    public string CompanyName { get; set; }
+    public string JobTitle { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime? EndDate { get; set; }
+    public string Responsibilities { get; set; }
+
     public Employee Employee { get; set; }
 }
+
 
