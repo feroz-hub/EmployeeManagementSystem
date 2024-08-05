@@ -1,6 +1,4 @@
 namespace EMS.Domain.Entities.EmployeeDetails;
-
-// EMS.Domain/Entities/Qualification.cs
 public class Qualification
 {
     [Key]
