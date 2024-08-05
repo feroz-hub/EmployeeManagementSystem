@@ -45,7 +45,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         modelBuilder.Entity<Employee>()
             .HasOne(e => e.EmployeeSalary)
             .WithOne(es => es.Employee)
-            .HasForeignKey<EmployeeSalary>(es=>es.EmployeeId);
+            .HasForeignKey<EmployeeSalary>(es => es.EmployeeId);
 
         // Employee and Leaves (1:N)
         modelBuilder.Entity<Employee>()
@@ -56,7 +56,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         // Department and Employees (1:N)
         modelBuilder.Entity<Employee>()
             .HasOne(d => d.Department)
-            .WithMany(d=>d.Employees).HasForeignKey(d => d.DepartmentId);
+            .WithMany(d => d.Employees).HasForeignKey(d => d.DepartmentId);
 
         // BandSalary configuration
         modelBuilder.Entity<BandSalary>()
@@ -64,160 +64,160 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         // Reports and Departments (1:N)
         modelBuilder.Entity<Department>()
-            .HasMany(d=>d.Reports)
-            .WithOne(r=>r.Department)
+            .HasMany(d => d.Reports)
+            .WithOne(r => r.Department)
             .HasForeignKey(r => r.DepartmentId);
-        
-        
+
+
         // BandSalary configuration
         modelBuilder.Entity<BandSalary>()
             .HasKey(bs => bs.Id);
-        
-        //SeedData(modelBuilder);
-        
-        
-        // Seed Data
-        var employeeTypeId1 = Guid.NewGuid();
-        var employeeTypeId2 = Guid.NewGuid();
-        var employeeTypeId3 = Guid.NewGuid();
-        var employeeTypeId4 = Guid.NewGuid();
-        
-        var employeeId1 = Guid.NewGuid();
-        var employeeId2 = Guid.NewGuid();
-        
-        modelBuilder.Entity<EmployeeType>().HasData(
-            new EmployeeType { EmployeeTypeId = employeeTypeId1, EmpTypes = EmpTypes.Permanent },
-            new EmployeeType { EmployeeTypeId = employeeTypeId2, EmpTypes = EmpTypes.Temporary },
-            new EmployeeType { EmployeeTypeId = employeeTypeId3, EmpTypes = EmpTypes.Retailer },
-            new EmployeeType { EmployeeTypeId = employeeTypeId4, EmpTypes = EmpTypes.Intern }
-        );
-       
- 
-            // Seed data for Departments
-            var deptAdminId = Guid.NewGuid(); 
-            var deptHRId = Guid.NewGuid(); 
-            var deptFinanceId = Guid.NewGuid(); 
-            var deptITId = Guid.NewGuid();
- 
-            modelBuilder.Entity<Department>().HasData(
-new Department { Id = deptAdminId, Name = "Administration" },
-new Department { Id = deptHRId, Name = "HR" },
-new Department { Id = deptFinanceId, Name = "Finance" },
-new Department { Id = deptITId, Name = "IT" }
-            );
- 
-            // Seed data for Employees
-            var empId = Guid.NewGuid();
 
- 
-            modelBuilder.Entity<Employee>().HasData(
-new Employee
-                {
-                    EmployeeId = empId,
-                    Name = "John Doe",
-                    EmployeeTypeId = employeeTypeId1,
-                    DepartmentId = deptAdminId,
-                    Band = "E3"
-                }
-            );
- 
-            // Seed data for PersonalDetails
-            modelBuilder.Entity<PersonalDetails>().HasData(
-new PersonalDetails
-                {
-                    EmployeeId = empId,
-                    Address = "123 Main St",
-                    PhoneNumber = "123-456-7890",
-                    Email = "john.doe@example.com",
-                    DateOfBirth = new DateTime(1985, 1, 1)
-                }
-            );
- 
-            // Seed data for Qualifications
-            var qualId = Guid.NewGuid();
-            modelBuilder.Entity<Qualification>().HasData(
-new Qualification
-                {
-                    QualificationId = qualId,
-                    EmployeeId = empId,
-                    Degree = "B.Sc. Computer Science",
-                    Institution = "ABC University",
-                    GraduationDate = new DateTime(2007, 6, 1),
-                    Grade = "A"
-                }
-            );
- 
-            // Seed data for Experiences
-            var expId = Guid.NewGuid();
-            modelBuilder.Entity<Experience>().HasData(
-new Experience
-                {
-                    ExperienceId = expId,
-                    EmployeeId = empId,
-                    CompanyName = "XYZ Corp",
-                    JobTitle = "Software Developer",
-                    StartDate = new DateTime(2008, 7, 1),
-                    EndDate = new DateTime(2012, 12, 31),
-                    Responsibilities = "Developed web applications"
-                }
-            );
- 
-            // Seed data for GovernmentDocuments
-            var docId = Guid.NewGuid();
-            modelBuilder.Entity<GovernmentDocument>().HasData(
-new GovernmentDocument
-                {
-                    DocumentId = docId,
-                    EmployeeId = empId,
-                    DocumentType = "Passport",
-                    DocumentNumber = "123456789",
-                    IssueDate = new DateTime(2010, 1, 1),
-                    ExpiryDate = new DateTime(2020, 1, 1)
-                }
-            );
- 
-            // Seed data for Certifications
-            var certId = Guid.NewGuid();
-            modelBuilder.Entity<Certification>().HasData(
-new Certification
-                {
-                    CertificationId = certId,
-                    EmployeeId = empId,
-                    CertificationName = "Microsoft Certified",
-                    IssuingOrganization = "Microsoft",
-                    IssueDate = new DateTime(2015, 5, 1),
-                    ExpiryDate = new DateTime(2020, 5, 1)
-                }
-            );
- 
-            // Seed data for EmployeeSalaries
-            modelBuilder.Entity<EmployeeSalary>().HasData(
-new EmployeeSalary
-                {
-                    EmployeeId = empId,
-                    NetSalary = 60000,
-                    Band = "E3",
-                    CalculatedOn = DateTime.Now
-                }
-            );
- 
-            // Seed data for Leaves
-            var leaveId = Guid.NewGuid();
-            modelBuilder.Entity<Leave>().HasData(new Leave { Id = leaveId, EmployeeId = empId, StartDate = new DateTime(2023, 1, 1), EndDate = new DateTime(2023, 1, 10), Reason = "Vacation", Status = LeaveStatus.Approved });
- 
-            // Seed data for Reports
-            var reportId = Guid.NewGuid();
-            modelBuilder.Entity<Report>().HasData(
-                new Report
-                {
-                    Id = reportId,
-                    Title = "Annual Report",
-                    GeneratedOn = DateTime.Now,
-                    Content = "This is the annual report content.",
-                    DepartmentId = deptFinanceId
-                }
-            );
-        }
+        //SeedData(modelBuilder);
+
+
+//         // Seed Data
+//         var employeeTypeId1 = Guid.NewGuid();
+//         var employeeTypeId2 = Guid.NewGuid();
+//         var employeeTypeId3 = Guid.NewGuid();
+//         var employeeTypeId4 = Guid.NewGuid();
+//         
+//         var employeeId1 = Guid.NewGuid();
+//         var employeeId2 = Guid.NewGuid();
+//         
+//         modelBuilder.Entity<EmployeeType>().HasData(
+//             new EmployeeType { EmployeeTypeId = employeeTypeId1, EmpTypes = EmpTypes.Permanent },
+//             new EmployeeType { EmployeeTypeId = employeeTypeId2, EmpTypes = EmpTypes.Temporary },
+//             new EmployeeType { EmployeeTypeId = employeeTypeId3, EmpTypes = EmpTypes.Retailer },
+//             new EmployeeType { EmployeeTypeId = employeeTypeId4, EmpTypes = EmpTypes.Intern }
+//         );
+//        
+//  
+//             // Seed data for Departments
+//             var deptAdminId = Guid.NewGuid(); 
+//             var deptHRId = Guid.NewGuid(); 
+//             var deptFinanceId = Guid.NewGuid(); 
+//             var deptITId = Guid.NewGuid();
+//  
+//             modelBuilder.Entity<Department>().HasData(
+//                 new Department { Id = deptAdminId, Name = "Administration" }, 
+//                 new Department { Id = deptHRId, Name = "HR" }, 
+//                 new Department { Id = deptFinanceId, Name = "Finance" }, 
+//                 new Department { Id = deptITId, Name = "IT" }
+//             );
+//  
+//             // Seed data for Employees
+//             var empId = Guid.NewGuid();
+//
+//  
+//             modelBuilder.Entity<Employee>().HasData(
+// new Employee
+//                 {
+//                     EmployeeId = empId,
+//                     Name = "John Doe",
+//                     EmployeeTypeId = employeeTypeId1,
+//                     DepartmentId = deptAdminId,
+//                     Band = "E3"
+//                 }
+//             );
+//  
+//             // Seed data for PersonalDetails
+//             modelBuilder.Entity<PersonalDetails>().HasData(
+// new PersonalDetails
+//                 {
+//                     EmployeeId = empId,
+//                     Address = "123 Main St",
+//                     PhoneNumber = "123-456-7890",
+//                     Email = "john.doe@example.com",
+//                     DateOfBirth = new DateTime(1985, 1, 1)
+//                 }
+//             );
+//  
+//             // Seed data for Qualifications
+//             var qualId = Guid.NewGuid();
+//             modelBuilder.Entity<Qualification>().HasData(
+// new Qualification
+//                 {
+//                     QualificationId = qualId,
+//                     EmployeeId = empId,
+//                     Degree = "B.Sc. Computer Science",
+//                     Institution = "ABC University",
+//                     GraduationDate = new DateTime(2007, 6, 1),
+//                     Grade = "A"
+//                 }
+//             );
+//  
+//             // Seed data for Experiences
+//             var expId = Guid.NewGuid();
+//             modelBuilder.Entity<Experience>().HasData(
+// new Experience
+//                 {
+//                     ExperienceId = expId,
+//                     EmployeeId = empId,
+//                     CompanyName = "XYZ Corp",
+//                     JobTitle = "Software Developer",
+//                     StartDate = new DateTime(2008, 7, 1),
+//                     EndDate = new DateTime(2012, 12, 31),
+//                     Responsibilities = "Developed web applications"
+//                 }
+//             );
+//  
+//             // Seed data for GovernmentDocuments
+//             var docId = Guid.NewGuid();
+//             modelBuilder.Entity<GovernmentDocument>().HasData(
+// new GovernmentDocument
+//                 {
+//                     DocumentId = docId,
+//                     EmployeeId = empId,
+//                     DocumentType = "Passport",
+//                     DocumentNumber = "123456789",
+//                     IssueDate = new DateTime(2010, 1, 1),
+//                     ExpiryDate = new DateTime(2020, 1, 1)
+//                 }
+//             );
+//  
+//             // Seed data for Certifications
+//             var certId = Guid.NewGuid();
+//             modelBuilder.Entity<Certification>().HasData(
+// new Certification
+//                 {
+//                     CertificationId = certId,
+//                     EmployeeId = empId,
+//                     CertificationName = "Microsoft Certified",
+//                     IssuingOrganization = "Microsoft",
+//                     IssueDate = new DateTime(2015, 5, 1),
+//                     ExpiryDate = new DateTime(2020, 5, 1)
+//                 }
+//             );
+//  
+//             // Seed data for EmployeeSalaries
+//             modelBuilder.Entity<EmployeeSalary>().HasData(
+// new EmployeeSalary
+//                 {
+//                     EmployeeId = empId,
+//                     NetSalary = 60000,
+//                     Band = "E3",
+//                     CalculatedOn = DateTime.Now
+//                 }
+//             );
+//  
+//             // Seed data for Leaves
+//             var leaveId = Guid.NewGuid();
+//             modelBuilder.Entity<Leave>().HasData(new Leave { Id = leaveId, EmployeeId = empId, StartDate = new DateTime(2023, 1, 1), EndDate = new DateTime(2023, 1, 10), Reason = "Vacation", Status = LeaveStatus.Approved });
+//  
+//             // Seed data for Reports
+//             var reportId = Guid.NewGuid();
+//             modelBuilder.Entity<Report>().HasData(
+//                 new Report
+//                 {
+//                     Id = reportId,
+//                     Title = "Annual Report",
+//                     GeneratedOn = DateTime.Now,
+//                     Content = "This is the annual report content.",
+//                     DepartmentId = deptFinanceId
+//                 }
+//             );
+
         //   var employee1 = new Employee
         //     {
         //         EmployeeId = employeeId1,
@@ -352,8 +352,8 @@ new EmployeeSalary
         //     employee2.SetBand(); // Set the Band based on the experience
         //     modelBuilder.Entity<Employee>().HasData(employee2);
         // }
-        
-        
+
+
         // modelBuilder.Entity<Employee>().HasData(
         //     new Employee { EmployeeId = employeeId1, Name = "John Doe", EmployeeTypeId = employeeTypeId1, DepartmentType = DepartmentType.IT,Band = "E2",},
         //     new Employee { EmployeeId = employeeId2, Name = "Jane Smith", EmployeeTypeId = employeeTypeId2, DepartmentType = DepartmentType.Finance,Band = "E3"}
@@ -392,39 +392,190 @@ new EmployeeSalary
         //     new Leave { Id = Guid.NewGuid(), StartDate = new DateTime(2024, 8, 2), EndDate = new DateTime(2024, 8, 4), EmployeeId = employeeId2, Reason = "Going Native", Status = LeaveStatus.Requested }
         // );
         //
-        // modelBuilder.Entity<BandSalary>().HasData(
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Administration, BasicSalary = 30000, DearnessAllowance = 3000, HRA = 5000, ConveyanceAllowance = 2000, EntertainmentAllowance = 1000, MedicalInsurance = 1500, Stipend = 500 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Administration, BasicSalary = 35000, DearnessAllowance = 3500, HRA = 5500, ConveyanceAllowance = 2500, EntertainmentAllowance = 1500, MedicalInsurance = 1600, Stipend = 600 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Administration, BasicSalary = 40000, DearnessAllowance = 4000, HRA = 6000, ConveyanceAllowance = 3000, EntertainmentAllowance = 2000, MedicalInsurance = 1700, Stipend = 700 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Administration, BasicSalary = 45000, DearnessAllowance = 4500, HRA = 6500, ConveyanceAllowance = 3500, EntertainmentAllowance = 2500, MedicalInsurance = 1800, Stipend = 800 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Administration, BasicSalary = 50000, DearnessAllowance = 5000, HRA = 7000, ConveyanceAllowance = 4000, EntertainmentAllowance = 3000, MedicalInsurance = 1900, Stipend = 900 },
-        //     // Repeat for each department type
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.HR, BasicSalary = 31000, DearnessAllowance = 3100, HRA = 5100, ConveyanceAllowance = 2100, EntertainmentAllowance = 1100, MedicalInsurance = 1510, Stipend = 510 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.HR, BasicSalary = 36000, DearnessAllowance = 3600, HRA = 5600, ConveyanceAllowance = 2600, EntertainmentAllowance = 1600, MedicalInsurance = 1610, Stipend = 610 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.HR, BasicSalary = 41000, DearnessAllowance = 4100, HRA = 6100, ConveyanceAllowance = 3100, EntertainmentAllowance = 2100, MedicalInsurance = 1710, Stipend = 710 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.HR, BasicSalary = 46000, DearnessAllowance = 4600, HRA = 6600, ConveyanceAllowance = 3600, EntertainmentAllowance = 2600, MedicalInsurance = 1810, Stipend = 810 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.HR, BasicSalary = 51000, DearnessAllowance = 5100, HRA = 7100, ConveyanceAllowance = 4100, EntertainmentAllowance = 3100, MedicalInsurance = 1910, Stipend = 910 },
-        //     // Add entries for Finance, Marketing, Sales, and IT similarly
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Finance, BasicSalary = 32000, DearnessAllowance = 3200, HRA = 5200, ConveyanceAllowance = 2200, EntertainmentAllowance = 1200, MedicalInsurance = 1520, Stipend = 520 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Finance, BasicSalary = 37000, DearnessAllowance = 3700, HRA = 5700, ConveyanceAllowance = 2700, EntertainmentAllowance = 1700, MedicalInsurance = 1620, Stipend = 620 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Finance, BasicSalary = 42000, DearnessAllowance = 4200, HRA = 6200, ConveyanceAllowance = 3200, EntertainmentAllowance = 2200, MedicalInsurance = 1720, Stipend = 720 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Finance, BasicSalary = 47000, DearnessAllowance = 4700, HRA = 6700, ConveyanceAllowance = 3700, EntertainmentAllowance = 2700, MedicalInsurance = 1820, Stipend = 820 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Finance, BasicSalary = 52000, DearnessAllowance = 5200, HRA = 7200, ConveyanceAllowance = 4200, EntertainmentAllowance = 3200, MedicalInsurance = 1920, Stipend = 920 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Marketing, BasicSalary = 33000, DearnessAllowance = 3300, HRA = 5300, ConveyanceAllowance = 2300, EntertainmentAllowance = 1300, MedicalInsurance = 1530, Stipend = 530 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Marketing, BasicSalary = 38000, DearnessAllowance = 3800, HRA = 5800, ConveyanceAllowance = 2800, EntertainmentAllowance = 1800, MedicalInsurance = 1630, Stipend = 630 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Marketing, BasicSalary = 43000, DearnessAllowance = 4300, HRA = 6300, ConveyanceAllowance = 3300, EntertainmentAllowance = 2300, MedicalInsurance = 1730, Stipend = 730 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Marketing, BasicSalary = 48000, DearnessAllowance = 4800, HRA = 6800, ConveyanceAllowance = 3800, EntertainmentAllowance = 2800, MedicalInsurance = 1830, Stipend = 830 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Marketing, BasicSalary = 53000, DearnessAllowance = 5300, HRA = 7300, ConveyanceAllowance = 4300, EntertainmentAllowance = 3300, MedicalInsurance = 1930, Stipend = 930 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Sales, BasicSalary = 34000, DearnessAllowance = 3400, HRA = 5400, ConveyanceAllowance = 2400, EntertainmentAllowance = 1400, MedicalInsurance = 1540, Stipend = 540 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Sales, BasicSalary = 39000, DearnessAllowance = 3900, HRA = 5900, ConveyanceAllowance = 2900, EntertainmentAllowance = 1900, MedicalInsurance = 1640, Stipend = 640 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Sales, BasicSalary = 44000, DearnessAllowance = 4400, HRA = 6400, ConveyanceAllowance = 3400, EntertainmentAllowance = 2400, MedicalInsurance = 1740, Stipend = 740 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Sales, BasicSalary = 49000, DearnessAllowance = 4900, HRA = 6900, ConveyanceAllowance = 3900, EntertainmentAllowance = 2900, MedicalInsurance = 1840, Stipend = 840 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Sales, BasicSalary = 54000, DearnessAllowance = 5400, HRA = 7400, ConveyanceAllowance = 4400, EntertainmentAllowance = 3400, MedicalInsurance = 1940, Stipend = 940 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.IT, BasicSalary = 35000, DearnessAllowance = 3500, HRA = 5500, ConveyanceAllowance = 2500, EntertainmentAllowance = 1500, MedicalInsurance = 1550, Stipend = 550 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.IT, BasicSalary = 40000, DearnessAllowance = 4000, HRA = 6000, ConveyanceAllowance = 3000, EntertainmentAllowance = 2000, MedicalInsurance = 1650, Stipend = 650 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.IT, BasicSalary = 45000, DearnessAllowance = 4500, HRA = 6500, ConveyanceAllowance = 3500, EntertainmentAllowance = 2500, MedicalInsurance = 1750, Stipend = 750 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.IT, BasicSalary = 50000, DearnessAllowance = 5000, HRA = 7000, ConveyanceAllowance = 4000, EntertainmentAllowance = 3000, MedicalInsurance = 1850, Stipend = 850 },
-        //     new BandSalary { Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.IT, BasicSalary = 55000, DearnessAllowance = 5500, HRA = 7500, ConveyanceAllowance = 4500, EntertainmentAllowance = 3500, MedicalInsurance = 1950, Stipend = 950 }
-        // );
+        modelBuilder.Entity<BandSalary>().HasData(
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Administration, BasicSalary = 30000,
+                DearnessAllowance = 3000, HRA = 5000, ConveyanceAllowance = 2000, EntertainmentAllowance = 1000,
+                MedicalInsurance = 1500, Stipend = 500
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Administration, BasicSalary = 35000,
+                DearnessAllowance = 3500, HRA = 5500, ConveyanceAllowance = 2500, EntertainmentAllowance = 1500,
+                MedicalInsurance = 1600, Stipend = 600
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Administration, BasicSalary = 40000,
+                DearnessAllowance = 4000, HRA = 6000, ConveyanceAllowance = 3000, EntertainmentAllowance = 2000,
+                MedicalInsurance = 1700, Stipend = 700
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Administration, BasicSalary = 45000,
+                DearnessAllowance = 4500, HRA = 6500, ConveyanceAllowance = 3500, EntertainmentAllowance = 2500,
+                MedicalInsurance = 1800, Stipend = 800
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Administration, BasicSalary = 50000,
+                DearnessAllowance = 5000, HRA = 7000, ConveyanceAllowance = 4000, EntertainmentAllowance = 3000,
+                MedicalInsurance = 1900, Stipend = 900
+            },
+            // Repeat for each department type
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.HR, BasicSalary = 31000,
+                DearnessAllowance = 3100, HRA = 5100, ConveyanceAllowance = 2100, EntertainmentAllowance = 1100,
+                MedicalInsurance = 1510, Stipend = 510
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.HR, BasicSalary = 36000,
+                DearnessAllowance = 3600, HRA = 5600, ConveyanceAllowance = 2600, EntertainmentAllowance = 1600,
+                MedicalInsurance = 1610, Stipend = 610
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.HR, BasicSalary = 41000,
+                DearnessAllowance = 4100, HRA = 6100, ConveyanceAllowance = 3100, EntertainmentAllowance = 2100,
+                MedicalInsurance = 1710, Stipend = 710
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.HR, BasicSalary = 46000,
+                DearnessAllowance = 4600, HRA = 6600, ConveyanceAllowance = 3600, EntertainmentAllowance = 2600,
+                MedicalInsurance = 1810, Stipend = 810
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.HR, BasicSalary = 51000,
+                DearnessAllowance = 5100, HRA = 7100, ConveyanceAllowance = 4100, EntertainmentAllowance = 3100,
+                MedicalInsurance = 1910, Stipend = 910
+            },
+            // Add entries for Finance, Marketing, Sales, and IT similarly
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Finance, BasicSalary = 32000,
+                DearnessAllowance = 3200, HRA = 5200, ConveyanceAllowance = 2200, EntertainmentAllowance = 1200,
+                MedicalInsurance = 1520, Stipend = 520
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Finance, BasicSalary = 37000,
+                DearnessAllowance = 3700, HRA = 5700, ConveyanceAllowance = 2700, EntertainmentAllowance = 1700,
+                MedicalInsurance = 1620, Stipend = 620
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Finance, BasicSalary = 42000,
+                DearnessAllowance = 4200, HRA = 6200, ConveyanceAllowance = 3200, EntertainmentAllowance = 2200,
+                MedicalInsurance = 1720, Stipend = 720
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Finance, BasicSalary = 47000,
+                DearnessAllowance = 4700, HRA = 6700, ConveyanceAllowance = 3700, EntertainmentAllowance = 2700,
+                MedicalInsurance = 1820, Stipend = 820
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Finance, BasicSalary = 52000,
+                DearnessAllowance = 5200, HRA = 7200, ConveyanceAllowance = 4200, EntertainmentAllowance = 3200,
+                MedicalInsurance = 1920, Stipend = 920
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Marketing, BasicSalary = 33000,
+                DearnessAllowance = 3300, HRA = 5300, ConveyanceAllowance = 2300, EntertainmentAllowance = 1300,
+                MedicalInsurance = 1530, Stipend = 530
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Marketing, BasicSalary = 38000,
+                DearnessAllowance = 3800, HRA = 5800, ConveyanceAllowance = 2800, EntertainmentAllowance = 1800,
+                MedicalInsurance = 1630, Stipend = 630
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Marketing, BasicSalary = 43000,
+                DearnessAllowance = 4300, HRA = 6300, ConveyanceAllowance = 3300, EntertainmentAllowance = 2300,
+                MedicalInsurance = 1730, Stipend = 730
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Marketing, BasicSalary = 48000,
+                DearnessAllowance = 4800, HRA = 6800, ConveyanceAllowance = 3800, EntertainmentAllowance = 2800,
+                MedicalInsurance = 1830, Stipend = 830
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Marketing, BasicSalary = 53000,
+                DearnessAllowance = 5300, HRA = 7300, ConveyanceAllowance = 4300, EntertainmentAllowance = 3300,
+                MedicalInsurance = 1930, Stipend = 930
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.Sales, BasicSalary = 34000,
+                DearnessAllowance = 3400, HRA = 5400, ConveyanceAllowance = 2400, EntertainmentAllowance = 1400,
+                MedicalInsurance = 1540, Stipend = 540
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.Sales, BasicSalary = 39000,
+                DearnessAllowance = 3900, HRA = 5900, ConveyanceAllowance = 2900, EntertainmentAllowance = 1900,
+                MedicalInsurance = 1640, Stipend = 640
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.Sales, BasicSalary = 44000,
+                DearnessAllowance = 4400, HRA = 6400, ConveyanceAllowance = 3400, EntertainmentAllowance = 2400,
+                MedicalInsurance = 1740, Stipend = 740
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.Sales, BasicSalary = 49000,
+                DearnessAllowance = 4900, HRA = 6900, ConveyanceAllowance = 3900, EntertainmentAllowance = 2900,
+                MedicalInsurance = 1840, Stipend = 840
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.Sales, BasicSalary = 54000,
+                DearnessAllowance = 5400, HRA = 7400, ConveyanceAllowance = 4400, EntertainmentAllowance = 3400,
+                MedicalInsurance = 1940, Stipend = 940
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E1", DepartmentType = DepartmentType.IT, BasicSalary = 35000,
+                DearnessAllowance = 3500, HRA = 5500, ConveyanceAllowance = 2500, EntertainmentAllowance = 1500,
+                MedicalInsurance = 1550, Stipend = 550
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E2", DepartmentType = DepartmentType.IT, BasicSalary = 40000,
+                DearnessAllowance = 4000, HRA = 6000, ConveyanceAllowance = 3000, EntertainmentAllowance = 2000,
+                MedicalInsurance = 1650, Stipend = 650
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E3", DepartmentType = DepartmentType.IT, BasicSalary = 45000,
+                DearnessAllowance = 4500, HRA = 6500, ConveyanceAllowance = 3500, EntertainmentAllowance = 2500,
+                MedicalInsurance = 1750, Stipend = 750
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E4", DepartmentType = DepartmentType.IT, BasicSalary = 50000,
+                DearnessAllowance = 5000, HRA = 7000, ConveyanceAllowance = 4000, EntertainmentAllowance = 3000,
+                MedicalInsurance = 1850, Stipend = 850
+            },
+            new BandSalary
+            {
+                Id = Guid.NewGuid(), Band = "E5", DepartmentType = DepartmentType.IT, BasicSalary = 55000,
+                DearnessAllowance = 5500, HRA = 7500, ConveyanceAllowance = 4500, EntertainmentAllowance = 3500,
+                MedicalInsurance = 1950, Stipend = 950
+            }
+        );
 
+    }
 }
