@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240805010758_ReportAndLeave")]
-    partial class ReportAndLeave
+    [Migration("20240805143850_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,9 @@ namespace EMS.Infrastructure.Migrations
                     b.Property<decimal>("DearnessAllowance")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("DepartmentType")
+                        .HasColumnType("INTEGER");
+
                     b.Property<decimal>("EntertainmentAllowance")
                         .HasColumnType("TEXT");
 
@@ -56,21 +59,6 @@ namespace EMS.Infrastructure.Migrations
                     b.ToTable("BandSalaries");
                 });
 
-            modelBuilder.Entity("EMS.Domain.Entities.Department", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Departments");
-                });
-
             modelBuilder.Entity("EMS.Domain.Entities.Employee", b =>
                 {
                     b.Property<Guid>("EmployeeId")
@@ -81,24 +69,17 @@ namespace EMS.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("DepartmentId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("DepartmentType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("EmployeeTypeId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("EmployeeType")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("EmployeeId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("EmployeeTypeId");
 
                     b.ToTable("Employees");
                 });
@@ -255,8 +236,7 @@ namespace EMS.Infrastructure.Migrations
 
             modelBuilder.Entity("EMS.Domain.Entities.EmployeeSalary", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("EmployeeId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Band")
@@ -266,32 +246,12 @@ namespace EMS.Infrastructure.Migrations
                     b.Property<DateTime>("CalculatedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("EmployeeId")
-                        .HasColumnType("TEXT");
-
                     b.Property<decimal>("NetSalary")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId")
-                        .IsUnique();
+                    b.HasKey("EmployeeId");
 
                     b.ToTable("EmployeeSalaries");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.EmployeeType", b =>
-                {
-                    b.Property<Guid>("EmployeeTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("EmpTypes")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("EmployeeTypeId");
-
-                    b.ToTable("EmployeeTypes");
                 });
 
             modelBuilder.Entity("EMS.Domain.Entities.Leave", b =>
@@ -321,52 +281,6 @@ namespace EMS.Infrastructure.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Leaves");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Report", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("DepartmentId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("GeneratedOn")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Reports");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Employee", b =>
-                {
-                    b.HasOne("EMS.Domain.Entities.Department", "Department")
-                        .WithMany("Employees")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EMS.Domain.Entities.EmployeeType", "EmployeeType")
-                        .WithMany("Employees")
-                        .HasForeignKey("EmployeeTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-
-                    b.Navigation("EmployeeType");
                 });
 
             modelBuilder.Entity("EMS.Domain.Entities.EmployeeDetails.Certification", b =>
@@ -446,24 +360,6 @@ namespace EMS.Infrastructure.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("EMS.Domain.Entities.Report", b =>
-                {
-                    b.HasOne("EMS.Domain.Entities.Department", "Department")
-                        .WithMany("Reports")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Department", b =>
-                {
-                    b.Navigation("Employees");
-
-                    b.Navigation("Reports");
-                });
-
             modelBuilder.Entity("EMS.Domain.Entities.Employee", b =>
                 {
                     b.Navigation("Certifications");
@@ -481,11 +377,6 @@ namespace EMS.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Qualifications");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.EmployeeType", b =>
-                {
-                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

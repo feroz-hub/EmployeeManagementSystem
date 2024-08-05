@@ -12,15 +12,23 @@ namespace EMS.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "EmployeeTypes",
+                name: "BandSalaries",
                 columns: table => new
                 {
-                    EmployeeTypeId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    EmpTypes = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Band = table.Column<string>(type: "TEXT", nullable: false),
+                    DepartmentType = table.Column<int>(type: "INTEGER", nullable: false),
+                    BasicSalary = table.Column<decimal>(type: "TEXT", nullable: false),
+                    DearnessAllowance = table.Column<decimal>(type: "TEXT", nullable: false),
+                    HRA = table.Column<decimal>(type: "TEXT", nullable: false),
+                    ConveyanceAllowance = table.Column<decimal>(type: "TEXT", nullable: false),
+                    EntertainmentAllowance = table.Column<decimal>(type: "TEXT", nullable: false),
+                    MedicalInsurance = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Stipend = table.Column<decimal>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeTypes", x => x.EmployeeTypeId);
+                    table.PrimaryKey("PK_BandSalaries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -29,19 +37,13 @@ namespace EMS.Infrastructure.Migrations
                 {
                     EmployeeId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    EmployeeTypeId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Department = table.Column<int>(type: "INTEGER", nullable: false),
+                    EmployeeType = table.Column<int>(type: "INTEGER", nullable: false),
+                    DepartmentType = table.Column<int>(type: "INTEGER", nullable: false),
                     Band = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.EmployeeId);
-                    table.ForeignKey(
-                        name: "FK_Employees_EmployeeTypes_EmployeeTypeId",
-                        column: x => x.EmployeeTypeId,
-                        principalTable: "EmployeeTypes",
-                        principalColumn: "EmployeeTypeId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,6 +62,26 @@ namespace EMS.Infrastructure.Migrations
                     table.PrimaryKey("PK_Certifications", x => x.CertificationId);
                     table.ForeignKey(
                         name: "FK_Certifications_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeSalaries",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    NetSalary = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Band = table.Column<string>(type: "TEXT", nullable: false),
+                    CalculatedOn = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeSalaries", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_EmployeeSalaries_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -105,6 +127,28 @@ namespace EMS.Infrastructure.Migrations
                     table.PrimaryKey("PK_GovernmentDocuments", x => x.DocumentId);
                     table.ForeignKey(
                         name: "FK_GovernmentDocuments_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Leaves",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Reason = table.Column<string>(type: "TEXT", nullable: false),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Leaves", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Leaves_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -160,11 +204,6 @@ namespace EMS.Infrastructure.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_EmployeeTypeId",
-                table: "Employees",
-                column: "EmployeeTypeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Experiences_EmployeeId",
                 table: "Experiences",
                 column: "EmployeeId");
@@ -172,6 +211,11 @@ namespace EMS.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_GovernmentDocuments_EmployeeId",
                 table: "GovernmentDocuments",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Leaves_EmployeeId",
+                table: "Leaves",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
@@ -184,13 +228,22 @@ namespace EMS.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BandSalaries");
+
+            migrationBuilder.DropTable(
                 name: "Certifications");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeSalaries");
 
             migrationBuilder.DropTable(
                 name: "Experiences");
 
             migrationBuilder.DropTable(
                 name: "GovernmentDocuments");
+
+            migrationBuilder.DropTable(
+                name: "Leaves");
 
             migrationBuilder.DropTable(
                 name: "PersonalDetails");
@@ -200,9 +253,6 @@ namespace EMS.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
-
-            migrationBuilder.DropTable(
-                name: "EmployeeTypes");
         }
     }
 }

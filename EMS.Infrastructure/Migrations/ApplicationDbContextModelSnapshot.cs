@@ -58,7 +58,7 @@ namespace EMS.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4a2bd1f6-ccd8-43d9-a68c-a578427cc934"),
+                            Id = new Guid("c0f318b3-a30f-46c2-9ba3-26051eaa822e"),
                             Band = "E1",
                             BasicSalary = 30000m,
                             ConveyanceAllowance = 2000m,
@@ -71,7 +71,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("129f0f4b-5bf8-4633-8dd3-9cee8830b347"),
+                            Id = new Guid("4eb2d3e7-4538-4e78-b217-e5a3bfa52d79"),
                             Band = "E2",
                             BasicSalary = 35000m,
                             ConveyanceAllowance = 2500m,
@@ -84,7 +84,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a6256f03-db30-45d1-ac9b-9b7c20e48552"),
+                            Id = new Guid("b9242344-631a-4777-89a3-fd605f268049"),
                             Band = "E3",
                             BasicSalary = 40000m,
                             ConveyanceAllowance = 3000m,
@@ -97,7 +97,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d99405cd-1462-4f85-8f63-ea9778fd7b0b"),
+                            Id = new Guid("b46385c1-a711-43df-bb19-7b8f430fa83e"),
                             Band = "E4",
                             BasicSalary = 45000m,
                             ConveyanceAllowance = 3500m,
@@ -110,7 +110,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fc17d898-70d0-491b-ae50-f397c9743629"),
+                            Id = new Guid("baf6893c-e56a-4655-9708-b5a240281e4d"),
                             Band = "E5",
                             BasicSalary = 50000m,
                             ConveyanceAllowance = 4000m,
@@ -123,7 +123,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("daecc282-80c2-4c2e-80d6-457ac6ce0833"),
+                            Id = new Guid("54960ba3-2d73-4fed-aed5-76687db263b5"),
                             Band = "E1",
                             BasicSalary = 31000m,
                             ConveyanceAllowance = 2100m,
@@ -136,7 +136,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("98537331-45b4-4ed9-a74d-a130036f1747"),
+                            Id = new Guid("ec97ea18-17cc-40ae-bacc-ede3dda78ea1"),
                             Band = "E2",
                             BasicSalary = 36000m,
                             ConveyanceAllowance = 2600m,
@@ -149,7 +149,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9272d969-c283-4e92-b819-030ca74962d7"),
+                            Id = new Guid("2883b7a1-7caf-4b66-acc1-90b14f2405f1"),
                             Band = "E3",
                             BasicSalary = 41000m,
                             ConveyanceAllowance = 3100m,
@@ -162,7 +162,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2b9367f0-bd76-488a-9751-62d57fd62ef0"),
+                            Id = new Guid("0482c5d2-e7f2-4a34-8039-cb0b82f75841"),
                             Band = "E4",
                             BasicSalary = 46000m,
                             ConveyanceAllowance = 3600m,
@@ -175,7 +175,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("01fd65db-a5e0-405f-ac1a-b4c0fa3b1cd4"),
+                            Id = new Guid("353b546d-fc50-40c3-8d4e-ea0f666c8c8b"),
                             Band = "E5",
                             BasicSalary = 51000m,
                             ConveyanceAllowance = 4100m,
@@ -188,7 +188,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c868b234-76a6-4a45-afc2-e9bc0517b3cd"),
+                            Id = new Guid("1138c8de-6e8b-4ed4-b30a-f12dc6516571"),
                             Band = "E1",
                             BasicSalary = 32000m,
                             ConveyanceAllowance = 2200m,
@@ -201,7 +201,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cc3427b2-d22a-4b54-ae3d-32bc306f9fbb"),
+                            Id = new Guid("8dc90bc1-75f6-40d0-8166-da741b028f4c"),
                             Band = "E2",
                             BasicSalary = 37000m,
                             ConveyanceAllowance = 2700m,
@@ -214,7 +214,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5684586c-de7d-476f-8aca-c776ff2d5716"),
+                            Id = new Guid("85dae10c-3320-4a6e-a19f-ed54979da054"),
                             Band = "E3",
                             BasicSalary = 42000m,
                             ConveyanceAllowance = 3200m,
@@ -227,7 +227,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f5bb4088-dcd7-47c4-8e30-71656eb7cc00"),
+                            Id = new Guid("e4895063-41cf-45a3-bcf1-e3c868b6339c"),
                             Band = "E4",
                             BasicSalary = 47000m,
                             ConveyanceAllowance = 3700m,
@@ -240,7 +240,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a93efd29-172c-48f1-9839-cc4a15f6be4a"),
+                            Id = new Guid("b27b5128-14e8-4056-afe5-5697e48e1c6d"),
                             Band = "E5",
                             BasicSalary = 52000m,
                             ConveyanceAllowance = 4200m,
@@ -253,7 +253,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("240f6a36-6b4f-4c31-a809-cb6ae903e16b"),
+                            Id = new Guid("02357dc4-b416-440c-bd93-b9ca4576d06e"),
                             Band = "E1",
                             BasicSalary = 33000m,
                             ConveyanceAllowance = 2300m,
@@ -266,7 +266,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7f4c20f0-7d85-4121-9d59-f799d4be9275"),
+                            Id = new Guid("e738b8f3-4be2-458f-aca4-7586f39b2de0"),
                             Band = "E2",
                             BasicSalary = 38000m,
                             ConveyanceAllowance = 2800m,
@@ -279,7 +279,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("28351979-df06-4fb2-a3d3-920ded00a1bc"),
+                            Id = new Guid("37495332-1b36-4261-af4c-9d72eb03004d"),
                             Band = "E3",
                             BasicSalary = 43000m,
                             ConveyanceAllowance = 3300m,
@@ -292,7 +292,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f3e14d57-4005-418e-9dda-15f5f9f2c2ff"),
+                            Id = new Guid("b12870be-d090-4d28-8228-a6a02800399d"),
                             Band = "E4",
                             BasicSalary = 48000m,
                             ConveyanceAllowance = 3800m,
@@ -305,7 +305,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("01bb09ee-9626-4684-8ead-1b8178ec73bd"),
+                            Id = new Guid("3bd45fc6-55b3-40a5-85e3-a2586f52de53"),
                             Band = "E5",
                             BasicSalary = 53000m,
                             ConveyanceAllowance = 4300m,
@@ -318,7 +318,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e57b40cb-57d8-4c1e-bac5-bcb945345c64"),
+                            Id = new Guid("5488c7d3-32dc-46c2-8edc-73b7bc8336d2"),
                             Band = "E1",
                             BasicSalary = 34000m,
                             ConveyanceAllowance = 2400m,
@@ -331,7 +331,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("756a4d95-f696-48ab-aab3-f3c6760ebf42"),
+                            Id = new Guid("98038f4a-c992-424e-835c-5f5e7aba505d"),
                             Band = "E2",
                             BasicSalary = 39000m,
                             ConveyanceAllowance = 2900m,
@@ -344,7 +344,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7affa64d-da13-4e89-8c8f-6001c51f75fa"),
+                            Id = new Guid("5bbd5c90-1512-4f9e-a001-ca77be9bfd02"),
                             Band = "E3",
                             BasicSalary = 44000m,
                             ConveyanceAllowance = 3400m,
@@ -357,7 +357,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("615af6cb-4e7c-48c4-a8ae-2fe8fea15bc6"),
+                            Id = new Guid("a5626786-1491-44f2-9991-e437e1ce0acb"),
                             Band = "E4",
                             BasicSalary = 49000m,
                             ConveyanceAllowance = 3900m,
@@ -370,7 +370,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fe27c431-f69d-4a7a-8952-93b0bf07afeb"),
+                            Id = new Guid("d1d494f0-f826-4d52-83bf-500409946ab1"),
                             Band = "E5",
                             BasicSalary = 54000m,
                             ConveyanceAllowance = 4400m,
@@ -383,7 +383,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("57d19cd0-6fd5-4fe7-b6de-0afde371a595"),
+                            Id = new Guid("4a0646c4-df34-461b-8711-1148c545a504"),
                             Band = "E1",
                             BasicSalary = 35000m,
                             ConveyanceAllowance = 2500m,
@@ -396,7 +396,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1e237a41-5d18-49d0-93b6-ded9c7170f46"),
+                            Id = new Guid("e72e3a42-0bac-44ee-95a4-5f94c801e978"),
                             Band = "E2",
                             BasicSalary = 40000m,
                             ConveyanceAllowance = 3000m,
@@ -409,7 +409,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7549db0f-b0e5-4ced-9118-5a7f2a999dbd"),
+                            Id = new Guid("e09cfed3-6a62-4a43-bb55-2536ac57c588"),
                             Band = "E3",
                             BasicSalary = 45000m,
                             ConveyanceAllowance = 3500m,
@@ -422,7 +422,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4f3ae2a7-cf5e-4c18-b15d-17327afd138d"),
+                            Id = new Guid("7dc73e18-524a-408e-9fb1-2f0ed7f40219"),
                             Band = "E4",
                             BasicSalary = 50000m,
                             ConveyanceAllowance = 4000m,
@@ -435,7 +435,7 @@ namespace EMS.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("741ff499-8f48-41bb-bc2d-93e0f593bf4e"),
+                            Id = new Guid("b0ef34fd-d488-441f-b3ae-752c6a8383bd"),
                             Band = "E5",
                             BasicSalary = 55000m,
                             ConveyanceAllowance = 4500m,
@@ -448,21 +448,6 @@ namespace EMS.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EMS.Domain.Entities.Department", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Departments");
-                });
-
             modelBuilder.Entity("EMS.Domain.Entities.Employee", b =>
                 {
                     b.Property<Guid>("EmployeeId")
@@ -473,24 +458,17 @@ namespace EMS.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("DepartmentId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("DepartmentType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("EmployeeTypeId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("EmployeeType")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("EmployeeId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("EmployeeTypeId");
 
                     b.ToTable("Employees");
                 });
@@ -665,20 +643,6 @@ namespace EMS.Infrastructure.Migrations
                     b.ToTable("EmployeeSalaries");
                 });
 
-            modelBuilder.Entity("EMS.Domain.Entities.EmployeeType", b =>
-                {
-                    b.Property<Guid>("EmployeeTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("EmpTypes")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("EmployeeTypeId");
-
-                    b.ToTable("EmployeeTypes");
-                });
-
             modelBuilder.Entity("EMS.Domain.Entities.Leave", b =>
                 {
                     b.Property<Guid>("Id")
@@ -706,52 +670,6 @@ namespace EMS.Infrastructure.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Leaves");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Report", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("DepartmentId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("GeneratedOn")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.ToTable("Reports");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Employee", b =>
-                {
-                    b.HasOne("EMS.Domain.Entities.Department", "Department")
-                        .WithMany("Employees")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EMS.Domain.Entities.EmployeeType", "EmployeeType")
-                        .WithMany("Employees")
-                        .HasForeignKey("EmployeeTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-
-                    b.Navigation("EmployeeType");
                 });
 
             modelBuilder.Entity("EMS.Domain.Entities.EmployeeDetails.Certification", b =>
@@ -831,24 +749,6 @@ namespace EMS.Infrastructure.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("EMS.Domain.Entities.Report", b =>
-                {
-                    b.HasOne("EMS.Domain.Entities.Department", "Department")
-                        .WithMany("Reports")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.Department", b =>
-                {
-                    b.Navigation("Employees");
-
-                    b.Navigation("Reports");
-                });
-
             modelBuilder.Entity("EMS.Domain.Entities.Employee", b =>
                 {
                     b.Navigation("Certifications");
@@ -866,11 +766,6 @@ namespace EMS.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Qualifications");
-                });
-
-            modelBuilder.Entity("EMS.Domain.Entities.EmployeeType", b =>
-                {
-                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }
