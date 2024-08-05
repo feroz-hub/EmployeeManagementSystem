@@ -84,7 +84,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         //
         // var employeeId1 = Guid.NewGuid();
         // var employeeId2 = Guid.NewGuid();
-        //
+        
         // modelBuilder.Entity<EmployeeType>().HasData(
         //     new EmployeeType { EmployeeTypeId = employeeTypeId1, EmpTypes = EmpTypes.Permanent },
         //     new EmployeeType { EmployeeTypeId = employeeTypeId2, EmpTypes = EmpTypes.Temporary },
@@ -225,12 +225,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         //     employee2.SetBand(); // Set the Band based on the experience
         //     modelBuilder.Entity<Employee>().HasData(employee2);
         // }
-        //
+        
         // modelBuilder.Entity<Employee>().HasData(
-        //     new Employee { EmployeeId = employeeId1, Name = "John Doe", EmployeeTypeId = employeeTypeId1, Department = DepartmentType.IT },
-        //     new Employee { EmployeeId = employeeId2, Name = "Jane Smith", EmployeeTypeId = employeeTypeId2, Department = DepartmentType.Finance }
+        //     new Employee { EmployeeId = employeeId1, Name = "John Doe", EmployeeTypeId = employeeTypeId1, DepartmentType = DepartmentType.IT,Band = "E2",},
+        //     new Employee { EmployeeId = employeeId2, Name = "Jane Smith", EmployeeTypeId = employeeTypeId2, DepartmentType = DepartmentType.Finance }
         // );
-        //
+        // modelBuilder.Entity<EmployeeSalary>().HasData(new EmployeeSalary { EmployeeId = employeeId1,})
         //
         // modelBuilder.Entity<PersonalDetails>().HasData(
         //     new PersonalDetails { EmployeeId = employeeId1, Address = "123 Main St", PhoneNumber = "123-456-7890", Email = "john.doe@example.com", DateOfBirth = new DateTime(1985, 1, 1) },
@@ -256,6 +256,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         //     new Qualification { QualificationId = Guid.NewGuid(), EmployeeId = employeeId1, Degree = "B.Sc in Computer Science", Institution = "ABC University", GraduationDate = new DateTime(2007, 1, 1), Grade = "A" },
         //     new Qualification { QualificationId = Guid.NewGuid(), EmployeeId = employeeId2, Degree = "MBA", Institution = "XYZ University", GraduationDate = new DateTime(2010, 1, 1), Grade = "B+" }
         // );
+        
 
        
     }
