@@ -4,6 +4,7 @@ public class BandSalary
 {
     public Guid Id { get; set; }
     public string Band { get; set; }
+    public DepartmentType DepartmentType { get; set; }
     public decimal BasicSalary { get; set; }
     public decimal DearnessAllowance { get; set; }
     public decimal HRA { get; set; }

@@ -18,6 +18,9 @@ public class UnitOfWork(ApplicationDbContext context):IUnitOfWork
     public IGovernmentDocumentsRepository GovernmentDocuments { get; }=new GovernmentDocumentRepository(context);
     public ILeaveRepository Leaves { get; }=new LeaveRepository(context);
     public IReportRepository Reports { get; } = new ReportRepository(context);
+    public IBandSalaryRepository BandSalaryRepository { get; } = new BandSalaryRepository(context);
+    public IEmployeeSalaryRepository EmployeeSalaryRepository { get; } = new EmployeeSalaryRepository(context);
+
     public async Task<int> CompleteAsync()
     {
         return await context.SaveChangesAsync();
