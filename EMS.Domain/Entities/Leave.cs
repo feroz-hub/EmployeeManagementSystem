@@ -4,7 +4,7 @@ namespace EMS.Domain.Entities;
 public class Leave
 {
     // Unique identifier for the leave entry
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     // Start date of the leave period
     public DateTime StartDate { get; set; }
@@ -19,7 +19,7 @@ public class Leave
     public LeaveStatus Status { get; set; }
     
     // Foreign key for the associated employee
-    public int EmployeeId { get; set; }
+    public Guid EmployeeId { get; set; }
     
     // Navigation property to the related Employee entity
     public Employee Employee { get; set; }

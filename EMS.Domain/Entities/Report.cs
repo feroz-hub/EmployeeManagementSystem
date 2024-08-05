@@ -4,7 +4,7 @@ namespace EMS.Domain.Entities;
 public class Report
 {
     // Unique identifier for the report
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     // Title of the report
     public string Title { get; set; }
@@ -16,7 +16,7 @@ public class Report
     public string Content { get; set; }
     
     // Foreign key for the associated department
-    public int DepartmentId { get; set; }
+    public Guid DepartmentId { get; set; }
     
     // Navigation property to the related Department entity
     public Department Department { get; set; }

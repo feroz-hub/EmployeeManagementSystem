@@ -4,13 +4,14 @@ namespace EMS.Domain.Entities;
 public class Department
 {
     // Unique identifier for the department
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     // Name of the department
     public string Name { get; set; }
     
     // List of employees in the department
-    public List<Employee> Employees { get; set; }
+    public ICollection<Employee> Employees { get; set; }
+    public ICollection<Report> Reports { get; set; }
 }
 
 public enum DepartmentType
