@@ -21,7 +21,6 @@ public class EmployeeService(IUnitOfWork unitOfWork) : IEmployeeService
     {
         EmployeeId = Guid.NewGuid(),
         Name = employeeModel.Name,
-        EmployeeTypeId = employeeModel.EmployeeTypeId,
         PersonalDetails = new PersonalDetails
         {
             EmployeeId = Guid.NewGuid(), // Ensure to set the correct ID
@@ -76,7 +75,6 @@ public class EmployeeService(IUnitOfWork unitOfWork) : IEmployeeService
             Reason = l.Reason,
             Status = l.Status
         }).ToList(),
-        DepartmentId = employeeModel.DepartmentId,
         EmployeeSalary = new EmployeeSalary
         {
             EmployeeId = Guid.NewGuid(), // Ensure to set the correct ID

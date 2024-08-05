@@ -8,7 +8,6 @@ public class Qualification
     public string Institution { get; set; }
     public DateTime GraduationDate { get; set; }
     public string Grade { get; set; }
-
     public Employee Employee { get; set; }
 }
 

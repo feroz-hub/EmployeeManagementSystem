@@ -1,3 +1,4 @@
+using EMS.Domain.Enums;
 using EMS.Infrastructure.Repositories.Interfaces;
 
 namespace EMS.Application.Services;
@@ -7,30 +8,28 @@ public class SalaryService(IUnitOfWork unitOfWork):ISalaryService
     public async Task<decimal> CalculateSalary(Employee employee)
     {
         var bandSalary =
-            await unitOfWork.BandSalaryRepository.GetBandSalaryByBandAndDepartment(employee.Band,
-                employee.DepartmentType);
+            await unitOfWork.BandSalaryRepository.GetBandSalaryByBandAndDepartment(employee.Band,employee.DepartmentType);
         if (bandSalary == null)
         {
             throw new Exception("Band salary details not found.");
         }
-
         decimal netSalary = 0;
-        var employeeType = employee.EmployeeType.EmpTypes;
+        var employeeType = employee.EmployeeType;
 
         switch (employeeType)
         {
-            case EmpTypes.Permanent:
+            case EmployeeType.Permanent:
                 netSalary = bandSalary.BasicSalary + bandSalary.DearnessAllowance + bandSalary.HRA +
                             bandSalary.ConveyanceAllowance + bandSalary.EntertainmentAllowance +
                             bandSalary.MedicalInsurance;
                 break;
-            case EmpTypes.Temporary:
+            case EmployeeType.Temporary:
                 netSalary = bandSalary.BasicSalary + bandSalary.DearnessAllowance;
                 break;
-            case EmpTypes.Retailer:
+            case EmployeeType.Retailer:
                 netSalary = bandSalary.BasicSalary + bandSalary.DearnessAllowance;
                 break;
-            case EmpTypes.Intern:
+            case EmployeeType.Intern:
                 netSalary = bandSalary.Stipend;
                 break;
         }

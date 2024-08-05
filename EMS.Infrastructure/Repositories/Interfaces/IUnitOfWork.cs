@@ -9,7 +9,6 @@ public interface IUnitOfWork : IDisposable
     IQualificationRepository Qualifications { get; }
     IGovernmentDocumentsRepository GovernmentDocuments { get; }
     ILeaveRepository Leaves { get; }
-    IReportRepository Reports { get; }
     IBandSalaryRepository BandSalaryRepository { get; }
     IEmployeeSalaryRepository EmployeeSalaryRepository { get; }
     Task<int> CompleteAsync();

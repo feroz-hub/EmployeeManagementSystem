@@ -1,10 +1,11 @@
+using EMS.Domain.Enums;
+
 namespace EMS.Domain.Entities;
 
 public class Employee
 {
     public Guid EmployeeId { get; set; }
     public string Name { get; set; }
-    public Guid EmployeeTypeId { get; set; }
     public EmployeeType EmployeeType { get; set; }
     public PersonalDetails PersonalDetails { get; set; }
     public ICollection<Qualification> Qualifications { get; set; }
@@ -13,8 +14,6 @@ public class Employee
     public ICollection<Certification> Certifications { get; set; }
     public ICollection<Leave> Leaves { get; set; }
     public DepartmentType DepartmentType { get; set; }
-    public Department Department{get; set; }
-    public Guid DepartmentId { get; set; }
     public EmployeeSalary EmployeeSalary { get; set; }
     public string Band { get; set; }
     public void SetBand()
