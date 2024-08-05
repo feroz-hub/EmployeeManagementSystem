@@ -1,3 +1,5 @@
+using EMS.Domain.Models;
+
 namespace EMS.WebApi.Controllers;
 [Route("api/employee")]
 [ApiController]
@@ -19,10 +21,10 @@ public class EmployeesController(IEmployeeService employeeService) : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddEmployee(Employee employee)
+    public async Task<IActionResult> AddEmployee(EmployeeModel employeeModel)
     {
-        await employeeService.AddEmployeeAsync(employee);
-        return CreatedAtAction(nameof(GetEmployee), new { id = employee.EmployeeId }, employee);
+        await employeeService.AddEmployeeAsync(employeeModel);
+        return Ok();
     }
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateEmployee(Guid id, Employee employee)
