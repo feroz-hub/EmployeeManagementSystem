@@ -76,21 +76,21 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         //SeedData(modelBuilder);
         
         
-        // // Seed Data
-        // var employeeTypeId1 = Guid.NewGuid();
-        // var employeeTypeId2 = Guid.NewGuid();
-        // var employeeTypeId3 = Guid.NewGuid();
-        // var employeeTypeId4 = Guid.NewGuid();
-        //
-        // var employeeId1 = Guid.NewGuid();
-        // var employeeId2 = Guid.NewGuid();
+        // Seed Data
+        var employeeTypeId1 = Guid.NewGuid();
+        var employeeTypeId2 = Guid.NewGuid();
+        var employeeTypeId3 = Guid.NewGuid();
+        var employeeTypeId4 = Guid.NewGuid();
         
-        // modelBuilder.Entity<EmployeeType>().HasData(
-        //     new EmployeeType { EmployeeTypeId = employeeTypeId1, EmpTypes = EmpTypes.Permanent },
-        //     new EmployeeType { EmployeeTypeId = employeeTypeId2, EmpTypes = EmpTypes.Temporary },
-        //     new EmployeeType { EmployeeTypeId = employeeTypeId3, EmpTypes = EmpTypes.Retailer },
-        //     new EmployeeType { EmployeeTypeId = employeeTypeId4, EmpTypes = EmpTypes.Intern }
-        // );
+        var employeeId1 = Guid.NewGuid();
+        var employeeId2 = Guid.NewGuid();
+        
+        modelBuilder.Entity<EmployeeType>().HasData(
+            new EmployeeType { EmployeeTypeId = employeeTypeId1, EmpTypes = EmpTypes.Permanent },
+            new EmployeeType { EmployeeTypeId = employeeTypeId2, EmpTypes = EmpTypes.Temporary },
+            new EmployeeType { EmployeeTypeId = employeeTypeId3, EmpTypes = EmpTypes.Retailer },
+            new EmployeeType { EmployeeTypeId = employeeTypeId4, EmpTypes = EmpTypes.Intern }
+        );
         //   var employee1 = new Employee
         //     {
         //         EmployeeId = employeeId1,
@@ -226,39 +226,48 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         //     modelBuilder.Entity<Employee>().HasData(employee2);
         // }
         
-        // modelBuilder.Entity<Employee>().HasData(
-        //     new Employee { EmployeeId = employeeId1, Name = "John Doe", EmployeeTypeId = employeeTypeId1, DepartmentType = DepartmentType.IT,Band = "E2",},
-        //     new Employee { EmployeeId = employeeId2, Name = "Jane Smith", EmployeeTypeId = employeeTypeId2, DepartmentType = DepartmentType.Finance }
-        // );
-        // modelBuilder.Entity<EmployeeSalary>().HasData(new EmployeeSalary { EmployeeId = employeeId1,})
-        //
-        // modelBuilder.Entity<PersonalDetails>().HasData(
-        //     new PersonalDetails { EmployeeId = employeeId1, Address = "123 Main St", PhoneNumber = "123-456-7890", Email = "john.doe@example.com", DateOfBirth = new DateTime(1985, 1, 1) },
-        //     new PersonalDetails { EmployeeId = employeeId2, Address = "456 Elm St", PhoneNumber = "987-654-3210", Email = "jane.smith@example.com", DateOfBirth = new DateTime(1990, 2, 2) }
-        // );
-        //
-        // modelBuilder.Entity<GovernmentDocument>().HasData(
-        //     new GovernmentDocument { DocumentId = Guid.NewGuid(), EmployeeId = employeeId1, DocumentType = "Passport", DocumentNumber = "A1234567", IssueDate = new DateTime(2015, 1, 1), ExpiryDate = new DateTime(2025, 1, 1) },
-        //     new GovernmentDocument { DocumentId = Guid.NewGuid(), EmployeeId = employeeId2, DocumentType = "Driver's License", DocumentNumber = "B9876543", IssueDate = new DateTime(2018, 1, 1), ExpiryDate = new DateTime(2028, 1, 1) }
-        // );
-        //
-        // modelBuilder.Entity<Experience>().HasData(
-        //     new Experience { ExperienceId = Guid.NewGuid(), EmployeeId = employeeId1, CompanyName = "ABC Corp", JobTitle = "Software Engineer", StartDate = new DateTime(2010, 1, 1), EndDate = new DateTime(2020, 1, 1), Responsibilities = "Developing software applications" },
-        //     new Experience { ExperienceId = Guid.NewGuid(), EmployeeId = employeeId2, CompanyName = "XYZ Ltd", JobTitle = "Project Manager", StartDate = new DateTime(2012, 1, 1), EndDate = new DateTime(2022, 1, 1), Responsibilities = "Managing projects" }
-        // );
-        //
-        // modelBuilder.Entity<Certification>().HasData(
-        //     new Certification { CertificationId = Guid.NewGuid(), EmployeeId = employeeId1, CertificationName = "Certified Scrum Master", IssuingOrganization = "Scrum Alliance", IssueDate = new DateTime(2017, 1, 1), ExpiryDate = new DateTime(2020, 1, 1) },
-        //     new Certification { CertificationId = Guid.NewGuid(), EmployeeId = employeeId2, CertificationName = "PMP", IssuingOrganization = "PMI", IssueDate = new DateTime(2016, 1, 1), ExpiryDate = new DateTime(2019, 1, 1) }
-        // );
-        //
-        // modelBuilder.Entity<Qualification>().HasData(
-        //     new Qualification { QualificationId = Guid.NewGuid(), EmployeeId = employeeId1, Degree = "B.Sc in Computer Science", Institution = "ABC University", GraduationDate = new DateTime(2007, 1, 1), Grade = "A" },
-        //     new Qualification { QualificationId = Guid.NewGuid(), EmployeeId = employeeId2, Degree = "MBA", Institution = "XYZ University", GraduationDate = new DateTime(2010, 1, 1), Grade = "B+" }
-        // );
+        modelBuilder.Entity<Employee>().HasData(
+            new Employee { EmployeeId = employeeId1, Name = "John Doe", EmployeeTypeId = employeeTypeId1, DepartmentType = DepartmentType.IT,Band = "E2",},
+            new Employee { EmployeeId = employeeId2, Name = "Jane Smith", EmployeeTypeId = employeeTypeId2, DepartmentType = DepartmentType.Finance,Band = "E3"}
+        );
+        modelBuilder.Entity<EmployeeSalary>().HasData(
+            new EmployeeSalary { EmployeeId = employeeId1, NetSalary = 29000,Band = "E2", CalculatedOn = DateTime.Now},
+            new EmployeeSalary { EmployeeId=employeeId2,NetSalary = 49000,Band = "E3", CalculatedOn =DateTime.Now});
         
+        modelBuilder.Entity<PersonalDetails>().HasData(
+            new PersonalDetails { EmployeeId = employeeId1, Address = "123 Main St", PhoneNumber = "123-456-7890", Email = "john.doe@example.com", DateOfBirth = new DateTime(1985, 1, 1) },
+            new PersonalDetails { EmployeeId = employeeId2, Address = "456 Elm St", PhoneNumber = "987-654-3210", Email = "jane.smith@example.com", DateOfBirth = new DateTime(1990, 2, 2) }
+        );
+        
+        modelBuilder.Entity<GovernmentDocument>().HasData(
+            new GovernmentDocument { DocumentId = Guid.NewGuid(), EmployeeId = employeeId1, DocumentType = "Passport", DocumentNumber = "A1234567", IssueDate = new DateTime(2015, 1, 1), ExpiryDate = new DateTime(2025, 1, 1) },
+            new GovernmentDocument { DocumentId = Guid.NewGuid(), EmployeeId = employeeId2, DocumentType = "Driver's License", DocumentNumber = "B9876543", IssueDate = new DateTime(2018, 1, 1), ExpiryDate = new DateTime(2028, 1, 1) }
+        );
+        
+        modelBuilder.Entity<Experience>().HasData(
+            new Experience { ExperienceId = Guid.NewGuid(), EmployeeId = employeeId1, CompanyName = "ABC Corp", JobTitle = "Software Engineer", StartDate = new DateTime(2010, 1, 1), EndDate = new DateTime(2020, 1, 1), Responsibilities = "Developing software applications" },
+            new Experience { ExperienceId = Guid.NewGuid(), EmployeeId = employeeId2, CompanyName = "XYZ Ltd", JobTitle = "Project Manager", StartDate = new DateTime(2012, 1, 1), EndDate = new DateTime(2022, 1, 1), Responsibilities = "Managing projects" }
+        );
+        
+        modelBuilder.Entity<Certification>().HasData(
+            new Certification { CertificationId = Guid.NewGuid(), EmployeeId = employeeId1, CertificationName = "Certified Scrum Master", IssuingOrganization = "Scrum Alliance", IssueDate = new DateTime(2017, 1, 1), ExpiryDate = new DateTime(2020, 1, 1) },
+            new Certification { CertificationId = Guid.NewGuid(), EmployeeId = employeeId2, CertificationName = "PMP", IssuingOrganization = "PMI", IssueDate = new DateTime(2016, 1, 1), ExpiryDate = new DateTime(2019, 1, 1) }
+        );
+        
+        modelBuilder.Entity<Qualification>().HasData(
+            new Qualification { QualificationId = Guid.NewGuid(), EmployeeId = employeeId1, Degree = "B.Sc in Computer Science", Institution = "ABC University", GraduationDate = new DateTime(2007, 1, 1), Grade = "A" },
+            new Qualification { QualificationId = Guid.NewGuid(), EmployeeId = employeeId2, Degree = "MBA", Institution = "XYZ University", GraduationDate = new DateTime(2010, 1, 1), Grade = "B+" }
+        );
 
+        modelBuilder.Entity<Leave>().HasData(
+            new Leave { Id = Guid.NewGuid(), StartDate = new DateTime(2024, 8, 4), EndDate = new DateTime(2024, 8, 8), EmployeeId = employeeId1, Reason = "Going Native", Status = LeaveStatus.Requested}, 
+            new Leave { Id = Guid.NewGuid(), StartDate = new DateTime(2024, 8, 2), EndDate = new DateTime(2024, 8, 4), EmployeeId = employeeId2, Reason = "Going Native", Status = LeaveStatus.Requested }
+        );
+        
        
+
+
+
     }
      private void SeedData(ModelBuilder modelBuilder)
         {
