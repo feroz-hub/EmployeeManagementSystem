@@ -1,3 +1,5 @@
+using EMS.Application;
+using EMS.Infrastructure;
 using EMS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Database")));
-
+builder.Services.AddApplicationService()
+    .AddInfrastructureService();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
