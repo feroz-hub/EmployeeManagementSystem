@@ -1,5 +1,3 @@
-using EMS.Domain.Models;
-
 namespace EMS.WebApi.Controllers;
 [Route("api/employee")]
 [ApiController]

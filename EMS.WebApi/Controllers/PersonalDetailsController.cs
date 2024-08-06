@@ -1,6 +1,4 @@
 using EMS.Domain.Entities.EmployeeDetails;
-using EMS.Domain.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebApi.Controllers;
 [Route("api/[controller]")]

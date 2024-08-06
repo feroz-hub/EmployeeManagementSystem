@@ -1,5 +1,4 @@
 using EMS.Domain.Entities.EmployeeDetails;
-using EMS.Domain.Models;
 
 namespace EMS.WebApi;
 
@@ -33,9 +32,7 @@ public class MappingProfile:Profile
         CreateMap<GovernmentDocumentModel, GovernmentDocument>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
             .ForMember(dest => dest.DocumentId, opt => opt.MapFrom(src => Guid.NewGuid()));
-        CreateMap<CertificationModel, Certification>()
-            .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
-            .ForMember(dest => dest.CertificationId, opt => opt.MapFrom(src => Guid.NewGuid()));
+        CreateMap<CertificationModel, Certification>().ReverseMap();
         CreateMap<PersonalDetailsModel, PersonalDetails>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore());
     }
