@@ -1,15 +1,17 @@
+using AutoMapper;
 using EMS.Domain.Enums;
-using EMS.Infrastructure.Repositories.Interfaces;
+using EMS.Domain.Models;
 
 namespace EMS.Application.Services;
 
-public class EmployeeSalaryService(IUnitOfWork unitOfWork):IEmployeeSalaryService
+public class EmployeeSalaryService(IUnitOfWork unitOfWork,IMapper mapper):IEmployeeSalaryService
 {
     
 
-    public async Task<EmployeeSalary> GetEmployeeSalary(Guid employeeId)
+    public async Task<EmployeeSalaryModel> GetEmployeeSalary(Guid employeeId)
     {
-        return await unitOfWork.EmployeeSalary.GetByIdAsync(employeeId);
+        var employeeSalary= await unitOfWork.EmployeeSalary.GetByIdAsync(employeeId);
+        return mapper.Map<EmployeeSalaryModel>(employeeSalary);
     }
 
     public async Task CalculateAndStoreSalary(Guid employeeId)

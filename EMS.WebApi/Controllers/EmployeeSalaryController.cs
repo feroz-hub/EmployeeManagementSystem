@@ -1,6 +1,6 @@
 namespace EMS.WebApi.Controllers;
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class EmployeeSalaryController(IEmployeeSalaryService employeeSalaryService) : Controller
 {
     [HttpGet("{employeeId}")]

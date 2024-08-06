@@ -1,6 +1,5 @@
 using AutoMapper;
 using EMS.Domain.Models;
-using EMS.Infrastructure.Repositories.Interfaces;
 
 namespace EMS.Application.Services;
 

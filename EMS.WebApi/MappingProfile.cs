@@ -35,5 +35,7 @@ public class MappingProfile:Profile
         CreateMap<CertificationModel, Certification>().ReverseMap();
         CreateMap<PersonalDetailsModel, PersonalDetails>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore());
+
+        CreateMap<EmployeeSalaryModel, EmployeeSalary>().ReverseMap();
     }
 }

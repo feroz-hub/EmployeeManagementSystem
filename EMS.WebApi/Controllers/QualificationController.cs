@@ -1,5 +1,6 @@
 namespace EMS.WebApi.Controllers;
-
+[Route("api/[controller]")]
+[ApiController]
 public class QualificationController (IQualificationService qualificationService,IMapper mapper): Controller
 {
     

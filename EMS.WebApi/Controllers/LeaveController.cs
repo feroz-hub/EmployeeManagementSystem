@@ -1,5 +1,6 @@
 namespace EMS.WebApi.Controllers;
-
+[Route("api/[controller]")]
+[ApiController]
 public class LeaveController (ILeaveService leaveService ): Controller
 {
     // GET: api/Leave/employee/{employeeId}

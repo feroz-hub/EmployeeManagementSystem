@@ -1,5 +1,3 @@
-using EMS.Infrastructure.Repositories.Interfaces;
-
 namespace EMS.Application.Services;
 
 public class BandSalaryService(IUnitOfWork unitOfWork):IBandSalaryService
