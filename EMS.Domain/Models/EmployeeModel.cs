@@ -1,5 +1,3 @@
-using EMS.Domain.Enums;
-
 namespace EMS.Domain.Models;
 
 public class EmployeeModel
