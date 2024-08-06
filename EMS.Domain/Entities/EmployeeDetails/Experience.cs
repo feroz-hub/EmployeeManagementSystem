@@ -2,8 +2,7 @@ namespace EMS.Domain.Entities.EmployeeDetails;
 
 public class Experience
 {
-    [Key]
-    public Guid ExperienceId { get; set; }
+    [Key] public Guid ExperienceId { get; set; }
     public Guid EmployeeId { get; set; }
     public string CompanyName { get; set; }
     public string JobTitle { get; set; }

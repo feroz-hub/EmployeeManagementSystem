@@ -26,8 +26,16 @@ public class ExperienceService(IUnitOfWork unitOfWork,IMapper mapper):IExperienc
             throw new Exception("Employee does not exist.");
         }
 
-        var experience = mapper.Map<Experience>(experienceModel);
-        experience.EmployeeId = employeeId;
+        var experience = new Experience()
+        {
+            EmployeeId = employeeId,
+            ExperienceId = Guid.NewGuid(),
+            CompanyName = experienceModel.CompanyName,
+            JobTitle = experienceModel.JobTitle,
+            StartDate = experienceModel.StartDate,
+            EndDate = experienceModel.EndDate,
+            Responsibilities = experienceModel.Responsibilities
+        };
         
         await unitOfWork.Experiences.AddAsync(experience);
         employee.SetBand();

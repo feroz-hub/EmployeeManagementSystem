@@ -4,14 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace EMS.WebApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-public class ExperienceController(IExperienceService experienceService) : Controller
+public class ExperienceController(IExperienceService experienceService,IMapper mapper) : Controller
 {
    // GET: api/Experience/employee/{employeeId}
     [HttpGet("employee/{employeeId}")]
     public async Task<ActionResult<IEnumerable<ExperienceModel>>> GetExperiencesByEmployeeId(Guid employeeId)
     {
         var experiences = await experienceService.GetExperiencesByEmployeeIdAsync(employeeId);
-        return Ok(experiences);
+        var experienceModel= mapper.Map<IEnumerable<ExperienceModel>>(experiences);
+        return Ok(experienceModel);
     }
 
     // GET: api/Experience/{id}
