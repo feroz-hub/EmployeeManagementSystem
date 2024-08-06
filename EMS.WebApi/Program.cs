@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using EMS.Application;
 using EMS.Infrastructure;
 using EMS.Infrastructure.Data;
@@ -7,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Database")));
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
 builder.Services.AddApplicationService()
     .AddInfrastructureService();
 builder.Services.AddEndpointsApiExplorer();
