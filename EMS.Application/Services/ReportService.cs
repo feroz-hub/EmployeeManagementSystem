@@ -39,6 +39,7 @@ public class ReportService(ApplicationDbContext context) : IReportService
 
     public void GenerateDepartmentReport(List<DepartmentReport> departmentReports, string filePath)
     {
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         using ExcelPackage package = new ExcelPackage();
         foreach (var department in departmentReports)
         {
