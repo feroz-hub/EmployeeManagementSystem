@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace EMS.WebApi.Controllers;
 
 public class LeaveController (ILeaveService leaveService ): Controller

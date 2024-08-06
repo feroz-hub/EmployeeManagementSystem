@@ -17,8 +17,8 @@ public class UnitOfWork(ApplicationDbContext context):IUnitOfWork
     public IQualificationRepository Qualifications { get; }=new QualificationRepository(context);
     public IGovernmentDocumentsRepository GovernmentDocuments { get; }=new GovernmentDocumentRepository(context);
     public ILeaveRepository Leaves { get; }=new LeaveRepository(context);
-    public IBandSalaryRepository BandSalaryRepository { get; } = new BandSalaryRepository(context);
-    public IEmployeeSalaryRepository EmployeeSalaryRepository { get; } = new EmployeeSalaryRepository(context);
+    public IBandSalaryRepository BandSalary { get; } = new BandSalaryRepository(context);
+    public IEmployeeSalaryRepository EmployeeSalary { get; } = new EmployeeSalaryRepository(context);
 
     public async Task<int> CompleteAsync()
     {

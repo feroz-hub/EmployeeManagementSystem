@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace EMS.WebApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]

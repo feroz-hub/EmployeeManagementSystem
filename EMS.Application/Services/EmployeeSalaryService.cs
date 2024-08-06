@@ -3,16 +3,30 @@ using EMS.Infrastructure.Repositories.Interfaces;
 
 namespace EMS.Application.Services;
 
-public class SalaryService(IUnitOfWork unitOfWork):ISalaryService
+public class EmployeeSalaryService(IUnitOfWork unitOfWork):IEmployeeSalaryService
 {
-    public async Task<decimal> CalculateSalary(Employee employee)
+    
+
+    public async Task<EmployeeSalary> GetEmployeeSalary(Guid employeeId)
     {
-        var bandSalary =
-            await unitOfWork.BandSalaryRepository.GetBandSalaryByBandAndDepartment(employee.Band,employee.DepartmentType);
+        return await unitOfWork.EmployeeSalary.GetByIdAsync(employeeId);
+    }
+
+    public async Task CalculateAndStoreSalary(Guid employeeId)
+    {
+        // Check if the employee exists
+        var employee = await unitOfWork.Employees.GetByIdAsync(employeeId);
+        if (employee == null)
+        {
+            throw new Exception("Employee does not exist.");
+        }
+    
+        var bandSalary = await unitOfWork.BandSalary.GetBandSalaryByBandAndDepartment(employee.Band, employee.DepartmentType);
         if (bandSalary == null)
         {
             throw new Exception("Band salary details not found.");
         }
+
         decimal netSalary = 0;
         var employeeType = employee.EmployeeType;
 
@@ -34,11 +48,6 @@ public class SalaryService(IUnitOfWork unitOfWork):ISalaryService
                 break;
         }
 
-        return netSalary;
-    }
-
-    public async Task StoreSalary(Employee employee, decimal netSalary)
-    {
         var employeeSalary = new EmployeeSalary
         {
             EmployeeId = employee.EmployeeId,
@@ -47,7 +56,8 @@ public class SalaryService(IUnitOfWork unitOfWork):ISalaryService
             CalculatedOn = DateTime.Now
         };
 
-        await unitOfWork.EmployeeSalaryRepository.AddAsync(employeeSalary);
+        await unitOfWork.EmployeeSalary.AddAsync(employeeSalary);
         await unitOfWork.CompleteAsync();
     }
+
 }

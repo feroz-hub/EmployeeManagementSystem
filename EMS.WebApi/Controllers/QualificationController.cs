@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace EMS.WebApi.Controllers;
 
 public class QualificationController (IQualificationService qualificationService,IMapper mapper): Controller
