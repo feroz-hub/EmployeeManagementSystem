@@ -3,12 +3,13 @@ using EMS.Domain.Models;
 namespace EMS.WebApi.Controllers;
 [Route("api/employee")]
 [ApiController]
-public class EmployeesController(IEmployeeService employeeService) : Controller
+public class EmployeesController(IEmployeeService employeeService ,IMapper mapper) : Controller
 {
     [HttpGet]
     public async Task<IActionResult> GetEmployees()
     {
         var employees = await employeeService.GetAllEmployeesAsync();
+       // var employeeModel = mapper.Map<EmployeeModel>(employees);
         return Ok(employees);
     }
     [HttpGet("{id}")]

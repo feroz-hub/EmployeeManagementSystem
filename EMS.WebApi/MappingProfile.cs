@@ -6,7 +6,14 @@ namespace EMS.WebApi;
 public class MappingProfile:Profile
 {
     public MappingProfile()
+
+
     {
+        CreateMap<Employee, EmployeeModel>()
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.Certifications, opt => opt.MapFrom(src => src.Certifications))
+            .ForMember(dest => dest.Experiences, opt => opt.MapFrom(src => src.Experiences));
+        
         CreateMap<EmployeeModel, Employee>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore()) // Assuming EmployeeId is generated
             .ForMember(dest => dest.Band, opt => opt.Ignore()) // Band is set by the method
