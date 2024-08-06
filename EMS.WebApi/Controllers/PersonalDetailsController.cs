@@ -1,4 +1,5 @@
 using EMS.Domain.Entities.EmployeeDetails;
+using EMS.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EMS.WebApi.Controllers;
@@ -21,19 +22,18 @@ public class PersonalDetailsController(IPersonalDetailsService personalDetailsSe
         return Ok(personalDetails);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<PersonalDetails>> AddPersonalDetails(PersonalDetailsModel personalDetails)
+    [HttpPost(template:"{id}")]
+    public async Task<ActionResult<PersonalDetails>> AddPersonalDetails(Guid id,PersonalDetailsModel personalDetails)
     {
-         await personalDetailsService.AddPersonalDetailsAsync(personalDetails);
+         await personalDetailsService.AddPersonalDetailsAsync(id,personalDetails);
          return Ok();
          //return CreatedAtAction(nameof(GetPersonalDetails), new { id = newPersonalDetails.EmployeeId }, newPersonalDetails);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdatePersonalDetails(Guid id, PersonalDetails personalDetails)
+    public async Task<IActionResult> UpdatePersonalDetails(Guid id, PersonalDetailsModel personalDetails)
     {
-        if (id != personalDetails.EmployeeId) return BadRequest();
-        await personalDetailsService.UpdatePersonalDetailsAsync(personalDetails);
+        await personalDetailsService.UpdatePersonalDetailsAsync(id,personalDetails);
         // if (updatedPersonalDetails == null) return NotFound();
         return NoContent();
     }

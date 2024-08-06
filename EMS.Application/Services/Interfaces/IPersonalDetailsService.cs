@@ -1,9 +1,11 @@
+using EMS.Domain.Models;
+
 namespace EMS.Application.Services.Interfaces;
 
 public interface IPersonalDetailsService
 {
     Task<PersonalDetails> GetPersonalDetailsByEmployeeIdAsync(Guid employeeId);
-    Task UpdatePersonalDetailsAsync(PersonalDetails personalDetails);
-    Task AddPersonalDetailsAsync( PersonalDetails personalDetails);
+    Task UpdatePersonalDetailsAsync(Guid employeeId,PersonalDetailsModel personalDetails);
+    Task AddPersonalDetailsAsync(Guid employeeId, PersonalDetailsModel personalDetails);
     Task<bool> DeletePersonalDetailsAsync(Guid employeeId);
 }

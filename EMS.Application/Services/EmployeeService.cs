@@ -17,7 +17,6 @@ public class EmployeeService(IUnitOfWork unitOfWork,IMapper mapper) : IEmployeeS
 
     public async Task AddEmployeeAsync(EmployeeModel employeeDataModel)
     {
-       
         // Generate a new EmployeeId
         var employeeDataId = Guid.NewGuid();
 

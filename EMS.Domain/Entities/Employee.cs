@@ -9,12 +9,12 @@ public class Employee
     public EmployeeType EmployeeType { get; set; }
     public DepartmentType DepartmentType { get; set; }
     public string Band { get; set; }
-    public PersonalDetails PersonalDetails { get; set; }
-    public ICollection<Qualification> Qualifications { get; set; }
-    public ICollection<Experience> Experiences { get; set; }
-    public ICollection<GovernmentDocument> GovernmentDocuments { get; set; }
-    public ICollection<Certification> Certifications { get; set; }
-    public ICollection<Leave> Leaves { get; set; }
+    public PersonalDetails? PersonalDetails { get; set; }
+    public ICollection<Qualification>? Qualifications { get; set; }
+    public ICollection<Experience>? Experiences { get; set; }
+    public ICollection<GovernmentDocument>? GovernmentDocuments { get; set; }
+    public ICollection<Certification>? Certifications { get; set; }
+    public ICollection<Leave>? Leaves { get; set; }
     public EmployeeSalary? EmployeeSalary { get; set; }
     public void SetBand()
     {
@@ -29,7 +29,5 @@ public class Employee
             _ => "E5"
         };
     }
-   
-
 }
 

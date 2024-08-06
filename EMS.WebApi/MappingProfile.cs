@@ -27,9 +27,9 @@ public class MappingProfile:Profile
         CreateMap<QualificationModel, Qualification>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
             .ForMember(dest => dest.QualificationId, opt => opt.MapFrom(src => Guid.NewGuid()));
-        CreateMap<ExperienceModel, Experience>()
-            .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
-            .ForMember(dest => dest.ExperienceId, opt => opt.MapFrom(src => Guid.NewGuid()));
+        CreateMap<ExperienceModel, Experience>().ReverseMap();
+            // .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
+            // .ForMember(dest => dest.ExperienceId, opt => opt.MapFrom(src => Guid.NewGuid()));
         CreateMap<GovernmentDocumentModel, GovernmentDocument>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
             .ForMember(dest => dest.DocumentId, opt => opt.MapFrom(src => Guid.NewGuid()));
