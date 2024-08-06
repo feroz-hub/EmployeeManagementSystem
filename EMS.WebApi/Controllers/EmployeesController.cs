@@ -27,10 +27,8 @@ public class EmployeesController(IEmployeeService employeeService) : Controller
         return Ok();
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateEmployee(Guid id, Employee employee)
+    public async Task<IActionResult> UpdateEmployee(Guid id, EmployeeModel employee)
     {
-        if (id != employee.EmployeeId)
-            return BadRequest();
         await employeeService.UpdateEmployeeAsync(employee);
         return NoContent();
     }

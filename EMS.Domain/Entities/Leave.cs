@@ -9,7 +9,7 @@ public class Leave
     public string Reason { get; set; }
     public LeaveStatus Status { get; set; } 
     public Guid EmployeeId { get; set; }
-    public Employee Employee { get; set; }
+    public Employee? Employee { get; set; }
 }
 public enum LeaveStatus
 {

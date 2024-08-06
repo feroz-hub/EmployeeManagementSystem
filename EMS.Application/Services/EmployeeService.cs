@@ -15,81 +15,51 @@ public class EmployeeService(IUnitOfWork unitOfWork,IMapper mapper) : IEmployeeS
        return await unitOfWork.Employees.GetByIdAsync(id);
     }
 
-    public async Task AddEmployeeAsync(EmployeeModel employeeModel)
+    public async Task AddEmployeeAsync(EmployeeModel employeeDataModel)
     {
        
         // Generate a new EmployeeId
-        var employeeId = Guid.NewGuid();
+        var employeeDataId = Guid.NewGuid();
 
         // Map EmployeeDto to Employee entity and set the EmployeeId
-        var employeeData = mapper.Map<Employee>(employeeModel);
-        employeeData.EmployeeId = employeeId;
+        var employeeData = mapper.Map<Employee>(employeeDataModel);
+        employeeData.EmployeeId = employeeDataId;
 
-        // Set the EmployeeId for related entities
-        if (employeeModel.PersonalDetails != null)
+        // Set EmployeeId for related entities
+        foreach (var qualification in employeeData.Qualifications)
         {
-            employeeModel.PersonalDetails.EmployeeId = employeeId;
-            var personalDetails = mapper.Map<PersonalDetails>(employeeModel.PersonalDetails);
-            await unitOfWork.PersonalDetails.AddAsync(personalDetails);
+            qualification.EmployeeId = employeeData.EmployeeId;
+        }
+        foreach (var experience in employeeData.Experiences)
+        {
+            experience.EmployeeId = employeeData.EmployeeId;
+        }
+        foreach (var document in employeeData.GovernmentDocuments)
+        {
+            document.EmployeeId = employeeData.EmployeeId;
+        }
+        foreach (var certification in employeeData.Certifications)
+        {
+            certification.EmployeeId = employeeData.EmployeeId;
         }
 
-        if (employeeModel.Qualifications != null)
+        if (employeeData.PersonalDetails != null)
         {
-            foreach (var qualificationDto in employeeModel.Qualifications)
-            {
-                qualificationDto.EmployeeId = employeeId;
-                var qualification = mapper.Map<Qualification>(qualificationDto);
-                await unitOfWork.Qualifications.AddAsync(qualification);
-            }
+            employeeData.PersonalDetails.EmployeeId = employeeData.EmployeeId;
         }
-
-        if (employeeModel.Experiences != null)
-        {
-            foreach (var experienceDto in employeeModel.Experiences)
-            {
-                experienceDto.EmployeeId = employeeId;
-                var experience = mapper.Map<Experience>(experienceDto);
-                await unitOfWork.Experiences.AddAsync(experience);
-            }
-        }
-
-        if (employeeModel.GovernmentDocuments != null)
-        {
-            foreach (var documentDto in employeeModel.GovernmentDocuments)
-            {
-                documentDto.EmployeeId = employeeId;
-                var document = mapper.Map<GovernmentDocument>(documentDto);
-                await unitOfWork.GovernmentDocuments.AddAsync(document);
-            }
-        }
-
-        if (employeeModel.Certifications != null)
-        {
-            foreach (var certificationDto in employeeModel.Certifications)
-            {
-                certificationDto.EmployeeId = employeeId;
-                var certification = mapper.Map<Certification>(certificationDto);
-                await unitOfWork.Certifications.AddAsync(certification);
-            }
-        }
-
-        if (employeeModel.Leaves != null)
-        {
-            foreach (var leaveDto in employeeModel.Leaves)
-            {
-                leaveDto.EmployeeId = employeeId;
-                var leave = mapper.Map<Leave>(leaveDto);
-                await unitOfWork.Leaves.AddAsync(leave);
-            }
-        }
-
+        employeeData.SetBand();
         // Add the Employee entity
         await unitOfWork.Employees.AddAsync(employeeData);
     }
 
-    public async Task UpdateEmployeeAsync(Employee employee)
+    public async Task UpdateEmployeeAsync(EmployeeModel employee)
     {
-        await unitOfWork.Employees.UpdateAsync(employee);
+        throw new NotImplementedException();
+    }
+
+    public async Task UpdateEmployeeAsync(Employee employeeData)
+    {
+        await unitOfWork.Employees.UpdateAsync(employeeData);
         await unitOfWork.CompleteAsync();
     }
 

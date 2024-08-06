@@ -14,7 +14,7 @@ public class Employee
     public ICollection<Certification> Certifications { get; set; }
     public ICollection<Leave> Leaves { get; set; }
     public DepartmentType DepartmentType { get; set; }
-    public EmployeeSalary EmployeeSalary { get; set; }
+    public EmployeeSalary? EmployeeSalary { get; set; }
     public string Band { get; set; }
     public void SetBand()
     {

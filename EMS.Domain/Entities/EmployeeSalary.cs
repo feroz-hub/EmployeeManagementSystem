@@ -7,5 +7,5 @@ public class EmployeeSalary
     public decimal NetSalary { get; set; }
     public string Band { get; set; }
     public DateTime CalculatedOn { get; set; }
-    public Employee Employee { get; set; }
+    public Employee? Employee { get; set; }
 }

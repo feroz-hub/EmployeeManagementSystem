@@ -11,7 +11,7 @@ public class Experience
     public DateTime? EndDate { get; set; }
     public string Responsibilities { get; set; }
 
-    public Employee Employee { get; set; }
+    public Employee? Employee { get; set; }
 }
 
 

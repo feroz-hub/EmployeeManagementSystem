@@ -8,6 +8,6 @@ public class Certification
     public string IssuingOrganization { get; set; }
     public DateTime IssueDate { get; set; }
     public DateTime? ExpiryDate { get; set; }
-    public Employee Employee { get; set; }
+    public Employee? Employee { get; set; }
 }
 
