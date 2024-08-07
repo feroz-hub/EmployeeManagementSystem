@@ -16,4 +16,10 @@ public class EmployeeSalaryController(IEmployeeSalaryService employeeSalaryServi
         await employeeSalaryService.CalculateAndStoreSalary(employeeId);
         return Ok();
     }
+    [HttpPost]
+    public async Task<IActionResult> CalculateSalaryForAllEmployee()
+    {
+        await employeeSalaryService.CalculateAndStoreSalariesForAllEmployees();
+        return Ok();
+    }
 }
