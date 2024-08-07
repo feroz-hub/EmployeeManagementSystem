@@ -103,3 +103,24 @@ button.btn {
 hr {
     border-top: 1px solid #dee2e6;
 }
+
+.rounded-table {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.rounded-tabletheadth:first-child {
+    border-top-left-radius: 15px;
+}
+
+.rounded-tabletheadth:last-child {
+    border-top-right-radius: 15px;
+}
+
+.rounded-tabletbodytd:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+.rounded-tabletbodytd:last-child {
+    border-bottom-right-radius: 15px;
+}

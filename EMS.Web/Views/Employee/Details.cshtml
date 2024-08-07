@@ -4,9 +4,9 @@
 <div class="container">
 <div class="row">
     <div class="col-md-6">
-        <div class="card mb-3">
+        <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Employee Details</h5>
+                <h5>Employee Details</h5>
             </div>
             <div class="card-body">
                 <table class="table table-borderless">
@@ -29,172 +29,170 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+        <!-- Employee Salary -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Salary</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.EmployeeSalary == null)
+                    {
+                        <p class="card-text"><strong>Salary :</strong> Not yet calculated</p>
+                    }
+                    else
+                    {
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="col-sm-4">Net Salary :</th>
+                                    <td class="col-sm-8">@Model.EmployeeSalary.NetSalary</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="col-sm-4">Band :</th>
+                                    <td class="col-sm-8">@Model.EmployeeSalary.Band</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="col-md-6">
         <!-- Personal Details -->
-        <div class="card mb-3">
+        <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Personal Details</h5>
+                <h5>Personal Details</h5>
             </div>
             <div class="card-body">
                 <table class="table table-borderless">
                     <tbody>
-                    <tr>
-                        <th scope="row" class="col-sm-4">Address :</th>
-                        <td class="col-sm-8">@Model.PersonalDetails?.Address</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="col-sm-4">Phone Number :</th>
-                        <td class="col-sm-8">@Model.PersonalDetails?.PhoneNumber</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="col-sm-4">Email :</th>
-                        <td class="col-sm-8">@Model.PersonalDetails?.Email</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="col-sm-4">Date of Birth :</th>
-                        <td class="col-sm-8">@Model.PersonalDetails?.DateOfBirth.ToShortDateString()</td>
-                    </tr>
+                        <tr>
+                            <th scope="row" class="col-sm-4">Address :</th>
+                            <td class="col-sm-8">@Model.PersonalDetails?.Address</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-sm-4">Phone Number :</th>
+                            <td class="col-sm-8">@Model.PersonalDetails?.PhoneNumber</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-sm-4">Email :</th>
+                            <td class="col-sm-8">@Model.PersonalDetails?.Email</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-sm-4">Date of Birth :</th>
+                            <td class="col-sm-8">@Model.PersonalDetails?.DateOfBirth.ToShortDateString()</td>
+                        </tr>
                     </tbody>
                 </table>
                 <button class="btn btn-primary" onclick="openUpdatePersonalDetailsModal('@Model.EmployeeId')">Update</button>
             </div>
         </div>
     </div>
-</div>
-<!-- Employee Salary -->
-<div class="col-md-12">
-    <div class="card mb-3">
-        <div class="card-header">
-            <h5>Salary</h5>
-        </div>
-        <div class="card-body">
-            @if (Model.EmployeeSalary == null)
-            {
-                <p class="card-text"><strong>Salary :</strong> Not yet calculated</p>
-            }
-            else
-            {
-                <table class="table table-borderless">
-                    <tbody>
-                    <tr>
-                        <th scope="row" class="col-sm-4">Net Salary :</th>
-                        <td class="col-sm-8">@Model.EmployeeSalary.NetSalary</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="col-sm-4">Band :</th>
-                        <td class="col-sm-8">@Model.EmployeeSalary.Band</td>
-                    </tr>
-                    </tbody>
-                </table>
-            }
-        </div>
-    </div>
-</div>
 
 <!-- Leave Details -->
 <div class="col-md-12">
     <div class="card mb-3">
-        <div class="card-header">
-            <h5 class="my-3">Leaves</h5>
-            <div>
-                <button class="btn btn-primary mb-3" onclick="openApplyLeaveModal('@Model.EmployeeId')">Apply</button>
-                @if (Model.Leave != null && Model.Leave.Any())
-                {
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
-                            <thead class="table-dark">
+        <div class="card-header"><h5 class="my-3">Leaves</h5>
+            <button class="btn btn-primary mb-3" onclick="openApplyLeaveModal('@Model.EmployeeId')">Apply</button>
+            @if (Model.Leave != null && Model.Leave.Any())
+            {
+                <div class="table-responsive">
+                        <table class="table table-hover table-bordered rounded-table">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>StartDate</th>
+                            <th>EndDate</th>
+                            <th>Reason</th>
+                            <th>LeaveStatus</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var leave in Model.Leave)
+                        {
                             <tr>
-                                <th>StartDate</th>
-                                <th>EndDate</th>
-                                <th>Reason</th>
-                                <th>LeaveStatus</th>
-                                <th>Actions</th>
+                                <td>@leave.StartDate.ToShortDateString()</td>
+                                <td>@leave.EndDate.ToShortDateString()</td>
+                                <td>@leave.Reason</td>
+                                <td>@leave.LeaveStatus</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger" onclick="openCancelLeaveModal('@Model.EmployeeId', '@leave.Id')">Cancel</button>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach (var leave in Model.Leave)
-                            {
-                                <tr>
-                                    <td>@leave.StartDate.ToShortDateString()</td>
-                                    <td>@leave.EndDate.ToShortDateString()</td>
-                                    <td>@leave.Reason</td>
-                                    <td>@leave.LeaveStatus</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger" onclick="openCancelLeaveModal('@Model.EmployeeId', '@leave.Id')">Cancel</button>
-                                    </td>
-                                </tr>
-                            }
-                            </tbody>
-                        </table>
-                    </div>
-                }
-                else
-                {
-                    <p>Leave Not Yet Applied</p>
-                }
-            </div>
-        </div>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p>Leave Not Yet Applied</p>
+            }
+    </div>
     </div>
 </div>
 
 <!-- Qualifications -->
 <div class="col-md-12">
     <div class="card mb-3">
-        <div class="card-header">
-            <h5 class="my-3">Qualifications</h5>
-            <div>
-                <button class="btn btn-primary mb-3" onclick="openAddQualificationModal('@Model.EmployeeId')">Add Qualification</button>
-                @if (Model.Qualifications != null && Model.Qualifications.Any())
-                {
-                    <div class="table-responsive">
-                        <table  id="datatablesSimple" class="table table-hover table-bordered">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>Degree</th>
-                                <th>Institution</th>
-                                <th>Graduation Date</th>
-                                <th>Grade</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach (var qualification in Model.Qualifications)
-                            {
-                                <tr>
-                                    <td>@qualification.Degree</td>
-                                    <td>@qualification.Institution</td>
-                                    <td>@qualification.GraduationDate.ToShortDateString()</td>
-                                    <td>@qualification.Grade</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary me-1" onclick="openUpdateQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Update</button>
-                                        <button class="btn btn-sm btn-danger" onclick="openDeleteQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Delete</button>
-                                    </td>
-                                </tr>
-                            }
-                            </tbody>
-                        </table>
-                    </div>
-                }
-                else
-                {
-                    <p>No qualifications available.</p>
-                }
+        <div class="card-header"><h5 class="my-3">Qualifications</h5>
+        <button class="btn btn-primary mb-3" onclick="openAddQualificationModal('@Model.EmployeeId')">Add Qualification</button>
+        @if (Model.Qualifications != null && Model.Qualifications.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered rounded-table">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Degree</th>
+                        <th>Institution</th>
+                        <th>Graduation Date</th>
+                        <th>Grade</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var qualification in Model.Qualifications)
+                    {
+                        <tr>
+                            <td>@qualification.Degree</td>
+                            <td>@qualification.Institution</td>
+                            <td>@qualification.GraduationDate.ToShortDateString()</td>
+                            <td>@qualification.Grade</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary me-1" onclick="openUpdateQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Update</button>
+                                <button class="btn btn-sm btn-danger" onclick="openDeleteQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
             </div>
-        </div>
+        }
+        else
+        {
+            <p>No qualifications available.</p>
+        }
     </div>
 </div>
+</div>
+
+
+
+
 
 <!-- Experiences -->
-<div class="col-md-auto">
+<div class="col-md-12">
     <div class="card mb-3">
         <div class="card-header">
             <h5 class="my-3">Experiences</h5>
-        </div>
         <button class="btn btn-primary mb-3" onclick="openAddExperienceModal('@Model.EmployeeId')">Add Experience</button>
         @if (Model.Experiences != null && Model.Experiences.Any())
         {
             <div class="table-responsive">
-                <table id="datatablesSimple" class="table table-hover table-bordered">
+                        <table id="datatablesSimple" class="table table-hover table-bordered rounded-table">
                     <thead class="table-dark">
                     <tr>
                         <th>Company Name</th>
@@ -230,6 +228,7 @@
         }
     </div>
 </div>
+</div>
     
 <!-- Government Documents -->
 <div class="col-md-12">
@@ -241,7 +240,7 @@
                 @if (Model.GovernmentDocuments != null && Model.GovernmentDocuments.Any())
                 {
                     <div class="table-responsive">
-                        <table  id="datatablesSimple" class="table table-hover table-bordered">
+                            <table id="datatablesSimple" class="table table-hover table-bordered rounded-table">
                             <thead class="table-dark">
                             <tr>
                                 <th>Document Type</th>
@@ -283,13 +282,13 @@
     <div class="card mb-3">
         <div class="card-header">
             <h4 class="my-3">Certifications</h4>
-        </div>
+       
       
         <button class="btn btn-primary mb-3" onclick="openAddCertificationModal('@Model.EmployeeId')">Add Certification</button>
         @if (Model.Certifications != null && Model.Certifications.Any())
         {
             <div class="table-responsive">
-                <table  id="datatablesSimple" class="table table-hover table-bordered">
+                        <table id="datatablesSimple" class="table table-hover table-bordered rounded-table">
                     <thead class="table-dark">
                     <tr>
                         <th>Certification Name</th>
@@ -323,9 +322,11 @@
         }
     </div>
 </div>
+</div>
 <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary">Edit</a>
 
 <!-- Modals for each action -->
 <div id="modalContainer"></div>
+
 </div>

@@ -3,18 +3,21 @@
 @{
     ViewData["Title"] = "Employees";
 }
+<div class="d-flex justify-content-between mb-3">
+    <a asp-action="Create" class="btn btn-primary"><i class="bi bi-person-plus"> Add Employee</i></a>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#calculateSalariesModal">
+        <i class="bi bi-cash-stack"> CalculateSalary</i>
+    </button>
+</div>
 
-<a asp-action="Create" class="btn btn-primary">Add Employee</a>
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#calculateSalariesModal">
-    Calculate All Salaries
-</button>
+<hr/>
+
 <div class="card mb-4">
     <div class="card-header">
-        <i class="fas fa-table me-1"></i>
         Employees
     </div>
     <div class="card-body">
-        <table id="datatablesSimple">
+        <table id="datatablesSimple" class="rounded-table">
             <thead>
             <tr>
                 <th>Name</th>
@@ -31,8 +34,8 @@
                     <td>@employee.EmployeeType</td>
                     <td>@employee.DepartmentType</td>
                     <td>
+                            <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-secondary">Details</a>
                         <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Edit</a>
-                        <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-secondary">Details</a>
                         <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
