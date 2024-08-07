@@ -3,7 +3,8 @@
 <h2>Employee Details</h2>
 
 <div class="card mb-3">
-        <hr/>
+    <hr/>
+    <div class="card-body">
         <dl class="row">
             <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
             <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
@@ -13,6 +14,8 @@
             <dd class="col-sm-10">@Html.DisplayFor(model => model.DepartmentType)</dd>
             <!-- Add other fields as required -->
         </dl>
+    </div>
+       
 </div>
 
 <div class="card mb-3">
@@ -28,21 +31,36 @@
         }
 </div>
 
-<!-- Personal Details -->
-<div class="card mb-3">
+<div class="card mb-3 shadow-sm">
     <div class="card-body">
         <h5 class="card-title">Personal Details</h5>
         <dl class="row">
-            <dt class="col-sm-2"><strong>Address:</strong></dt>
-            <dd class="col-sm-10">@Model.PersonalDetails?.Address</dd>
-            <dt class="col-sm-2"><strong>Phone Number:</strong></dt>
-            <dd class="col-sm-10">@Model.PersonalDetails?.PhoneNumber</dd>
-            <dt class="col-sm-2"><strong>Email:</strong></dt>
-            <dd class="col-sm-10">@Model.PersonalDetails?.Email</dd>
-            <dt class="col-sm-2"><strong>Date of Birth:</strong></dt>
-            <dd class="col-sm-10">@Model.PersonalDetails?.DateOfBirth.ToShortDateString()</dd>
+            <div class="col-sm-3 d-flex align-items-center justify-content-end">
+                <dt class="m-0"><strong>Address:</strong></dt>
+            </div>
+            <div class="col-sm-9 d-flex align-items-center">
+                <dd class="m-0">@Model.PersonalDetails?.Address</dd>
+            </div>
+            <div class="col-sm-3 d-flex align-items-center justify-content-end">
+                <dt class="m-0"><strong>Phone Number:</strong></dt>
+            </div>
+            <div class="col-sm-9 d-flex align-items-center">
+                <dd class="m-0">@Model.PersonalDetails?.PhoneNumber</dd>
+            </div>
+            <div class="col-sm-3 d-flex align-items-center justify-content-end">
+                <dt class="m-0"><strong>Email:</strong></dt>
+            </div>
+            <div class="col-sm-9 d-flex align-items-center">
+                <dd class="m-0">@Model.PersonalDetails?.Email</dd>
+            </div>
+            <div class="col-sm-3 d-flex align-items-center justify-content-end">
+                <dt class="m-0"><strong>Date of Birth:</strong></dt>
+            </div>
+            <div class="col-sm-9 d-flex align-items-center">
+                <dd class="m-0">@Model.PersonalDetails?.DateOfBirth.ToShortDateString()</dd>
+            </div>
         </dl>
-        <button class="btn btn-primary" onclick="openUpdatePersonalDetailsModal('@Model.EmployeeId')">Update</button>
+        <button class="btn btn-primary mt-3" onclick="openUpdatePersonalDetailsModal('@Model.EmployeeId')">Update</button>
     </div>
 </div>
 
@@ -328,6 +346,26 @@
         margin-bottom: 1rem !important;
     }
 
+    .card {
+        border-radius: 10px;
+    }
+    .card-title {
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    dt, dd {
+        display: flex;
+        align-items: center;
+    }
+    .row {
+        margin-bottom: 0.5rem;
+    }
+    button.btn {
+        margin-top: 20px;
+    }
     /* Custom table styles */
     .table-hover tbody tr:hover {
         background-color: #f2f2f2;
