@@ -5,14 +5,16 @@ namespace EMS.Application.Services;
 
 public class QualificationService(IUnitOfWork unitOfWork,IMapper mapper):IQualificationService
 {
-    public async Task<IEnumerable<Qualification>> GetQualificationsByEmployeeIdAsync(Guid employeeId)
+    public async Task<IEnumerable<QualificationModel>> GetQualificationsByEmployeeIdAsync(Guid employeeId)
     {
-        return (await unitOfWork.Qualifications.GetAllAsync()).Where(e => e.EmployeeId == employeeId);
+        var qualification= (await unitOfWork.Qualifications.GetAllAsync()).Where(e => e.EmployeeId == employeeId);
+        return mapper.Map<IEnumerable<QualificationModel>>(qualification);
     }
 
-    public async Task<Qualification> GetQualificationByIdAsync(Guid id)
+    public async Task<QualificationModel> GetQualificationByIdAsync(Guid id)
     {
-        return await unitOfWork.Qualifications.GetByIdAsync(id);
+        var qualification= await unitOfWork.Qualifications.GetByIdAsync(id);
+        return mapper.Map<QualificationModel>(qualification);
     }
 
     public async Task AddQualificationAsync(Guid employeeId,QualificationModel qualificationModel)

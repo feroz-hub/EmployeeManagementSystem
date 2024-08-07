@@ -2,6 +2,7 @@ namespace EMS.Domain.Models;
 
 public class ExperienceModel
 {
+    public Guid ExperienceId { get; set; }
     public string CompanyName { get; set; }
     public string JobTitle { get; set; }
     public DateTime StartDate { get; set; }

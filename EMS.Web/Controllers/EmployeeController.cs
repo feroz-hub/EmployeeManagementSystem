@@ -70,6 +70,7 @@ public class EmployeeController (IEmployeeService employeeService): Controller
     // GET: Employee/Details/5
     public async Task<IActionResult> Details(Guid id)
     {
+        
         var employee = await employeeService.GetEmployeeByIdAsync(id);
         if (employee == null)
         {

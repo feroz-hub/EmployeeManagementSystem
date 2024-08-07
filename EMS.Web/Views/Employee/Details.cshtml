@@ -28,9 +28,27 @@
     </dl>
 </div>
 
+<!-- Personal Details -->
+<div>
+    <h4>Personal Details</h4>
+    <hr />
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Personal Details</h5>
+            <p class="card-text"><strong>Address:</strong> @Model.PersonalDetails?.Address</p>
+            <p class="card-text"><strong>Phone Number:</strong> @Model.PersonalDetails?.PhoneNumber</p>
+            <p class="card-text"><strong>Email:</strong> @Model.PersonalDetails?.Email</p>
+            <p class="card-text"><strong>Date of Birth:</strong> @Model.PersonalDetails?.DateOfBirth.ToShortDateString()</p>
+            <button class="btn btn-primary" onclick="openUpdatePersonalDetailsModal('@Model.EmployeeId')">Update</button>
+        </div>
+    </div>
+</div>
+
+<!-- Qualifications -->
 <div>
     <h4>Qualifications</h4>
     <hr />
+    <button class="btn btn-primary mb-3" onclick="openAddQualificationModal('@Model.EmployeeId')">Add Qualification</button>
     @if (Model.Qualifications != null && Model.Qualifications.Any())
     {
         <div class="row">
@@ -44,6 +62,8 @@
                             <p class="card-text"><strong>Institution:</strong> @qualification.Institution</p>
                             <p class="card-text"><strong>Graduation Date:</strong> @qualification.GraduationDate.ToShortDateString()</p>
                             <p class="card-text"><strong>Grade:</strong> @qualification.Grade</p>
+                            <button class="btn btn-primary" onclick="openUpdateQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Update</button>
+                            <button class="btn btn-danger" onclick="openDeleteQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -56,9 +76,11 @@
     }
 </div>
 
+<!-- Experiences -->
 <div>
     <h4>Experiences</h4>
     <hr />
+    <button class="btn btn-primary mb-3" onclick="openAddExperienceModal('@Model.EmployeeId')">Add Experience</button>
     @if (Model.Experiences != null && Model.Experiences.Any())
     {
         <div class="row">
@@ -71,8 +93,10 @@
                             <p class="card-text"><strong>Company Name:</strong> @experience.CompanyName</p>
                             <p class="card-text"><strong>Job Title:</strong> @experience.JobTitle</p>
                             <p class="card-text"><strong>Start Date:</strong> @experience.StartDate.ToShortDateString()</p>
-                            <p class="card-text"><strong>End Date:</strong> @experience.EndDate?.ToShortDateString()</p>
+                            <p class="card-text"><strong>End Date:</strong> @experience.EndDate?.ToShortDateString() ?? "Present"</p>
                             <p class="card-text"><strong>Responsibilities:</strong> @experience.Responsibilities</p>
+                            <button class="btn btn-primary" onclick="openUpdateExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Update</button>
+                            <button class="btn btn-danger" onclick="openDeleteExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -85,9 +109,11 @@
     }
 </div>
 
+<!-- Government Documents -->
 <div>
     <h4>Government Documents</h4>
     <hr />
+    <button class="btn btn-primary mb-3" onclick="openAddGovernmentDocumentModal('@Model.EmployeeId')">Add Document</button>
     @if (Model.GovernmentDocuments != null && Model.GovernmentDocuments.Any())
     {
         <div class="row">
@@ -101,6 +127,8 @@
                             <p class="card-text"><strong>Document Number:</strong> @document.DocumentNumber</p>
                             <p class="card-text"><strong>Issue Date:</strong> @document.IssueDate.ToShortDateString()</p>
                             <p class="card-text"><strong>Expiry Date:</strong> @document.ExpiryDate.ToShortDateString()</p>
+                            <button class="btn btn-primary" onclick="openUpdateGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Update</button>
+                            <button class="btn btn-danger" onclick="openDeleteGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -113,9 +141,11 @@
     }
 </div>
 
+<!-- Certifications -->
 <div>
     <h4>Certifications</h4>
     <hr />
+    <button class="btn btn-primary mb-3" onclick="openAddCertificationModal('@Model.EmployeeId')">Add Certification</button>
     @if (Model.Certifications != null && Model.Certifications.Any())
     {
         <div class="row">
@@ -129,6 +159,8 @@
                             <p class="card-text"><strong>Issuing Organization:</strong> @certification.IssuingOrganization</p>
                             <p class="card-text"><strong>Issue Date:</strong> @certification.IssueDate.ToShortDateString()</p>
                             <p class="card-text"><strong>Expiry Date:</strong> @certification.ExpiryDate?.ToShortDateString() ?? "N/A"</p>
+                            <button class="btn btn-primary" onclick="openUpdateCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Update</button>
+                            <button class="btn btn-danger" onclick="openDeleteCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -144,6 +176,70 @@
 <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary">Edit</a>
 
+<!-- Modals for each action -->
+<div id="modalContainer"></div>
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Open modals for each action
+        function openAddQualificationModal(employeeId) {
+            loadModal(`/Qualifications/Create?employeeId=${employeeId}`);
+        }
+
+        function openUpdateQualificationModal(employeeId, qualificationId) {
+            loadModal(`/Qualifications/Edit/${qualificationId}?employeeId=${employeeId}`);
+        }
+
+        function openDeleteQualificationModal(employeeId, qualificationId) {
+            loadModal(`/Qualifications/Delete/${qualificationId}?employeeId=${employeeId}`);
+        }
+
+        function openAddExperienceModal(employeeId) {
+            loadModal(`/Experiences/Create?employeeId=${employeeId}`);
+        }
+
+        function openUpdateExperienceModal(employeeId, experienceId) {
+            loadModal(`/Experiences/Edit/${experienceId}?employeeId=${employeeId}`);
+        }
+
+        function openDeleteExperienceModal(employeeId, experienceId) {
+            loadModal(`/Experiences/Delete/${experienceId}?employeeId=${employeeId}`);
+        }
+
+        function openAddGovernmentDocumentModal(employeeId) {
+            loadModal(`/GovernmentDocuments/Create?employeeId=${employeeId}`);
+        }
+
+        function openUpdateGovernmentDocumentModal(employeeId, documentId) {
+            loadModal(`/GovernmentDocuments/Edit/${documentId}?employeeId=${employeeId}`);
+        }
+
+        function openDeleteGovernmentDocumentModal(employeeId, documentId) {
+            loadModal(`/GovernmentDocuments/Delete/${documentId}?employeeId=${employeeId}`);
+        }
+
+        function openAddCertificationModal(employeeId) {
+            loadModal(`/Certifications/Create?employeeId=${employeeId}`);
+        }
+
+        function openUpdateCertificationModal(employeeId, certificationId) {
+            loadModal(`/Certifications/Edit/${certificationId}?employeeId=${employeeId}`);
+        }
+
+        function openDeleteCertificationModal(employeeId, certificationId) {
+            loadModal(`/Certifications/Delete/${certificationId}?employeeId=${employeeId}`);
+        }
+
+        function openUpdatePersonalDetailsModal(employeeId) {
+            loadModal(`/PersonalDetails/Edit?employeeId=${employeeId}`);
+        }
+
+        // Load modal content via AJAX
+        function loadModal(url) {
+            $.get(url, function (data) {
+                $('#modalContainer').html(data);
+                $('#modalContainer').find('.modal').modal('show');
+            });
+        }
+    </script>
 }
