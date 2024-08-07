@@ -1,12 +1,8 @@
-using EMS.Domain.Entities.EmployeeDetails;
-
-namespace EMS.WebApi;
+namespace EMS.Web;
 
 public class MappingProfile:Profile
 {
     public MappingProfile()
-
-
     {
         CreateMap<Employee, EmployeeModel>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))

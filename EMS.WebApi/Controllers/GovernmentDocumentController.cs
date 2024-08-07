@@ -5,7 +5,7 @@ public class GovernmentDocumentController (IGovernmentDocumentService government
 {
   // GET: api/GovernmentDocument/employee/{employeeId}
     [HttpGet("employee/{employeeId}")]
-    public async Task<ActionResult<IEnumerable<GovernmentDocumentModel>>> GetDocumentsByEmployeeId(Guid employeeId)
+    public async Task<IActionResult> GetDocumentsByEmployeeId(Guid employeeId)
     {
         var documents = await governmentDocumentService.GetGovernmentDocumentsByEmployeeIdAsync(employeeId);
         var documentModel = mapper.Map<IEnumerable<GovernmentDocumentModel>>(documents);
@@ -14,7 +14,7 @@ public class GovernmentDocumentController (IGovernmentDocumentService government
 
     // GET: api/GovernmentDocument/{id}
     [HttpGet("{id}")]
-    public async Task<ActionResult<GovernmentDocumentModel>> GetDocumentById(Guid id)
+    public async Task<IActionResult> GetDocumentById(Guid id)
     {
         var document = await governmentDocumentService.GetGovernmentDocumentByIdAsync(id);
         if (document == null)
@@ -26,7 +26,7 @@ public class GovernmentDocumentController (IGovernmentDocumentService government
 
     // POST: api/GovernmentDocument
     [HttpPost]
-    public async Task<ActionResult> AddDocument(Guid employeeId, [FromBody] GovernmentDocumentModel documentModel)
+    public async Task<IActionResult> AddDocument(Guid employeeId, [FromBody] GovernmentDocumentModel documentModel)
     {
         if (!ModelState.IsValid)
         {

@@ -6,7 +6,7 @@ public class QualificationController (IQualificationService qualificationService
     
     // GET: api/Qualification/employee/{employeeId}
     [HttpGet("employee/{employeeId}")]
-    public async Task<ActionResult<IEnumerable<QualificationModel>>> GetQualificationsByEmployeeId(Guid employeeId)
+    public async Task<IActionResult> GetQualificationsByEmployeeId(Guid employeeId)
     {
         var qualifications = await qualificationService.GetQualificationsByEmployeeIdAsync(employeeId);
         return Ok(qualifications);
@@ -14,7 +14,7 @@ public class QualificationController (IQualificationService qualificationService
 
     // GET: api/Qualification/{id}
     [HttpGet("{id}")]
-    public async Task<ActionResult<QualificationModel>> GetQualificationById(Guid id)
+    public async Task<IActionResult> GetQualificationById(Guid id)
     {
         var qualification = await qualificationService.GetQualificationByIdAsync(id);
         if (qualification == null)
@@ -26,7 +26,7 @@ public class QualificationController (IQualificationService qualificationService
 
     // POST: api/Qualification
     [HttpPost]
-    public async Task<ActionResult> AddQualification(Guid employeeId, [FromBody] QualificationModel qualificationModel)
+    public async Task<IActionResult> AddQualification(Guid employeeId, [FromBody] QualificationModel qualificationModel)
     {
         if (!ModelState.IsValid)
         {

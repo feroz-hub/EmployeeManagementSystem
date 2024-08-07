@@ -5,7 +5,7 @@ public class LeaveController (ILeaveService leaveService ): Controller
 {
     // GET: api/Leave/employee/{employeeId}
     [HttpGet("employee/{employeeId}")]
-    public async Task<ActionResult<IEnumerable<LeaveModel>>> GetLeavesByEmployeeId(Guid employeeId)
+    public async Task<IActionResult> GetLeavesByEmployeeId(Guid employeeId)
     {
         var leaves = await leaveService.GetLeavesByEmployeeIdAsync(employeeId);
         return Ok(leaves);
@@ -13,7 +13,7 @@ public class LeaveController (ILeaveService leaveService ): Controller
 
     // GET: api/Leave/{id}
     [HttpGet("{id}")]
-    public async Task<ActionResult<LeaveModel>> GetLeaveById(Guid id)
+    public async Task<IActionResult> GetLeaveById(Guid id)
     {
         var leave = await leaveService.GetLeaveByIdAsync(id);
         if (leave == null)
@@ -25,7 +25,7 @@ public class LeaveController (ILeaveService leaveService ): Controller
 
     // POST: api/Leave
     [HttpPost]
-    public async Task<ActionResult> ApplyLeave(Guid employeeId, [FromBody] LeaveModel leaveModel)
+    public async Task<IActionResult> ApplyLeave(Guid employeeId, [FromBody] LeaveModel leaveModel)
     {
         if (!ModelState.IsValid)
         {

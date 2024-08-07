@@ -13,7 +13,7 @@ public class PersonalDetailsController(IPersonalDetailsService personalDetailsSe
     // }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<PersonalDetails>> GetPersonalDetails(Guid id)
+    public async Task<IActionResult> GetPersonalDetails(Guid id)
     {
         var personalDetails = await personalDetailsService.GetPersonalDetailsByEmployeeIdAsync(id);
         if (personalDetails == null) return NotFound();
@@ -21,7 +21,7 @@ public class PersonalDetailsController(IPersonalDetailsService personalDetailsSe
     }
 
     [HttpPost(template:"{id}")]
-    public async Task<ActionResult<PersonalDetails>> AddPersonalDetails(Guid id,PersonalDetailsModel personalDetails)
+    public async Task<IActionResult> AddPersonalDetails(Guid id,PersonalDetailsModel personalDetails)
     {
          await personalDetailsService.AddPersonalDetailsAsync(id,personalDetails);
          return Ok();

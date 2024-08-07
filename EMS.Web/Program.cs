@@ -1,13 +1,13 @@
-using EMS.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<ReportSettings>(builder.Configuration.GetSection("ReportSettings"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Database")));
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddApplicationService()
+    .AddInfrastructureService();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -5,16 +5,15 @@ public class CertificationController(ICertificationService certificationService,
 {
    // GET: api/Certification/employee/{employeeId}
     [HttpGet("employee/{employeeId}")]
-    public async Task<ActionResult<IEnumerable<CertificationModel>>> GetCertificationsByEmployeeId(Guid employeeId)
+    public async Task<IActionResult> GetCertificationsByEmployeeId(Guid employeeId)
     {
         var certifications = await certificationService.GetCertificationsByEmployeeIdAsync(employeeId);
-        var certificateModel = mapper.Map<IEnumerable<CertificationModel>>(certifications);
-        return Ok(certificateModel);
+        return Ok(certifications);
     }
 
     // GET: api/Certification/{id}
     [HttpGet("{id}")]
-    public async Task<ActionResult<CertificationModel>> GetCertificationById(Guid id)
+    public async Task<IActionResult> GetCertificationById(Guid id)
     {
         var certification = await certificationService.GetCertificationByIdAsync(id);
         if (certification == null)
@@ -26,7 +25,7 @@ public class CertificationController(ICertificationService certificationService,
 
     // POST: api/Certification
     [HttpPost]
-    public async Task<ActionResult> AddCertification(Guid employeeId, [FromBody] CertificationModel certificationModel)
+    public async Task<IActionResult> AddCertification(Guid employeeId, [FromBody] CertificationModel certificationModel)
     {
         if (!ModelState.IsValid)
         {

@@ -5,13 +5,17 @@ namespace EMS.Application.Services;
 
 public class EmployeeService(IUnitOfWork unitOfWork,IMapper mapper) : IEmployeeService
 {
-    public async Task<IEnumerable<Employee>> GetAllEmployeesAsync()
+    public async Task<IEnumerable<EmployeeModel>> GetAllEmployeesAsync()
     {
-        return await unitOfWork.Employees.GetAllAsync();
+        var employees= await unitOfWork.Employees.GetAllAsync();
+        return mapper.Map<IEnumerable<EmployeeModel>>(employees);
     }
-    public async Task<Employee> GetEmployeeByIdAsync(Guid id)
+    
+    public async Task<EmployeeModel> GetEmployeeByIdAsync(Guid id)
     {
-       return await unitOfWork.Employees.GetByIdAsync(id);
+       var employee= await unitOfWork.Employees.GetByIdAsync(id);
+       return mapper.Map<EmployeeModel>(employee);
+       
     }
 
     public async Task AddEmployeeAsync(EmployeeModel employeeDataModel)

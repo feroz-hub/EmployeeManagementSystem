@@ -10,7 +10,7 @@ public class ReportController(IReportService reportService,IOptions<ReportSettin
 {
     // GET: api/Report
     [HttpGet]
-    public async Task<ActionResult<List<DepartmentReport>>> GetDepartmentReports()
+    public async Task<IActionResult> GetDepartmentReports()
     {
         var reports = await reportService.GetDepartmentReportsAsync();
         return Ok(reports);

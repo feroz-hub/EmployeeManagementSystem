@@ -5,14 +5,19 @@ namespace EMS.Application.Services;
 
 public class CertificationService(IUnitOfWork unitOfWork,IMapper mapper):ICertificationService
 {
-    public async Task<IEnumerable<Certification>> GetCertificationsByEmployeeIdAsync(Guid employeeId)
+    public async Task<IEnumerable<CertificationModel>> GetCertificationsByEmployeeIdAsync(Guid employeeId)
     {
-        return (await unitOfWork.Certifications.GetAllAsync()).Where(c => c.EmployeeId == employeeId);
+        var certificates= (await unitOfWork.Certifications.GetAllAsync()).Where(c => c.EmployeeId == employeeId);
+        var certificateModel = mapper.Map<IEnumerable<CertificationModel>>(certificates);
+        return certificateModel;
     }
+    
 
-    public async Task<Certification> GetCertificationByIdAsync(Guid id)
+    public async Task<CertificationModel> GetCertificationByIdAsync(Guid id)
     {
-        return await unitOfWork.Certifications.GetByIdAsync(id);
+        var certificate= await unitOfWork.Certifications.GetByIdAsync(id);
+        var certificateModel = mapper.Map<CertificationModel>(certificate);
+        return certificateModel;
     }
 
     public async Task AddCertificationAsync(Guid employeeId,CertificationModel certificationModel)

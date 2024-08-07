@@ -5,7 +5,7 @@ public class ExperienceController(IExperienceService experienceService,IMapper m
 {
    // GET: api/Experience/employee/{employeeId}
     [HttpGet("employee/{employeeId}")]
-    public async Task<ActionResult<IEnumerable<ExperienceModel>>> GetExperiencesByEmployeeId(Guid employeeId)
+    public async Task<IActionResult> GetExperiencesByEmployeeId(Guid employeeId)
     {
         var experiences = await experienceService.GetExperiencesByEmployeeIdAsync(employeeId);
         var experienceModel= mapper.Map<IEnumerable<ExperienceModel>>(experiences);
@@ -14,7 +14,7 @@ public class ExperienceController(IExperienceService experienceService,IMapper m
 
     // GET: api/Experience/{id}
     [HttpGet("{id}")]
-    public async Task<ActionResult<ExperienceModel>> GetExperienceById(Guid id)
+    public async Task<IActionResult> GetExperienceById(Guid id)
     {
         var experience = await experienceService.GetExperienceByIdAsync(id);
         if (experience == null)
@@ -26,7 +26,7 @@ public class ExperienceController(IExperienceService experienceService,IMapper m
 
     // POST: api/Experience
     [HttpPost]
-    public async Task<ActionResult> AddExperience(Guid employeeId, [FromBody] ExperienceModel experienceModel)
+    public async Task<IActionResult> AddExperience(Guid employeeId, [FromBody] ExperienceModel experienceModel)
     {
         if (!ModelState.IsValid)
         {

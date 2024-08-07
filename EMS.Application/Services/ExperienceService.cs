@@ -5,14 +5,17 @@ namespace EMS.Application.Services;
 
 public class ExperienceService(IUnitOfWork unitOfWork,IMapper mapper):IExperienceService
 {
-    public async Task<IEnumerable<Experience>> GetExperiencesByEmployeeIdAsync(Guid employeeId)
+    public async Task<IEnumerable<ExperienceModel>> GetExperiencesByEmployeeIdAsync(Guid employeeId)
     {
-        return (await unitOfWork.Experiences.GetAllAsync()).Where(e => e.EmployeeId == employeeId);
+        var experiences= (await unitOfWork.Experiences.GetAllAsync()).Where(e => e.EmployeeId == employeeId);
+             return mapper.Map<IEnumerable<ExperienceModel>>(experiences);
     }
 
-    public async Task<Experience> GetExperienceByIdAsync(Guid id)
+    public async Task<ExperienceModel> GetExperienceByIdAsync(Guid id)
     {
-        return await unitOfWork.Experiences.GetByIdAsync(id);
+        var experience= await unitOfWork.Experiences.GetByIdAsync(id);
+        return mapper.Map<ExperienceModel>(experience);
+        
     }
     
 
