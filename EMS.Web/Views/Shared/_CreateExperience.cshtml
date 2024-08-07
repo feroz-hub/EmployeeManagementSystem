@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form asp-action="Create" method="post">
+                <form asp-action="Create" asp-controller="Experiences" method="post">
                     <input type="hidden" asp-for="EmployeeId" value="@ViewBag.EmployeeId" />
                     <div class="form-group">
                         <label asp-for="CompanyName" class="control-label"></label>

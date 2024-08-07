@@ -57,7 +57,7 @@
     @if (Model.Qualifications != null && Model.Qualifications.Any())
     {
     <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <table  id="datatablesSimple" class="table table-hover table-bordered">
             <thead class="table-dark">
             <tr>
                 <th>Degree</th>
@@ -100,7 +100,7 @@
     @if (Model.Experiences != null && Model.Experiences.Any())
     {
     <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <table id="datatablesSimple" class="table table-hover table-bordered">
             <thead class="table-dark">
             <tr>
                 <th>Company Name</th>
@@ -145,7 +145,7 @@
     @if (Model.GovernmentDocuments != null && Model.GovernmentDocuments.Any())
     {
     <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <table  id="datatablesSimple" class="table table-hover table-bordered">
             <thead class="table-dark">
             <tr>
                 <th>Document Type</th>
@@ -188,7 +188,7 @@
     @if (Model.Certifications != null && Model.Certifications.Any())
     {
     <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <table  id="datatablesSimple" class="table table-hover table-bordered">
             <thead class="table-dark">
             <tr>
                 <th>Certification Name</th>
@@ -291,6 +291,14 @@
                 $('#modalContainer').find('.modal').modal('show');
             });
         }
+       
+        document.addEventListener('DOMContentLoaded', event => {
+                const datatablesMainSimple = document.getElementById('datatablesMainSimple');
+                if (datatablesMainSimple) {
+                    new simpleDatatables.DataTable(datatablesMainSimple);
+                }
+            });
+      
     </script>
 }
 <style>
