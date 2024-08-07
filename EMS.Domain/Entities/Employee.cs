@@ -1,6 +1,6 @@
 namespace EMS.Domain.Entities;
 
-public class Employee
+public class Employee:BaseEntity
 {
     public Guid EmployeeId { get; set; }
     public string Name { get; set; }

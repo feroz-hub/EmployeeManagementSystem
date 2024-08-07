@@ -3,28 +3,26 @@ using EMS.Web.Models;
 
 namespace EMS.Web.Controllers;
 
-public class HomeController : Controller
+public class HomeController(IEmployeeService employeeService,ILeaveService leaveService,IQualificationService qualificationService,ICertificationService certificationService,IEmployeeSalaryService employeeSalaryService) : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    
+    public async Task<IActionResult> Index()
     {
-        _logger = logger;
+        var dashBoardData = new DashBoardViewModel()
+        {
+            TotalEmployees = await employeeService.GetTotalEmployeesAsync(),
+            EmployeesByDepartment = await employeeService.GetEmployeesByDepartmentAsync(),
+            EmployeesByType = await employeeService.GetEmployeesByTypeAsync(),
+            TotalLeavesApplied = await leaveService.GetTotalLeaveAppliedAsync(),
+            PendingLeaveRequests = await leaveService.GetPendingLeaveRequest(),
+            AverageEmployeeSalary = await employeeSalaryService.AverageEmployeeSalaryAsync(),
+            RecentEmployees = await employeeService.RecentEmployeesAsync(),
+            UpcomingCertificationsExpiry = await certificationService.GetUpcomingCertificateExpiry(),
+            RecentLeaveRequests = await leaveService.GetRecentLeaveRequestAsync()
+
+        };
+        return View(dashBoardData);
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+  
 }

@@ -50,23 +50,48 @@ public class EmployeeService(IUnitOfWork unitOfWork,IMapper mapper) : IEmployeeS
             employeeData.PersonalDetails.EmployeeId = employeeData.EmployeeId;
         }
         employeeData.SetBand();
+        employeeData.CreatedAt=DateTime.Now;
         // Add the Employee entity
         await unitOfWork.Employees.AddAsync(employeeData);
     }
 
-    public async Task UpdateEmployeeAsync(EmployeeModel employee)
+    public async Task UpdateEmployeeAsync(EmployeeModel employeeModel)
     {
-        throw new NotImplementedException();
-    }
-
-    public async Task UpdateEmployeeAsync(Employee employeeData)
-    {
-        await unitOfWork.Employees.UpdateAsync(employeeData);
+        var employee = await unitOfWork.Employees.GetByIdAsync(employeeModel.EmployeeId);
+        if (employee == null)
+        {
+            throw new Exception("Employee not found");
+        }
+        mapper.Map(employeeModel, employee);
+        await unitOfWork.Employees.UpdateAsync(employee);
         await unitOfWork.CompleteAsync();
     }
-
+    
     public async Task<bool> DeleteEmployeeAsync(Guid id)
     {
       return  await unitOfWork.Employees.DeleteAsync(id);
+    }
+
+    public async Task<int> GetTotalEmployeesAsync()
+    {
+        return await unitOfWork.Employees.GetTotalEmployeesAsync();
+    }
+
+    public async Task<Dictionary<string, int>> GetEmployeesByDepartmentAsync()
+    {
+        return await unitOfWork.Employees.GetEmployeesByDepartment();
+    }
+
+    public async Task<Dictionary<string, int>> GetEmployeesByTypeAsync()
+    {
+        return await unitOfWork.Employees.GetEmployeesByType();
+    }
+
+    
+
+    public async Task<List<EmployeeModel>> RecentEmployeesAsync()
+    {
+        var employees = await unitOfWork.Employees.RecentEmployee();
+        return mapper.Map<List<EmployeeModel>>(employees);
     }
 }

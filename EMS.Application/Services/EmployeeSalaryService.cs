@@ -138,4 +138,9 @@ public class EmployeeSalaryService(IUnitOfWork unitOfWork,IMapper mapper):IEmplo
 
         await unitOfWork.CompleteAsync();
     }
+    public async Task<decimal> AverageEmployeeSalaryAsync()
+    {
+        
+        return await unitOfWork.EmployeeSalary.AverageEmployeeSalary();
+    }
 }

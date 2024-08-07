@@ -57,4 +57,20 @@ public class LeaveService(IUnitOfWork unitOfWork,IMapper mapper):ILeaveService
         return await unitOfWork.Leaves.DeleteAsync(id);
         
     }
+
+    public async Task<int> GetTotalLeaveAppliedAsync()
+    {
+        return await unitOfWork.Leaves.GetTotalLeavesAppliedAsync();
+    }
+
+    public async Task<int> GetPendingLeaveRequest()
+    {
+        return await unitOfWork.Leaves.GetTotalLeavesPendingAsync();
+    }
+
+    public async Task<List<LeaveModel>> GetRecentLeaveRequestAsync()
+    {
+        var leaves = await unitOfWork.Leaves.RecentLeaveRequests();
+        return mapper.Map<List<LeaveModel>>(leaves);
+    }
 }
