@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using EMS.Application;
-using EMS.Domain.Report;
 using EMS.Infrastructure;
 using EMS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;

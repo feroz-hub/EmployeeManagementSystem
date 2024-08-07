@@ -7,8 +7,8 @@ public class EmployeeModel
     public EmployeeType EmployeeType { get; set; }
     public DepartmentType DepartmentType { get; set; }
     public PersonalDetailsModel? PersonalDetails { get; set; }
-    public ICollection<QualificationModel>? Qualifications { get; set; }
-    public ICollection<ExperienceModel>? Experiences { get; set; }
-    public ICollection<GovernmentDocumentModel>? GovernmentDocuments { get; set; }
-    public ICollection<CertificationModel>? Certifications { get; set; }
+    public List<QualificationModel>? Qualifications { get; set; }
+    public List<ExperienceModel>? Experiences { get; set; }
+    public List<GovernmentDocumentModel>? GovernmentDocuments { get; set; }
+    public List<CertificationModel>? Certifications { get; set; }
 }

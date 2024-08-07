@@ -5,13 +5,6 @@ namespace EMS.WebApi.Controllers;
 [ApiController]
 public class PersonalDetailsController(IPersonalDetailsService personalDetailsService) : Controller
 {
-    // [HttpGet]
-    // public async Task<ActionResult<IEnumerable<PersonalDetails>>> GetPersonalDetails()
-    // {
-    //     var personalDetails = await personalDetailsService.G();
-    //     return Ok(personalDetails);
-    // }
-
     [HttpGet("{id}")]
     public async Task<IActionResult> GetPersonalDetails(Guid id)
     {

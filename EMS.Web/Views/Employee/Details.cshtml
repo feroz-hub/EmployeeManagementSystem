@@ -1,0 +1,149 @@
+@model EmployeeModel
+
+<h2>Employee Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartmentType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartmentType)
+        </dd>
+        <!-- Add other fields as required -->
+    </dl>
+</div>
+
+<div>
+    <h4>Qualifications</h4>
+    <hr />
+    @if (Model.Qualifications != null && Model.Qualifications.Any())
+    {
+        <div class="row">
+            @foreach (var qualification in Model.Qualifications)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Qualification</h5>
+                            <p class="card-text"><strong>Degree:</strong> @qualification.Degree</p>
+                            <p class="card-text"><strong>Institution:</strong> @qualification.Institution</p>
+                            <p class="card-text"><strong>Graduation Date:</strong> @qualification.GraduationDate.ToShortDateString()</p>
+                            <p class="card-text"><strong>Grade:</strong> @qualification.Grade</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No qualifications available.</p>
+    }
+</div>
+
+<div>
+    <h4>Experiences</h4>
+    <hr />
+    @if (Model.Experiences != null && Model.Experiences.Any())
+    {
+        <div class="row">
+            @foreach (var experience in Model.Experiences)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Experience</h5>
+                            <p class="card-text"><strong>Company Name:</strong> @experience.CompanyName</p>
+                            <p class="card-text"><strong>Job Title:</strong> @experience.JobTitle</p>
+                            <p class="card-text"><strong>Start Date:</strong> @experience.StartDate.ToShortDateString()</p>
+                            <p class="card-text"><strong>End Date:</strong> @experience.EndDate?.ToShortDateString()</p>
+                            <p class="card-text"><strong>Responsibilities:</strong> @experience.Responsibilities</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No experiences available.</p>
+    }
+</div>
+
+<div>
+    <h4>Government Documents</h4>
+    <hr />
+    @if (Model.GovernmentDocuments != null && Model.GovernmentDocuments.Any())
+    {
+        <div class="row">
+            @foreach (var document in Model.GovernmentDocuments)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Government Document</h5>
+                            <p class="card-text"><strong>Document Type:</strong> @document.DocumentType</p>
+                            <p class="card-text"><strong>Document Number:</strong> @document.DocumentNumber</p>
+                            <p class="card-text"><strong>Issue Date:</strong> @document.IssueDate.ToShortDateString()</p>
+                            <p class="card-text"><strong>Expiry Date:</strong> @document.ExpiryDate.ToShortDateString()</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No government documents available.</p>
+    }
+</div>
+
+<div>
+    <h4>Certifications</h4>
+    <hr />
+    @if (Model.Certifications != null && Model.Certifications.Any())
+    {
+        <div class="row">
+            @foreach (var certification in Model.Certifications)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Certification</h5>
+                            <p class="card-text"><strong>Certification Name:</strong> @certification.CertificationName</p>
+                            <p class="card-text"><strong>Issuing Organization:</strong> @certification.IssuingOrganization</p>
+                            <p class="card-text"><strong>Issue Date:</strong> @certification.IssueDate.ToShortDateString()</p>
+                            <p class="card-text"><strong>Expiry Date:</strong> @certification.ExpiryDate?.ToShortDateString() ?? "N/A"</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No certifications available.</p>
+    }
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+<a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary">Edit</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,9 +1,4 @@
-using EMS.Domain.Report;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-
 namespace EMS.WebApi.Controllers;
-
 [ApiController]
 [Route("api/[controller]")]
 public class ReportController(IReportService reportService,IOptions<ReportSettings> reportSettings) : Controller
