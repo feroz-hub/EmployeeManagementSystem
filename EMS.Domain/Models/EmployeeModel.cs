@@ -9,9 +9,10 @@ public class EmployeeModel
     public EmployeeType EmployeeType { get; set; }
     public DepartmentType DepartmentType { get; set; }
     public PersonalDetailsModel? PersonalDetails { get; set; }
+    public List<LeaveModel>? Leave { get; set; }
     public List<QualificationModel>? Qualifications { get; set; }
     public List<ExperienceModel>? Experiences { get; set; }
     public List<GovernmentDocumentModel>? GovernmentDocuments { get; set; }
     public List<CertificationModel>? Certifications { get; set; }
-    public EmployeeSalaryModel? EmployeeSalaryModel { get; set; }
+    public EmployeeSalaryModel? EmployeeSalary { get; set; }
 }

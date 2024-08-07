@@ -82,6 +82,8 @@ public class EmployeeController (IEmployeeService employeeService): Controller
         {
             return NotFound();
         }
+
+        ViewBag.EmployeeId = employeeId;
         return View(employee);
     }
 

@@ -1,17 +1,21 @@
+using AutoMapper;
 using EMS.Domain.Models;
 
 namespace EMS.Application.Services;
 
-public class LeaveService(IUnitOfWork unitOfWork):ILeaveService
+public class LeaveService(IUnitOfWork unitOfWork,IMapper mapper):ILeaveService
 {
-    public async Task<IEnumerable<Leave>> GetLeavesByEmployeeIdAsync(Guid employeeId)
+    public async Task<IEnumerable<LeaveModel>> GetLeavesByEmployeeIdAsync(Guid employeeId)
     {
-        return await unitOfWork.Leaves.GetLeavesByEmployeeIdAsync(employeeId);
+        var leaves= await unitOfWork.Leaves.GetLeavesByEmployeeIdAsync(employeeId);
+        return mapper.Map<IEnumerable<LeaveModel>>(leaves);
+        
     }
 
-    public async Task<Leave> GetLeaveByIdAsync(Guid id)
-    {
-        return await unitOfWork.Leaves.GetByIdAsync(id);
+    public async Task<LeaveModel> GetLeaveByIdAsync(Guid id)
+    { 
+        var leave=await unitOfWork.Leaves.GetByIdAsync(id);
+        return mapper.Map<LeaveModel>(leave);
     }
 
     public async Task AddLeaveAsync(Guid employeeId,LeaveModel leaveModel)

@@ -11,7 +11,9 @@ public class MappingProfile:Profile
             .ForMember(dest => dest.Qualifications, opt => opt.MapFrom(src => src.Qualifications))
             .ForMember(dest => dest.Experiences, opt => opt.MapFrom(src => src.Experiences))
             .ForMember(dest => dest.Certifications, opt => opt.MapFrom(src => src.Certifications))
-            .ForMember(dest => dest.EmployeeSalaryModel, opt => opt.MapFrom(src => src.EmployeeSalary));
+            .ForMember(dest => dest.EmployeeSalary, opt => opt.MapFrom(src => src.EmployeeSalary))
+            .ForMember(dest => dest.Leave, opt => opt.MapFrom(src => src.Leaves));
+        ;
         CreateMap<EmployeeModel, Employee>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore()) // Assuming EmployeeId is generated
             .ForMember(dest => dest.Band, opt => opt.Ignore()) // Band is set by the method
@@ -34,6 +36,7 @@ public class MappingProfile:Profile
         CreateMap<CertificationModel, Certification>().ReverseMap();
         CreateMap<PersonalDetailsModel, PersonalDetails>().ReverseMap();
         CreateMap<EmployeeSalaryModel, EmployeeSalary>().ReverseMap();
-        CreateMap<GovernmentDocument, GovernmentDocumentModel>();
+        CreateMap<GovernmentDocument, GovernmentDocumentModel>().ReverseMap();
+        CreateMap<LeaveModel, Leave>().ReverseMap();
     }
 }

@@ -1,0 +1,30 @@
+@model LeaveModel
+
+<div class="modal fade" id="cancelLeaveModal" tabindex="-1" aria-labelledby="cancelLeaveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelLeaveModalLabel">Cancel Leave</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel this leave?</p>
+                <dl class="row">
+                    <dt class="col-sm-4">Start Date:</dt>
+                    <dd class="col-sm-8">@Model.StartDate.ToShortDateString()</dd>
+                    <dt class="col-sm-4">End Date:</dt>
+                    <dd class="col-sm-8">@Model.EndDate.ToShortDateString()</dd>
+                    <dt class="col-sm-4">Reason:</dt>
+                    <dd class="col-sm-8">@Model.Reason</dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <form asp-action="CancelLeave" asp-controller="Leave"method="post">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
