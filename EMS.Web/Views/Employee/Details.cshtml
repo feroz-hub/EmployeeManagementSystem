@@ -2,176 +2,223 @@
 
 <h2>Employee Details</h2>
 
-<div>
-    <h4>Employee</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EmployeeType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EmployeeType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DepartmentType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DepartmentType)
-        </dd>
-        <!-- Add other fields as required -->
-    </dl>
+<div class="card mb-3">
+        <hr/>
+        <dl class="row">
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.EmployeeType)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.EmployeeType)</dd>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DepartmentType)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.DepartmentType)</dd>
+            <!-- Add other fields as required -->
+        </dl>
+</div>
+
+<div class="card mb-3">
+    <h5 class="card-header">Salary</h5>
+        @if (Model.EmployeeSalaryModel == null)
+        {
+        <p class="card-text"><strong>Salary:</strong> Not yet calculated</p>
+        }
+        else
+        {
+        <p class="card-text"><strong>Net Salary:</strong> @Model.EmployeeSalaryModel.NetSalary</p>
+        <p class="card-text"><strong>Band:</strong> @Model.EmployeeSalaryModel.Band</p>
+        }
 </div>
 
 <!-- Personal Details -->
-<div>
-    <h4>Personal Details</h4>
-    <hr />
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">Personal Details</h5>
-            <p class="card-text"><strong>Address:</strong> @Model.PersonalDetails?.Address</p>
-            <p class="card-text"><strong>Phone Number:</strong> @Model.PersonalDetails?.PhoneNumber</p>
-            <p class="card-text"><strong>Email:</strong> @Model.PersonalDetails?.Email</p>
-            <p class="card-text"><strong>Date of Birth:</strong> @Model.PersonalDetails?.DateOfBirth.ToShortDateString()</p>
-            <button class="btn btn-primary" onclick="openUpdatePersonalDetailsModal('@Model.EmployeeId')">Update</button>
-        </div>
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Personal Details</h5>
+        <dl class="row">
+            <dt class="col-sm-2"><strong>Address:</strong></dt>
+            <dd class="col-sm-10">@Model.PersonalDetails?.Address</dd>
+            <dt class="col-sm-2"><strong>Phone Number:</strong></dt>
+            <dd class="col-sm-10">@Model.PersonalDetails?.PhoneNumber</dd>
+            <dt class="col-sm-2"><strong>Email:</strong></dt>
+            <dd class="col-sm-10">@Model.PersonalDetails?.Email</dd>
+            <dt class="col-sm-2"><strong>Date of Birth:</strong></dt>
+            <dd class="col-sm-10">@Model.PersonalDetails?.DateOfBirth.ToShortDateString()</dd>
+        </dl>
+        <button class="btn btn-primary" onclick="openUpdatePersonalDetailsModal('@Model.EmployeeId')">Update</button>
     </div>
 </div>
 
 <!-- Qualifications -->
 <div>
-    <h4>Qualifications</h4>
+    <h4 class="my-3">Qualifications</h4>
     <hr />
     <button class="btn btn-primary mb-3" onclick="openAddQualificationModal('@Model.EmployeeId')">Add Qualification</button>
     @if (Model.Qualifications != null && Model.Qualifications.Any())
     {
-        <div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>Degree</th>
+                <th>Institution</th>
+                <th>Graduation Date</th>
+                <th>Grade</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
             @foreach (var qualification in Model.Qualifications)
             {
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Qualification</h5>
-                            <p class="card-text"><strong>Degree:</strong> @qualification.Degree</p>
-                            <p class="card-text"><strong>Institution:</strong> @qualification.Institution</p>
-                            <p class="card-text"><strong>Graduation Date:</strong> @qualification.GraduationDate.ToShortDateString()</p>
-                            <p class="card-text"><strong>Grade:</strong> @qualification.Grade</p>
-                            <button class="btn btn-primary" onclick="openUpdateQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Update</button>
-                            <button class="btn btn-danger" onclick="openDeleteQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Delete</button>
-                        </div>
-                    </div>
-                </div>
+            <tr>
+                <td>@qualification.Degree</td>
+                <td>@qualification.Institution</td>
+                <td>@qualification.GraduationDate.ToShortDateString()</td>
+                <td>@qualification.Grade</td>
+                <td>
+                    <button class="btn btn-sm btn-primary me-1" onclick="openUpdateQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Update</button>
+                    <button class="btn btn-sm btn-danger" onclick="openDeleteQualificationModal('@Model.EmployeeId', '@qualification.QualificationId')">Delete</button>
+                </td>
+            </tr>
             }
-        </div>
+            </tbody>
+        </table>
+    </div>
     }
     else
     {
-        <p>No qualifications available.</p>
+    <p>No qualifications available.</p>
     }
 </div>
 
+
 <!-- Experiences -->
 <div>
-    <h4>Experiences</h4>
+    <h4 class="my-3">Experiences</h4>
     <hr />
     <button class="btn btn-primary mb-3" onclick="openAddExperienceModal('@Model.EmployeeId')">Add Experience</button>
     @if (Model.Experiences != null && Model.Experiences.Any())
     {
-        <div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>Company Name</th>
+                <th>Job Title</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Responsibilities</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
             @foreach (var experience in Model.Experiences)
             {
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Experience</h5>
-                            <p class="card-text"><strong>Company Name:</strong> @experience.CompanyName</p>
-                            <p class="card-text"><strong>Job Title:</strong> @experience.JobTitle</p>
-                            <p class="card-text"><strong>Start Date:</strong> @experience.StartDate.ToShortDateString()</p>
-                            <p class="card-text"><strong>End Date:</strong> @(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() : "Present")</p>
-                            <p class="card-text"><strong>Responsibilities:</strong> @experience.Responsibilities</p>
-                            <button class="btn btn-primary" onclick="openUpdateExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Update</button>
-                            <button class="btn btn-danger" onclick="openDeleteExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Delete</button>
-                        </div>
-                    </div>
-                </div>
+            <tr>
+                <td>@experience.CompanyName</td>
+                <td>@experience.JobTitle</td>
+                <td>@experience.StartDate.ToShortDateString()</td>
+                <td>@(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() : "Present")</td>
+                <td>@experience.Responsibilities</td>
+                <td>
+                    <button class="btn btn-sm btn-primary me-1" onclick="openUpdateExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Update</button>
+                    <button class="btn btn-sm btn-danger" onclick="openDeleteExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Delete</button>
+                </td>
+            </tr>
             }
-        </div>
+            </tbody>
+        </table>
+    </div>
     }
     else
     {
-        <p>No experiences available.</p>
+    <p>No experiences available.</p>
     }
 </div>
 
+
 <!-- Government Documents -->
 <div>
-    <h4>Government Documents</h4>
+    <h4 class="my-3">Government Documents</h4>
     <hr />
     <button class="btn btn-primary mb-3" onclick="openAddGovernmentDocumentModal('@Model.EmployeeId')">Add Document</button>
     @if (Model.GovernmentDocuments != null && Model.GovernmentDocuments.Any())
     {
-        <div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>Document Type</th>
+                <th>Document Number</th>
+                <th>Issue Date</th>
+                <th>Expiry Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
             @foreach (var document in Model.GovernmentDocuments)
             {
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Government Document</h5>
-                            <p class="card-text"><strong>Document Type:</strong> @document.DocumentType</p>
-                            <p class="card-text"><strong>Document Number:</strong> @document.DocumentNumber</p>
-                            <p class="card-text"><strong>Issue Date:</strong> @document.IssueDate.ToShortDateString()</p>
-                            <p class="card-text"><strong>Expiry Date:</strong> @document.ExpiryDate.ToShortDateString()</p>
-                            <button class="btn btn-primary" onclick="openUpdateGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Update</button>
-                            <button class="btn btn-danger" onclick="openDeleteGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Delete</button>
-                        </div>
-                    </div>
-                </div>
+            <tr>
+                <td>@document.DocumentType</td>
+                <td>@document.DocumentNumber</td>
+                <td>@document.IssueDate.ToShortDateString()</td>
+                <td>@document.ExpiryDate.ToShortDateString()</td>
+                <td>
+                    <button class="btn btn-sm btn-primary me-1" onclick="openUpdateGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Update</button>
+                    <button class="btn btn-sm btn-danger" onclick="openDeleteGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Delete</button>
+                </td>
+            </tr>
             }
-        </div>
+            </tbody>
+        </table>
+    </div>
     }
     else
     {
-        <p>No government documents available.</p>
+    <p>No government documents available.</p>
     }
 </div>
 
+
 <!-- Certifications -->
 <div>
-    <h4>Certifications</h4>
+    <h4 class="my-3">Certifications</h4>
     <hr />
     <button class="btn btn-primary mb-3" onclick="openAddCertificationModal('@Model.EmployeeId')">Add Certification</button>
     @if (Model.Certifications != null && Model.Certifications.Any())
     {
-        <div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>Certification Name</th>
+                <th>Issuing Organization</th>
+                <th>Issue Date</th>
+                <th>Expiry Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
             @foreach (var certification in Model.Certifications)
             {
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Certification</h5>
-                            <p class="card-text"><strong>Certification Name:</strong> @certification.CertificationName</p>
-                            <p class="card-text"><strong>Issuing Organization:</strong> @certification.IssuingOrganization</p>
-                            <p class="card-text"><strong>Issue Date:</strong> @certification.IssueDate.ToShortDateString()</p>
-                            <p class="card-text"><strong>Expiry Date:</strong> @Html.Raw(certification.ExpiryDate.HasValue ? certification.ExpiryDate.Value.ToShortDateString() : "N/A")</p>
-                            <button class="btn btn-primary" onclick="openUpdateCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Update</button>
-                            <button class="btn btn-danger" onclick="openDeleteCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Delete</button>
-                        </div>
-                    </div>
-                </div>
+            <tr>
+                <td>@certification.CertificationName</td>
+                <td>@certification.IssuingOrganization</td>
+                <td>@certification.IssueDate.ToShortDateString()</td>
+                <td>@Html.Raw(certification.ExpiryDate.HasValue ? certification.ExpiryDate.Value.ToShortDateString() : "N/A")</td>
+                <td>
+                    <button class="btn btn-sm btn-primary me-1" onclick="openUpdateCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Update</button>
+                    <button class="btn btn-sm btn-danger" onclick="openDeleteCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Delete</button>
+                </td>
+            </tr>
             }
-        </div>
+            </tbody>
+        </table>
+    </div>
     }
     else
     {
-        <p>No certifications available.</p>
+    <p>No certifications available.</p>
     }
 </div>
+
 
 <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary">Edit</a>
@@ -243,3 +290,90 @@
         }
     </script>
 }
+<style>
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        background-color: #bd2130;
+    }
+
+    .mb-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    /* Custom table styles */
+    .table-hover tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dee2e6;
+    }
+
+    .table-dark {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .table-dark th {
+        border-color: #454d55;
+    }
+
+    .btn-sm {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    hr {
+        border-top: 1px solid #dee2e6;
+    }
+</style>

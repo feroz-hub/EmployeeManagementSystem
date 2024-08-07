@@ -11,7 +11,8 @@ public class EmployeeRepository(ApplicationDbContext context) :GenericRepository
             .Include(e => e.Qualifications)
             .Include(e => e.Experiences)
             .Include(e => e.GovernmentDocuments)
-            .Include(e => e.Certifications).ToListAsync();
+            .Include(e => e.Certifications)
+            .Include(e=>e.EmployeeSalary).ToListAsync();
     }
 
     public override async Task<Employee> GetByIdAsync(Guid id)
@@ -22,6 +23,7 @@ public class EmployeeRepository(ApplicationDbContext context) :GenericRepository
             .Include(e => e.Experiences)
             .Include(e => e.GovernmentDocuments)
             .Include(e => e.Certifications)
+            .Include(e=>e.EmployeeSalary)
             .FirstOrDefaultAsync(e => e.EmployeeId == id);
     }
 }

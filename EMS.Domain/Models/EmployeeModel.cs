@@ -1,3 +1,5 @@
+using EMS.Domain.Entities;
+
 namespace EMS.Domain.Models;
 
 public class EmployeeModel
@@ -11,4 +13,5 @@ public class EmployeeModel
     public List<ExperienceModel>? Experiences { get; set; }
     public List<GovernmentDocumentModel>? GovernmentDocuments { get; set; }
     public List<CertificationModel>? Certifications { get; set; }
+    public EmployeeSalaryModel? EmployeeSalaryModel { get; set; }
 }

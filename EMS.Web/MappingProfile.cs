@@ -10,7 +10,8 @@ public class MappingProfile:Profile
             .ForMember(dest => dest.GovernmentDocuments, opt => opt.MapFrom(src => src.GovernmentDocuments))
             .ForMember(dest => dest.Qualifications, opt => opt.MapFrom(src => src.Qualifications))
             .ForMember(dest => dest.Experiences, opt => opt.MapFrom(src => src.Experiences))
-            .ForMember(dest => dest.Certifications, opt => opt.MapFrom(src => src.Certifications));
+            .ForMember(dest => dest.Certifications, opt => opt.MapFrom(src => src.Certifications))
+            .ForMember(dest => dest.EmployeeSalaryModel, opt => opt.MapFrom(src => src.EmployeeSalary));
         CreateMap<EmployeeModel, Employee>()
             .ForMember(dest => dest.EmployeeId, opt => opt.Ignore()) // Assuming EmployeeId is generated
             .ForMember(dest => dest.Band, opt => opt.Ignore()) // Band is set by the method
