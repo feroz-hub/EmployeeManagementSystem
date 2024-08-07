@@ -1,0 +1,44 @@
+@model ExperienceModel
+
+<div class="modal fade" id="editExperienceModal" tabindex="-1" aria-labelledby="editExperienceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editExperienceModalLabel">Edit Experience</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="ExperienceId" />
+                    <input type="hidden" asp-for="EmployeeId" value="@ViewBag.EmployeeId" />
+                    <div class="form-group">
+                        <label asp-for="CompanyName" class="control-label"></label>
+                        <input class="form-control" asp-for="CompanyName" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="JobTitle" class="control-label"></label>
+                        <input class="form-control" asp-for="JobTitle" />
+                        <span asp-validation-for="JobTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StartDate" class="control-label"></label>
+                        <input class="form-control" asp-for="StartDate" type="date" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label"></label>
+                        <input class="form-control" asp-for="EndDate" type="date" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Responsibilities" class="control-label"></label>
+                        <textarea class="form-control" asp-for="Responsibilities"></textarea>
+                        <span asp-validation-for="Responsibilities" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

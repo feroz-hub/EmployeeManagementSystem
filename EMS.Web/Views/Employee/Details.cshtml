@@ -93,7 +93,7 @@
                             <p class="card-text"><strong>Company Name:</strong> @experience.CompanyName</p>
                             <p class="card-text"><strong>Job Title:</strong> @experience.JobTitle</p>
                             <p class="card-text"><strong>Start Date:</strong> @experience.StartDate.ToShortDateString()</p>
-                            <p class="card-text"><strong>End Date:</strong> @experience.EndDate?.ToShortDateString() ?? "Present"</p>
+                            <p class="card-text"><strong>End Date:</strong> @(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() : "Present")</p>
                             <p class="card-text"><strong>Responsibilities:</strong> @experience.Responsibilities</p>
                             <button class="btn btn-primary" onclick="openUpdateExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Update</button>
                             <button class="btn btn-danger" onclick="openDeleteExperienceModal('@Model.EmployeeId', '@experience.ExperienceId')">Delete</button>
@@ -158,7 +158,7 @@
                             <p class="card-text"><strong>Certification Name:</strong> @certification.CertificationName</p>
                             <p class="card-text"><strong>Issuing Organization:</strong> @certification.IssuingOrganization</p>
                             <p class="card-text"><strong>Issue Date:</strong> @certification.IssueDate.ToShortDateString()</p>
-                            <p class="card-text"><strong>Expiry Date:</strong> @certification.ExpiryDate?.ToShortDateString() ?? "N/A"</p>
+                            <p class="card-text"><strong>Expiry Date:</strong> @Html.Raw(certification.ExpiryDate.HasValue ? certification.ExpiryDate.Value.ToShortDateString() : "N/A")</p>
                             <button class="btn btn-primary" onclick="openUpdateCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Update</button>
                             <button class="btn btn-danger" onclick="openDeleteCertificationModal('@Model.EmployeeId', '@certification.CertificationId')">Delete</button>
                         </div>
@@ -219,15 +219,15 @@
         }
 
         function openAddCertificationModal(employeeId) {
-            loadModal(`/Certifications/Create?employeeId=${employeeId}`);
+            loadModal(`/Certification/Create?employeeId=${employeeId}`);
         }
 
         function openUpdateCertificationModal(employeeId, certificationId) {
-            loadModal(`/Certifications/Edit/${certificationId}?employeeId=${employeeId}`);
+            loadModal(`/Certification/Edit/${certificationId}?employeeId=${employeeId}`);
         }
 
         function openDeleteCertificationModal(employeeId, certificationId) {
-            loadModal(`/Certifications/Delete/${certificationId}?employeeId=${employeeId}`);
+            loadModal(`/Certification/Delete/${certificationId}?employeeId=${employeeId}`);
         }
 
         function openUpdatePersonalDetailsModal(employeeId) {

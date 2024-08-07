@@ -1,13 +1,10 @@
 
-using EMS.Application.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-
 namespace EMS.Web.Controllers;
 
-public class QualificationsController(IQualificationService qualificationService,IMapper mapper) : Controller
+public class QualificationsController(IQualificationService qualificationService) : Controller
 {
     // GET
-    public async Task<IActionResult>  Create(Guid employeeId)
+    public IActionResult  Create(Guid employeeId)
     {
         ViewBag.EmployeeId = employeeId;
         return PartialView("_CreateQualification");

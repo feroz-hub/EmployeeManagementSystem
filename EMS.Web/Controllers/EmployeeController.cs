@@ -1,6 +1,3 @@
-using EMS.Application.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-
 namespace EMS.Web.Controllers;
 
 public class EmployeeController (IEmployeeService employeeService): Controller
@@ -70,7 +67,6 @@ public class EmployeeController (IEmployeeService employeeService): Controller
     // GET: Employee/Details/5
     public async Task<IActionResult> Details(Guid id)
     {
-        
         var employee = await employeeService.GetEmployeeByIdAsync(id);
         if (employee == null)
         {
@@ -79,7 +75,7 @@ public class EmployeeController (IEmployeeService employeeService): Controller
         return View(employee);
     }
     // GET: Employee/Delete/5
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> Delete(Guid id,Guid employeeId)
     {
         var employee = await employeeService.GetEmployeeByIdAsync(id);
         if (employee == null)

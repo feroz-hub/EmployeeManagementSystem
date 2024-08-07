@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using EMS.Web.Models;
 
 namespace EMS.Web.Controllers;

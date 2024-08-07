@@ -1,0 +1,48 @@
+@model CertificationModel
+<div class="modal fade" id="createCertificationModal" tabindex="-1" role="dialog" aria-label="createCertificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title " id="createCertificationModalLabel">Add Certificate</h5>
+                <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create" asp-controller="Certification" method="post">
+                    <div class="form-group">
+                        <label asp-for="CertificationName" class="control-label"></label>
+                        <input asp-for="CertificationName" class="form-control" />
+                        <span asp-validation-for="CertificationName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IssuingOrganization" class="control-label"></label>
+                        <input asp-for="IssuingOrganization" class="form-control" />
+                        <span asp-validation-for="IssuingOrganization" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IssueDate" class="control-label"></label>
+                        <input asp-for="IssueDate" class="form-control" type="date" />
+                        <span asp-validation-for="IssueDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExpiryDate" class="control-label"></label>
+                        <input asp-for="ExpiryDate" class="form-control" type="date" />
+                        <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" name="EmployeeId" value="@ViewBag.EmployeeId" />
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+            $('#createCertificationModal').modal('show');
+        });
+    </script>
+}
