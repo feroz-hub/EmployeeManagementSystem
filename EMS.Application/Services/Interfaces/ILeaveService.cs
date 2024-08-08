@@ -13,6 +13,6 @@ public interface ILeaveService
     Task<int> GetPendingLeaveRequest();
     Task<List<RecentLeaveRequestModel>> GetRecentLeaveRequestAsync();
     Task<List<LeaveStatusUpdateViewModel>> GetAllLeaveStatusAsync();
-    Task UpdateLeaveStatusAsync(int leaveId, LeaveStatus status);
+    Task UpdateLeaveStatusAsync(Guid leaveId, LeaveStatus status);
 
 }

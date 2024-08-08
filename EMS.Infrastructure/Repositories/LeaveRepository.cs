@@ -79,7 +79,7 @@ public class LeaveRepository(ApplicationDbContext context) :GenericRepository<Le
     }
 
 
-    public async Task UpdateLeaveStatusAsync(int leaveId, LeaveStatus status)
+    public async Task UpdateLeaveStatusAsync(Guid leaveId, LeaveStatus status)
     {
        
         var leave = await context.Leaves.FindAsync(leaveId);

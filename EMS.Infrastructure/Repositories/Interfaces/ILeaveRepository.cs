@@ -10,5 +10,5 @@ public interface ILeaveRepository:IGenericRepository<Leave>
 
     Task<List<RecentLeaveRequestModel>> RecentLeaveRequests();
     Task<List<LeaveStatusUpdateViewModel>> GetAllLeaveStatusAsync();
-    Task UpdateLeaveStatusAsync(int leaveId, LeaveStatus status);
+    Task UpdateLeaveStatusAsync(Guid leaveId, LeaveStatus status);
 }

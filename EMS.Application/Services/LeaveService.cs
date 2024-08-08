@@ -79,7 +79,7 @@ public class LeaveService(IUnitOfWork unitOfWork,IMapper mapper):ILeaveService
         return await unitOfWork.Leaves.GetAllLeaveStatusAsync();
     }
 
-    public async Task UpdateLeaveStatusAsync(int leaveId, LeaveStatus status)
+    public async Task UpdateLeaveStatusAsync(Guid leaveId, LeaveStatus status)
     {
         await unitOfWork.Leaves.UpdateLeaveStatusAsync(leaveId, status);
     }
