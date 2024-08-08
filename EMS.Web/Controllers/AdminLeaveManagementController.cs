@@ -11,9 +11,15 @@ public class AdminLeaveManagementController(ILeaveService leaveService) : Contro
         return View(leaveStatusViewModel);
     }
     [HttpPost]
-    public async Task<IActionResult> UpdateStatus(Guid leaveId, LeaveStatus status)
+    public async Task<IActionResult> UpdateStatus(LeaveModel model)
     {
-        await leaveService.UpdateLeaveStatusAsync(leaveId, status);
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            await leaveService.UpdateLeaveStatusAsync(model.Id,model);
+            return RedirectToAction("Index"); // Redirect to the list page or appropriate page
+        }
+        return View("Index"); // Or appropriate view in case of an error
     }
+
+    
 }

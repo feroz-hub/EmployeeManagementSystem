@@ -66,13 +66,14 @@ public class LeaveRepository(ApplicationDbContext context) :GenericRepository<Le
             {
                 EmployeeId = employee.EmployeeId,
                 EmployeeName = employee.Name,
-                Leaves = employee.Leaves.Select(leave => new LeaveStatusUpdateViewModel.LeaveModel
+                Leaves = employee.Leaves.Select(leave => new LeaveUpdateModel
                 {
                     LeaveId = leave.Id,
                     StartDate = leave.StartDate,
                     EndDate = leave.EndDate,
                     Reason = leave.Reason,
-                    Status = leave.Status
+                    Status = leave.Status,
+                    TotalDays = (leave.EndDate - leave.StartDate).Days + 1
                 }).ToList()
             })
             .ToListAsync();
@@ -82,6 +83,7 @@ public class LeaveRepository(ApplicationDbContext context) :GenericRepository<Le
     public async Task UpdateLeaveStatusAsync(Guid leaveId, LeaveStatus status)
     {
        
+        
         var leave = await context.Leaves.FindAsync(leaveId);
         if (leave != null)
         {

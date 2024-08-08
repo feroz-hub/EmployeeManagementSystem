@@ -32,6 +32,7 @@ public class LeaveService(IUnitOfWork unitOfWork,IMapper mapper):ILeaveService
             StartDate = leaveModel.StartDate,
             EndDate = leaveModel.EndDate,
             Reason = leaveModel.Reason,
+            RequestDate = DateTime.Today,
             Status = LeaveStatus.Requested
         };
         await unitOfWork.Leaves.AddAsync(leave);
@@ -48,6 +49,7 @@ public class LeaveService(IUnitOfWork unitOfWork,IMapper mapper):ILeaveService
         leave.StartDate = leaveModel.StartDate;
         leave.EndDate = leaveModel.EndDate;
         leave.Reason = leaveModel.Reason;
+        leave.RequestDate = leaveModel.RequestDate;
         await unitOfWork.Leaves.UpdateAsync(leave);
         await unitOfWork.CompleteAsync();
     }
@@ -79,8 +81,20 @@ public class LeaveService(IUnitOfWork unitOfWork,IMapper mapper):ILeaveService
         return await unitOfWork.Leaves.GetAllLeaveStatusAsync();
     }
 
-    public async Task UpdateLeaveStatusAsync(Guid leaveId, LeaveStatus status)
+    public async Task UpdateLeaveStatusAsync(Guid leaveId, LeaveModel leaveModel)
     {
-        await unitOfWork.Leaves.UpdateLeaveStatusAsync(leaveId, status);
+        // Retrieve the leave request from the database
+        var leave = await unitOfWork.Leaves.GetByIdAsync(leaveId);
+        if (leave == null)
+        {
+            throw new Exception("Leave request not found.");
+        }
+        // Update the leave status
+        leave.StartDate = leaveModel.StartDate;
+        leave.EndDate = leaveModel.EndDate;
+        leave.Reason = leaveModel.Reason;
+        leave.Status = leaveModel.LeaveStatus;
+        await unitOfWork.Leaves.UpdateAsync(leave);
+        await unitOfWork.CompleteAsync();
     }
 }

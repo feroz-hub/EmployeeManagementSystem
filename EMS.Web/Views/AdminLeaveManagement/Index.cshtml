@@ -1,7 +1,4 @@
-@model List<LeaveStatusUpdateViewModel>
- 
-<h2>Update Leave Status</h2>
- 
+@model IList<LeaveStatusUpdateViewModel>
 @foreach (var employee in Model)
 {
     <h3>@employee.EmployeeName</h3>
@@ -27,9 +24,13 @@
                 <td>@leave.Status</td>
                 <td>
                     <form asp-action="UpdateStatus" method="post">
-                        <input type="hidden" name="leaveId" value="@leave.LeaveId"/>
-                        <select name="status" asp-for="@leave.Status" asp-items="@(new SelectList(Enum.GetValues(typeof(LeaveStatus)).Cast<LeaveStatus>()))">
-                        </select>
+                        <input type="hidden" name="Id" value="@leave.LeaveId" />
+                        <input type="hidden" name="EmployeeId" value="@employee.EmployeeId" />
+                        <input type="hidden" name="StartDate" value="@leave.StartDate.ToString("yyyy-MM-dd")" />
+                        <input type="hidden" name="EndDate" value="@leave.EndDate.ToString("yyyy-MM-dd")" />
+                        <input type="hidden" name="RequestDate" value="@leave.StartDate.ToString("yyyy-MM-dd")" />
+                        <input type="hidden" name="Reason" value="@leave.Reason" />
+                        <select name="LeaveStatus" asp-items="Html.GetEnumSelectList<LeaveStatus>()"></select>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </td>
@@ -37,5 +38,4 @@
         }
         </tbody>
     </table> 
-}
 }

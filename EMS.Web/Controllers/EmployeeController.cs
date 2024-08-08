@@ -78,7 +78,6 @@ public class EmployeeController (IEmployeeService employeeService): Controller
             TempData["error"] = "Employee not found.";
             return RedirectToAction("Error", "Home");
         }
-        TempData["success"] = "Employee found successfully.";
         return View(employee);
     }
     // GET: Employee/Delete/5

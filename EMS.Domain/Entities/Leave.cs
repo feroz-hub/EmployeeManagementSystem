@@ -1,7 +1,7 @@
 namespace EMS.Domain.Entities;
 
 
-public class Leave:BaseEntity
+public class Leave
 {
     public Guid Id { get; set; }
     
@@ -9,7 +9,7 @@ public class Leave:BaseEntity
     public DateTime EndDate { get; set; }
     public string Reason { get; set; }
     public LeaveStatus Status { get; set; } 
-    public DateTime RequestDate { get; set; }
+    public DateTime? RequestDate { get; set; }
     public Guid EmployeeId { get; set; }
     public Employee? Employee { get; set; }
 }
