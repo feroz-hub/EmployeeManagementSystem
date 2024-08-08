@@ -257,7 +257,7 @@
                                     <td>@document.DocumentType</td>
                                     <td>@document.DocumentNumber</td>
                                     <td>@document.IssueDate.ToShortDateString()</td>
-                                    <td>@document.ExpiryDate.ToShortDateString()</td>
+                                    <td>@document.ExpiryDate?.ToShortDateString()</td>
                                     <td>
                                         <button class="btn btn-sm btn-primary me-1" onclick="openUpdateGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Update</button>
                                         <button class="btn btn-sm btn-danger" onclick="openDeleteGovernmentDocumentModal('@Model.EmployeeId', '@document.DocumentId')">Delete</button>

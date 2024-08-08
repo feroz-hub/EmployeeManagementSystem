@@ -7,7 +7,7 @@ public class GovernmentDocument
     public DocumentType DocumentType { get; set; }
     public string DocumentNumber { get; set; }
     public DateTime IssueDate { get; set; }
-    public DateTime ExpiryDate { get; set; }
+    public DateTime? ExpiryDate { get; set; }
     public Employee? Employee { get; set; }
 }
 

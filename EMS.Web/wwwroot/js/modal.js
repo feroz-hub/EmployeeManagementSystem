@@ -24,15 +24,15 @@ function openDeleteExperienceModal(employeeId, experienceId) {
 }
 
 function openAddGovernmentDocumentModal(employeeId) {
-    loadModal(`/GovernmentDocuments/Create?employeeId=${employeeId}`);
+    loadModal(`/GovernmentDocument/Create?employeeId=${employeeId}`);
 }
 
 function openUpdateGovernmentDocumentModal(employeeId, documentId) {
-    loadModal(`/GovernmentDocuments/Edit/${documentId}?employeeId=${employeeId}`);
+    loadModal(`/GovernmentDocument/Edit/${documentId}?employeeId=${employeeId}`);
 }
 
 function openDeleteGovernmentDocumentModal(employeeId, documentId) {
-    loadModal(`/GovernmentDocuments/Delete/${documentId}?employeeId=${employeeId}`);
+    loadModal(`/GovernmentDocument/Delete/${documentId}?employeeId=${employeeId}`);
 }
 
 function openAddCertificationModal(employeeId) {

@@ -5,14 +5,15 @@ namespace EMS.Application.Services;
 
 public class GovernmentDocumentService(IUnitOfWork unitOfWork,IMapper mapper):IGovernmentDocumentService
 {
-    public async Task<IEnumerable<GovernmentDocument>> GetGovernmentDocumentsByEmployeeIdAsync(Guid employeeId)
+    public async Task<IEnumerable<GovernmentDocumentModel>> GetGovernmentDocumentsByEmployeeIdAsync(Guid employeeId)
     {
-        return (await unitOfWork.GovernmentDocuments.GetAllAsync()).Where(e => e.EmployeeId == employeeId);
+        var governmentDocuments= (await unitOfWork.GovernmentDocuments.GetAllAsync()).Where(e => e.EmployeeId == employeeId);
+        return mapper.Map<IEnumerable<GovernmentDocumentModel>>(governmentDocuments);
     }
 
-    public async Task<GovernmentDocument> GetGovernmentDocumentByIdAsync(Guid id)
+    public async Task<GovernmentDocumentModel> GetGovernmentDocumentByIdAsync(Guid id)
     {
-        return await unitOfWork.GovernmentDocuments.GetByIdAsync(id);
+        return mapper.Map<GovernmentDocumentModel> (await unitOfWork.GovernmentDocuments.GetByIdAsync(id));
     }
 
     public async Task AddGovernmentDocumentAsync(Guid employeeId,GovernmentDocumentModel governmentDocumentModel)
