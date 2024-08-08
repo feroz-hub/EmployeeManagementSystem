@@ -329,7 +329,7 @@
     <form asp-action="Edit" method="get" asp-route-id="@Model.EmployeeId" style="display: inline;">
         <button type="submit" class="btn btn-primary">Edit</button>
     </form>
-    <button class="btn btn-danger" onclick="openDeleteEmployeeModal('@Model.EmployeeId')">Delete</button>
+    <button class="btn btn-danger" onclick="openDeleteEmployeeModal('@Model.EmployeeId')"><i class="bi bi-trash-fill">Delete</i></button>
 
 
 <!-- Modals for each action -->
