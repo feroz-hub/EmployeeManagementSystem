@@ -36,6 +36,11 @@
                 <input asp-for="PersonalDetails.Email" class="form-control"/>
                 <span asp-validation-for="PersonalDetails.Email" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="PersonalDetails.DateOfBirth"></label>
+                <input asp-for="PersonalDetails.DateOfBirth" class="form-control" type="date"/>
+                <span asp-validation-for="PersonalDetails.DateOfBirth" class="text-danger"></span>
+            </div>
         </div>
         <div class="card-body">
             <h3>Qualification</h3>
