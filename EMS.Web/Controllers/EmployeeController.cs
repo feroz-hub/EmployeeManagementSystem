@@ -32,6 +32,7 @@ public class EmployeeController (IEmployeeService employeeService): Controller
             return View(employeeModel);
         }
         await employeeService.AddEmployeeAsync(employeeModel);
+        TempData["success"] = "Employee Has been Added Successfully";
         return RedirectToAction(nameof(Index));
     }
     
@@ -60,6 +61,8 @@ public class EmployeeController (IEmployeeService employeeService): Controller
         if (ModelState.IsValid)
         {
             await employeeService.UpdateEmployeeAsync(employee);
+            TempData["success"] = "Employee Has been Updated Successfully";
+
             return RedirectToAction(nameof(Index));
         }
         return View(employee);
@@ -82,9 +85,8 @@ public class EmployeeController (IEmployeeService employeeService): Controller
         {
             return NotFound();
         }
-
         ViewBag.EmployeeId = employeeId;
-        return View(employee);
+        return PartialView("_DeleteEmployee", employee);
     }
 
     // POST: Employee/Delete/5
@@ -93,6 +95,7 @@ public class EmployeeController (IEmployeeService employeeService): Controller
     public async Task<IActionResult> DeleteConfirmed(Guid id)
     {
         await employeeService.DeleteEmployeeAsync(id);
+        TempData["success"] = "Employee Has been Deleted Successfully";
         return RedirectToAction(nameof(Index));
     }
     

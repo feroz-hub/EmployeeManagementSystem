@@ -37,12 +37,12 @@ public class LeaveController(ILeaveService leaveService) : Controller
     }
 
     // POST: /Leave/CancelLeave
-    [HttpPost]
+    [HttpPost,ActionName("CancelLeave")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CancelLeave(Guid id, LeaveModel leaveModel)
+    public async Task<IActionResult> CancelLeaveConfirmed(Guid id, Guid employeeId)
     {
             await leaveService.DeleteLeaveAsync(id);
-            return RedirectToAction("Details", "Employee", new { id = leaveModel.EmployeeId });
+            return RedirectToAction("Details", "Employee", new { id = employeeId });
     }
 
 }

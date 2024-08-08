@@ -45,9 +45,9 @@ public class GovernmentDocumentController(IGovernmentDocumentService governmentD
     }
 
     //GET : GovernmentDocument/Delete/{id}
-    public async Task<IActionResult> Delete(Guid documentId, Guid EmployeeId)
+    public async Task<IActionResult> Delete(Guid id, Guid EmployeeId)
     {
-        var governmentDocumentModel = await governmentDocumentService.GetGovernmentDocumentByIdAsync(documentId);
+        var governmentDocumentModel = await governmentDocumentService.GetGovernmentDocumentByIdAsync(id);
         if (governmentDocumentModel == null)
         {
             return NotFound();
@@ -55,7 +55,7 @@ public class GovernmentDocumentController(IGovernmentDocumentService governmentD
         ViewBag.EmployeeId = EmployeeId;
         return PartialView("_DeleteGovernmentDocument", governmentDocumentModel);
     }
-    [HttpPost,ActionName("Delete")]
+    [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(Guid documentId, Guid employeeId)
     {

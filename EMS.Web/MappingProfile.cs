@@ -30,9 +30,7 @@ public class MappingProfile:Profile
         CreateMap<ExperienceModel, Experience>().ReverseMap();
             // .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
             // .ForMember(dest => dest.ExperienceId, opt => opt.MapFrom(src => Guid.NewGuid()));
-        CreateMap<GovernmentDocumentModel, GovernmentDocument>()
-            .ForMember(dest => dest.EmployeeId, opt => opt.Ignore())
-            .ForMember(dest => dest.DocumentId, opt => opt.MapFrom(src => Guid.NewGuid()));
+            CreateMap<GovernmentDocumentModel, GovernmentDocument>().ReverseMap();
         CreateMap<CertificationModel, Certification>().ReverseMap();
         CreateMap<PersonalDetailsModel, PersonalDetails>().ReverseMap();
         CreateMap<EmployeeSalaryModel, EmployeeSalary>().ReverseMap();

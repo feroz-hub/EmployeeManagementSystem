@@ -19,8 +19,9 @@
                 </dl>
             </div>
             <div class="modal-footer">
-                <form asp-action="CancelLeave" asp-controller="Leave"method="post">
+                <form asp-action="CancelLeave" asp-controller="Leave" method="post">
                     <input type="hidden" name="Id" value="@Model.Id" />
+                    <input type="hidden" asp-for="EmployeeId" value="@ViewBag.EmployeeId"/>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-danger">Confirm</button>
                 </form>

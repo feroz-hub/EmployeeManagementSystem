@@ -1,1 +1,182 @@
 @model EmployeeModel
+<h2>Edit Employee</h2>
+<form asp-action="Edit" method="post">
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeType"></label>
+                <select asp-for="EmployeeType" class="form-control" asp-items="Html.GetEnumSelectList<EmployeeType>()"></select>
+                <span asp-validation-for="EmployeeType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentType"></label>
+                <select asp-for="DepartmentType" class="form-control" asp-items="Html.GetEnumSelectList<DepartmentType>()"></select>
+                <span asp-validation-for="DepartmentType" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <h3>Personal Details</h3>
+            <div class="form-group">
+                <label asp-for="PersonalDetails.Address"></label>
+                <input asp-for="PersonalDetails.Address" class="form-control"/>
+                <span asp-validation-for="PersonalDetails.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalDetails.PhoneNumber"></label>
+                <input asp-for="PersonalDetails.PhoneNumber" class="form-control"/>
+                <span asp-validation-for="PersonalDetails.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalDetails.Email"></label>
+                <input asp-for="PersonalDetails.Email" class="form-control"/>
+                <span asp-validation-for="PersonalDetails.Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <h3>Qualification</h3>
+            <div id="qualifications-list">
+                @for (int i = 0; i < Model.Qualifications.Count; i++)
+                {
+                    <div class="qualification-item">
+                        <div class="form-group">
+                            <label asp-for="Qualifications[i].Degree" class="control-label"></label>
+                            <input asp-for="Qualifications[i].Degree" class="form-control"/>
+                            <span asp-validation-for="Qualifications[i].Degree" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Qualifications[i].Institution" class="control-label"></label>
+                            <input asp-for="Qualifications[i].Institution" class="form-control"/>
+                            <span asp-validation-for="Qualifications[i].Institution" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Qualifications[i].GraduationDate" class="control-label"></label>
+                            <input asp-for="Qualifications[i].GraduationDate" class="form-control" type="date"/>
+                            <span asp-validation-for="Qualifications[i].GraduationDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Qualifications[i].Grade" class="control-label"></label>
+                            <input asp-for="Qualifications[i].Grade" class="form-control"/>
+                            <span asp-validation-for="Qualifications[i].Grade" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="btn btn-danger" onclick="removeQualification(this)">Remove</button>
+                    </div>
+                }
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addQualification()">Add Qualification</button>
+        </div>
+        <div class="card-body">
+            <h3>Experiences</h3>
+            <div id="experiences-list">
+                @for (int i = 0; i < Model.Experiences.Count; i++)
+                {
+                    <div class="experience-item">
+                        <div class="form-group">
+                            <label asp-for="Experiences[i].CompanyName"></label>
+                            <input asp-for="Experiences[i].CompanyName" class="form-control" />
+                            <span asp-validation-for="Experiences[i].CompanyName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Experiences[i].JobTitle"></label>
+                            <input asp-for="Experiences[i].JobTitle" class="form-control" />
+                            <span asp-validation-for="Experiences[i].JobTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Experiences[i].StartDate"></label>
+                            <input asp-for="Experiences[i].StartDate" class="form-control" type="date" />
+                            <span asp-validation-for="Experiences[i].StartDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Experiences[i].EndDate"></label>
+                            <input asp-for="Experiences[i].EndDate" class="form-control" type="date" />
+                            <span asp-validation-for="Experiences[i].EndDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Experiences[i].Responsibilities"></label>
+                            <input asp-for="Experiences[i].Responsibilities" class="form-control" />
+                            <span asp-validation-for="Experiences[i].Responsibilities" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="btn btn-danger" onclick="removeExperience(this)">Remove</button>
+                    </div>
+                }
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addExperience()">Add Experience</button>
+        </div>
+        <div class="card-body">
+            <h3>GovernmentDocuments</h3>
+            <div id="government-documents-list">
+                @for (int i = 0; i < Model.GovernmentDocuments.Count; i++)
+                {
+                    <div class="government-document-item">
+                        <div class="form-group">
+                            <label asp-for="GovernmentDocuments[i].DocumentType" class="control-label"></label>
+                            <select asp-for="GovernmentDocuments[i].DocumentType" class="form-control" asp-items="Html.GetEnumSelectList<DocumentType>()"></select>
+                            <span asp-validation-for="GovernmentDocuments[i].DocumentType" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="GovernmentDocuments[i].DocumentNumber" class="control-label"></label>
+                            <input asp-for="GovernmentDocuments[i].DocumentNumber" class="form-control" />
+                            <span asp-validation-for="GovernmentDocuments[i].DocumentNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="GovernmentDocuments[i].IssueDate" class="control-label"></label>
+                            <input asp-for="GovernmentDocuments[i].IssueDate" class="form-control" />
+                            <span asp-validation-for="GovernmentDocuments[i].IssueDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="GovernmentDocuments[i].ExpiryDate" class="control-label"></label>
+                            <input asp-for="GovernmentDocuments[i].ExpiryDate" class="form-control" />
+                            <span asp-validation-for="GovernmentDocuments[i].ExpiryDate" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="btn btn-danger" onclick="removeGovernmentDocument(this)">Remove</button>
+                    </div>
+                }
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addGovernmentDocument()">Add Government Document</button>
+        </div>
+        <div class="card-body">
+            <h3>Certifications</h3>
+            <div id="certifications-list">
+                @for (int i = 0; i < Model.Certifications.Count; i++)
+                {
+                    <div class="certification-item">
+                        <div class="form-group">
+                            <label asp-for="Certifications[i].CertificationName" class="control-label"></label>
+                            <input asp-for="Certifications[i].CertificationName" class="form-control" />
+                            <span asp-validation-for="Certifications[i].CertificationName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Certifications[i].IssuingOrganization" class="control-label"></label>
+                            <input asp-for="Certifications[i].IssuingOrganization" class="form-control" />
+                            <span asp-validation-for="Certifications[i].IssuingOrganization" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Certifications[i].IssueDate" class="control-label"></label>
+                            <input asp-for="Certifications[i].IssueDate" class="form-control" type="date" />
+                            <span asp-validation-for="Certifications[i].IssueDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Certifications[i].ExpiryDate" class="control-label"></label>
+                            <input asp-for="Certifications[i].ExpiryDate" class="form-control" type="date"/>
+                            <span asp-validation-for="Certifications[i].ExpiryDate" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="btn btn-danger" onclick="removeCertification(this)">Remove</button>
+                    </div>
+                }
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addCertification()">Add Certification</button>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+<div id="modalContainer"></div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

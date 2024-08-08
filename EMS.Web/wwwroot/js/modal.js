@@ -58,6 +58,9 @@ function openCancelLeaveModal(employeeId,id){
     loadModal(`/Leave/CancelLeave/${id}?employeeId=${employeeId}`)
 }
 
+function openDeleteEmployeeModal(employeeId) {
+    loadModal(`/Employee/Delete/${employeeId}`);
+}
 
 // Load modal content via AJAX
 function loadModal(url) {

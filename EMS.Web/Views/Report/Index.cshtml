@@ -1,0 +1,104 @@
+@model IEnumerable<DepartmentReport>
+@using System.Globalization
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Department Reports</title>
+    <link rel="stylesheet" href="~/css/ReportStyles.css" asp-append-version="true"/>
+</head>
+<body>
+<h2>Department Reports</h2>
+<div class="generate-report-button">
+    <a href="@Url.Action("GenerateReport", "Report")" class="btn btn-primary">Generate Excel Report</a>
+</div>
+@foreach (var departmentReport in Model)
+{
+<div class="report-section">
+    <h3>Department: @departmentReport.Department</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Job Title</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var employeeReport in departmentReport.EmployeeReports)
+        {
+        <tr>
+            <td>@employeeReport.EmployeeName</td>
+            <td>@employeeReport.JobTitle</td>
+            <td>@employeeReport.Salary.ToString("C", new CultureInfo("hi-IN"))</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="employee-details">
+                    <h3>Qualifications</h3>
+                    @if (employeeReport.QualificationsReports != null && employeeReport.QualificationsReports.Count > 0)
+                    {
+                    <table class="nested-table">
+                        <thead>
+                        <tr>
+                            <th>Degree</th>
+                            <th>Institution</th>
+                            <th>Graduation Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var qualification in employeeReport.QualificationsReports)
+                        {
+                        <tr>
+                            <td>@qualification.Degree</td>
+                            <td>@qualification.Institution</td>
+                            <td>@qualification.GraduationDate.ToString("d")</td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                    }
+                    else
+                    {
+                    <p>No qualifications available.</p>
+                    }
+
+                    <h3>Experiences</h3>
+                    @if (employeeReport.ExperiencesReports != null && employeeReport.ExperiencesReports.Count > 0)
+                    {
+                    <table class="nested-table">
+                        <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Job Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var experience in employeeReport.ExperiencesReports)
+                        {
+                        <tr>
+                            <td>@experience.CompanyName</td>
+                            <td>@experience.JobTitle</td>
+                            <td>@experience.StartDate.ToString("d")</td>
+                            <td>@(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() :  "Present")</td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                    }
+                    else
+                    {
+                    <p>No experiences available.</p>
+                    }
+                </div>
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
+}
+</body>
+</html>

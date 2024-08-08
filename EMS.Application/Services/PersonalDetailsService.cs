@@ -1,12 +1,13 @@
+using AutoMapper;
 using EMS.Domain.Models;
 
 namespace EMS.Application.Services;
 
-public class PersonalDetailsService(IUnitOfWork unitOfWork):IPersonalDetailsService
+public class PersonalDetailsService(IUnitOfWork unitOfWork,IMapper mapper):IPersonalDetailsService
 {
-    public async Task<PersonalDetails> GetPersonalDetailsByEmployeeIdAsync(Guid employeeId)
+    public async Task<PersonalDetailsModel> GetPersonalDetailsByEmployeeIdAsync(Guid employeeId)
     {
-        return await unitOfWork.PersonalDetails.GetByIdAsync(employeeId);
+        return mapper.Map<PersonalDetailsModel>(await unitOfWork.PersonalDetails.GetByIdAsync(employeeId));
     }
 
     public async Task UpdatePersonalDetailsAsync(Guid employeeId, PersonalDetailsModel personalDetails)

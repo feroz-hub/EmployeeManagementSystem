@@ -323,8 +323,14 @@
     </div>
 </div>
 </div>
-<a asp-action="Index" class="btn btn-secondary">Back to List</a>
-<a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary">Edit</a>
+    <form asp-action="Index" method="get" style="display: inline;">
+        <button type="submit" class="btn btn-secondary">Back to List</button>
+    </form>
+    <form asp-action="Edit" method="get" asp-route-id="@Model.EmployeeId" style="display: inline;">
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+    <button class="btn btn-danger" onclick="openDeleteEmployeeModal('@Model.EmployeeId')">Delete</button>
+
 
 <!-- Modals for each action -->
 <div id="modalContainer"></div>
