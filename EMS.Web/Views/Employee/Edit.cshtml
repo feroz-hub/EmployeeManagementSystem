@@ -63,11 +63,11 @@
                             <input asp-for="Qualifications[i].Grade" class="form-control"/>
                             <span asp-validation-for="Qualifications[i].Grade" class="text-danger"></span>
                         </div>
-                        <button type="button" class="btn btn-danger" onclick="removeQualification(this)">Remove</button>
+                        
                     </div>
                 }
             </div>
-            <button type="button" class="btn btn-primary" onclick="addQualification()">Add Qualification</button>
+         
         </div>
         <div class="card-body">
             <h3>Experiences</h3>
@@ -100,11 +100,11 @@
                             <input asp-for="Experiences[i].Responsibilities" class="form-control" />
                             <span asp-validation-for="Experiences[i].Responsibilities" class="text-danger"></span>
                         </div>
-                        <button type="button" class="btn btn-danger" onclick="removeExperience(this)">Remove</button>
+                        
                     </div>
                 }
             </div>
-            <button type="button" class="btn btn-primary" onclick="addExperience()">Add Experience</button>
+         
         </div>
         <div class="card-body">
             <h3>GovernmentDocuments</h3>
@@ -132,11 +132,11 @@
                             <input asp-for="GovernmentDocuments[i].ExpiryDate" class="form-control" />
                             <span asp-validation-for="GovernmentDocuments[i].ExpiryDate" class="text-danger"></span>
                         </div>
-                        <button type="button" class="btn btn-danger" onclick="removeGovernmentDocument(this)">Remove</button>
+                      
                     </div>
                 }
             </div>
-            <button type="button" class="btn btn-primary" onclick="addGovernmentDocument()">Add Government Document</button>
+        
         </div>
         <div class="card-body">
             <h3>Certifications</h3>
@@ -164,11 +164,10 @@
                             <input asp-for="Certifications[i].ExpiryDate" class="form-control" type="date"/>
                             <span asp-validation-for="Certifications[i].ExpiryDate" class="text-danger"></span>
                         </div>
-                        <button type="button" class="btn btn-danger" onclick="removeCertification(this)">Remove</button>
+                        
                     </div>
                 }
             </div>
-            <button type="button" class="btn btn-primary" onclick="addCertification()">Add Certification</button>
         </div>
         
         <button type="submit" class="btn btn-primary">Update</button>
