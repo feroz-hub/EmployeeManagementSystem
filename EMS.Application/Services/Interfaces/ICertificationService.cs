@@ -9,5 +9,5 @@ public interface ICertificationService
     Task AddCertificationAsync(Guid EmployeeId,CertificationModel certification);
     Task UpdateCertificationAsync(Guid CertificationId,CertificationModel certification);
     Task<bool> DeleteCertificationAsync(Guid id);
-    Task<List<CertificationModel>> GetUpcomingCertificateExpiry();
+    Task<List<UpcomingCertificationExpiryModel>> GetUpcomingCertificateExpiry();
 }

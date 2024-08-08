@@ -8,6 +8,7 @@ public class EmployeeSalaryController(IEmployeeSalaryService employeeSalaryServi
     public async Task<IActionResult> CalculateAll()
     {
         await employeeSalaryService.CalculateAndStoreSalariesForAllEmployees();
+        TempData["success"] = "Employee Salaried Calculated successfully.";
         return RedirectToAction("Index","Employee"); // Assuming there's an index view
     }
 }

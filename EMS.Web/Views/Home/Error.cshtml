@@ -1,0 +1,24 @@
+@{
+    ViewBag.Title = "Error";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+</head>
+<body>
+<h1>@ViewBag.Title</h1>
+<div>
+    <p>@TempData["error"]</p>
+</div>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/toastr/toastr.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            toastr.error('@TempData["error"]');
+        });
+    </script>
+</body>
+</html>

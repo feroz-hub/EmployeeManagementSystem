@@ -1,0 +1,632 @@
+[
+  {
+    "EmployeeId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "John Doe",
+    "EmployeeType": "Permanent",
+    "DepartmentType": "IT",
+    "PersonalDetails": {
+      "EmployeeId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "123 Main St",
+      "PhoneNumber": "123-456-7890",
+      "Email": "john.doe@example.com",
+      "DateOfBirth": "1990-01-01"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "a47ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-07-01",
+        "EndDate": "2024-07-10",
+        "RequestDate": "2024-06-25",
+        "LeaveStatus": "Approved",
+        "Reason": "Vacation"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "a47ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "B.Sc. Computer Science",
+        "Institution": "University of Example",
+        "GraduationDate": "2012-05-15",
+        "Grade": "A"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "a47ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "Tech Corp",
+        "JobTitle": "Software Engineer",
+        "StartDate": "2012-06-01",
+        "EndDate": "2018-08-15",
+        "Responsibilities": "Developing software solutions"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "a47ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "Passport",
+        "DocumentNumber": "A1234567",
+        "IssueDate": "2010-05-10",
+        "ExpiryDate": "2025-05-10"
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "a47ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "AWS Certified Solutions Architect",
+        "IssuingOrganization": "Amazon",
+        "IssueDate": "2020-01-15",
+        "ExpiryDate": "2023-01-15"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 60000,
+      "Band": "B2",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "c87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "Jane Smith",
+    "EmployeeType": "Temporary",
+    "DepartmentType": "HR",
+    "PersonalDetails": {
+      "EmployeeId": "c87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "456 Elm St",
+      "PhoneNumber": "234-567-8901",
+      "Email": "jane.smith@example.com",
+      "DateOfBirth": "1985-03-10"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "c87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "b87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-06-01",
+        "EndDate": "2024-06-05",
+        "RequestDate": "2024-05-20",
+        "LeaveStatus": "Pending",
+        "Reason": "Medical"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "b87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "c87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "MBA",
+        "Institution": "Example Business School",
+        "GraduationDate": "2015-12-10",
+        "Grade": "B"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "c87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "b87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "HR Solutions",
+        "JobTitle": "HR Manager",
+        "StartDate": "2016-01-01",
+        "EndDate": null,
+        "Responsibilities": "Managing HR operations"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "c87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "b87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "DriverLicense",
+        "DocumentNumber": "DL2345678",
+        "IssueDate": "2016-05-10",
+        "ExpiryDate": "2026-05-10"
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "c87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "b87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "PMP",
+        "IssuingOrganization": "PMI",
+        "IssueDate": "2018-02-20",
+        "ExpiryDate": "2021-02-20"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 45000,
+      "Band": "C1",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "d87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "Robert Brown",
+    "EmployeeType": "Retailer",
+    "DepartmentType": "Sales",
+    "PersonalDetails": {
+      "EmployeeId": "d87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "789 Pine St",
+      "PhoneNumber": "345-678-9012",
+      "Email": "robert.brown@example.com",
+      "DateOfBirth": "1978-07-22"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "d87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "d87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-05-15",
+        "EndDate": "2024-05-20",
+        "RequestDate": "2024-05-01",
+        "LeaveStatus": "Rejected",
+        "Reason": "Personal"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "d87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "d87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "BBA",
+        "Institution": "Example University",
+        "GraduationDate": "2000-06-15",
+        "Grade": "C"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "d87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "d87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "Retail World",
+        "JobTitle": "Sales Manager",
+        "StartDate": "2005-09-01",
+        "EndDate": null,
+        "Responsibilities": "Managing sales team"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "d87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "d87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "WorkPermit",
+        "DocumentNumber": "WP3456789",
+        "IssueDate": "2019-03-10",
+        "ExpiryDate": "2024-03-10"
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "d87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "d87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "Certified Sales Professional",
+        "IssuingOrganization": "Sales Association",
+        "IssueDate": "2019-05-01",
+        "ExpiryDate": "2022-05-01"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 55000,
+      "Band": "B1",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "e87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "Emily Davis",
+    "EmployeeType": "Intern",
+    "DepartmentType": "Marketing",
+    "PersonalDetails": {
+      "EmployeeId": "e87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "321 Oak St",
+      "PhoneNumber": "456-789-0123",
+      "Email": "emily.davis@example.com",
+      "DateOfBirth": "2000-11-25"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "e87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "e87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-04-10",
+        "EndDate": "2024-04-12",
+        "RequestDate": "2024-04-01",
+        "LeaveStatus": "Approved",
+        "Reason": "Family Emergency"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "e87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "e87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "B.A. Marketing",
+        "Institution": "College of Example",
+        "GraduationDate": "2023-05-10",
+        "Grade": "A"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "e87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "e87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "Marketing Experts",
+        "JobTitle": "Marketing Intern",
+        "StartDate": "2023-06-01",
+        "EndDate": "2024-08-01",
+        "Responsibilities": "Assisting in marketing campaigns"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "e87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "e87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "AadhaarCard",
+        "DocumentNumber": "A1234-5678-9012",
+        "IssueDate": "2015-01-01",
+        "ExpiryDate": null
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "e87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "e87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "Google Ads Certification",
+        "IssuingOrganization": "Google",
+        "IssueDate": "2023-01-10",
+        "ExpiryDate": "2024-01-10"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 20000,
+      "Band": "Intern",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "f87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "Michael White",
+    "EmployeeType": "Permanent",
+    "DepartmentType": "Finance",
+    "PersonalDetails": {
+      "EmployeeId": "f87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "567 Birch St",
+      "PhoneNumber": "567-890-1234",
+      "Email": "michael.white@example.com",
+      "DateOfBirth": "1982-05-18"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "f87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "f87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-02-10",
+        "EndDate": "2024-02-20",
+        "RequestDate": "2024-01-25",
+        "LeaveStatus": "Approved",
+        "Reason": "Sick Leave"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "f87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "f87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "M.Sc. Finance",
+        "Institution": "Example School of Business",
+        "GraduationDate": "2006-05-15",
+        "Grade": "A"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "f87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "f87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "Finance Inc.",
+        "JobTitle": "Finance Manager",
+        "StartDate": "2007-06-01",
+        "EndDate": null,
+        "Responsibilities": "Managing financial operations"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "f87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "f87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "BirthCertificate",
+        "DocumentNumber": "BC123456",
+        "IssueDate": "1982-05-18",
+        "ExpiryDate": null
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "f87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "f87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "CPA",
+        "IssuingOrganization": "Accounting Board",
+        "IssueDate": "2010-05-10",
+        "ExpiryDate": "2025-05-10"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 75000,
+      "Band": "A2",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "g87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "Lisa Green",
+    "EmployeeType": "Temporary",
+    "DepartmentType": "Administration",
+    "PersonalDetails": {
+      "EmployeeId": "g87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "890 Maple St",
+      "PhoneNumber": "678-901-2345",
+      "Email": "lisa.green@example.com",
+      "DateOfBirth": "1995-08-30"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "g87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "g87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-03-01",
+        "EndDate": "2024-03-05",
+        "RequestDate": "2024-02-20",
+        "LeaveStatus": "Pending",
+        "Reason": "Personal"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "g87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "g87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "B.A. Management",
+        "Institution": "Example College",
+        "GraduationDate": "2017-05-15",
+        "Grade": "B"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "g87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "g87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "Admin Solutions",
+        "JobTitle": "Admin Assistant",
+        "StartDate": "2017-06-01",
+        "EndDate": null,
+        "Responsibilities": "Supporting admin tasks"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "g87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "g87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "Passport",
+        "DocumentNumber": "P3456789",
+        "IssueDate": "2015-05-10",
+        "ExpiryDate": "2025-05-10"
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "g87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "g87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "Office Management Certification",
+        "IssuingOrganization": "Admin Institute",
+        "IssueDate": "2018-03-10",
+        "ExpiryDate": "2021-03-10"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 40000,
+      "Band": "C2",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "h87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "David Johnson",
+    "EmployeeType": "Permanent",
+    "DepartmentType": "HR",
+    "PersonalDetails": {
+      "EmployeeId": "h87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "123 Spruce St",
+      "PhoneNumber": "789-012-3456",
+      "Email": "david.johnson@example.com",
+      "DateOfBirth": "1980-02-14"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "h87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "h87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-01-15",
+        "EndDate": "2024-01-25",
+        "RequestDate": "2024-01-01",
+        "LeaveStatus": "Approved",
+        "Reason": "Medical"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "h87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "h87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "B.Sc. Human Resources",
+        "Institution": "University of Example",
+        "GraduationDate": "2002-05-15",
+        "Grade": "B"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "h87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "h87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "HR Solutions",
+        "JobTitle": "HR Specialist",
+        "StartDate": "2003-06-01",
+        "EndDate": null,
+        "Responsibilities": "Handling HR tasks"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "h87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "h87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "DriverLicense",
+        "DocumentNumber": "DL7890123",
+        "IssueDate": "2000-05-10",
+        "ExpiryDate": "2030-05-10"
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "h87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "h87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "SHRM Certified Professional",
+        "IssuingOrganization": "SHRM",
+        "IssueDate": "2015-01-10",
+        "ExpiryDate": "2020-01-10"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 65000,
+      "Band": "B1",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "i87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "Sara Wilson",
+    "EmployeeType": "Retailer",
+    "DepartmentType": "Marketing",
+    "PersonalDetails": {
+      "EmployeeId": "i87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "456 Cedar St",
+      "PhoneNumber": "890-123-4567",
+      "Email": "sara.wilson@example.com",
+      "DateOfBirth": "1992-10-12"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "i87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "i87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-05-01",
+        "EndDate": "2024-05-05",
+        "RequestDate": "2024-04-20",
+        "LeaveStatus": "Pending",
+        "Reason": "Vacation"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "i87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "i87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "M.Sc. Marketing",
+        "Institution": "Example University",
+        "GraduationDate": "2016-05-15",
+        "Grade": "A"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "i87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "i87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "Marketing Pros",
+        "JobTitle": "Marketing Specialist",
+        "StartDate": "2016-06-01",
+        "EndDate": null,
+        "Responsibilities": "Managing marketing campaigns"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "i87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "i87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "AadhaarCard",
+        "DocumentNumber": "A5678-1234-9012",
+        "IssueDate": "2012-01-01",
+        "ExpiryDate": null
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "i87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "i87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "Digital Marketing Certification",
+        "IssuingOrganization": "Marketing Institute",
+        "IssueDate": "2019-01-10",
+        "ExpiryDate": "2022-01-10"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 60000,
+      "Band": "B2",
+      "CalculatedOn": "2024-07-31"
+    }
+  },
+  {
+    "EmployeeId": "j87ac10b-58cc-4372-a567-0e02b2c3d479",
+    "Name": "Mark Brown",
+    "EmployeeType": "Intern",
+    "DepartmentType": "IT",
+    "PersonalDetails": {
+      "EmployeeId": "j87ac10b-58cc-4372-a567-0e02b2c3d479",
+      "Address": "789 Pine St",
+      "PhoneNumber": "901-234-5678",
+      "Email": "mark.brown@example.com",
+      "DateOfBirth": "1998-03-10"
+    },
+    "Leave": [
+      {
+        "EmployeeId": "j87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Id": "j87ac10b-58cc-4372-a567-0e02b2c3d480",
+        "StartDate": "2024-07-01",
+        "EndDate": "2024-07-05",
+        "RequestDate": "2024-06-25",
+        "LeaveStatus": "Approved",
+        "Reason": "Family Vacation"
+      }
+    ],
+    "Qualifications": [
+      {
+        "QualificationId": "j87ac10b-58cc-4372-a567-0e02b2c3d481",
+        "EmployeeId": "j87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "Degree": "B.Sc. Computer Science",
+        "Institution": "Example Institute of Technology",
+        "GraduationDate": "2021-05-15",
+        "Grade": "A"
+      }
+    ],
+    "Experiences": [
+      {
+        "EmployeeId": "j87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "ExperienceId": "j87ac10b-58cc-4372-a567-0e02b2c3d482",
+        "CompanyName": "Tech Innovators",
+        "JobTitle": "IT Intern",
+        "StartDate": "2023-06-01",
+        "EndDate": "2024-08-01",
+        "Responsibilities": "Assisting in IT projects"
+      }
+    ],
+    "GovernmentDocuments": [
+      {
+        "EmployeeId": "j87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "DocumentId": "j87ac10b-58cc-4372-a567-0e02b2c3d483",
+        "DocumentType": "PANCard",
+        "DocumentNumber": "PAN123456",
+        "IssueDate": "2018-01-10",
+        "ExpiryDate": null
+      }
+    ],
+    "Certifications": [
+      {
+        "EmployeeId": "j87ac10b-58cc-4372-a567-0e02b2c3d479",
+        "CertificationId": "j87ac10b-58cc-4372-a567-0e02b2c3d484",
+        "CertificationName": "Certified Ethical Hacker",
+        "IssuingOrganization": "EC-Council",
+        "IssueDate": "2022-01-10",
+        "ExpiryDate": "2025-01-10"
+      }
+    ],
+    "EmployeeSalary": {
+      "NetSalary": 18000,
+      "Band": "Intern",
+      "CalculatedOn": "2024-07-31"
+    }
+  }
+]

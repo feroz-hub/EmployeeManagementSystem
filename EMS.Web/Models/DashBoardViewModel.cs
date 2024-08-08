@@ -9,6 +9,6 @@ public class DashBoardViewModel
     public int PendingLeaveRequests { get; set; }
     public decimal AverageEmployeeSalary { get; set; }
     public List<EmployeeModel> RecentEmployees { get; set; }
-    public List<LeaveModel> RecentLeaveRequests { get; set; }
-    public List<CertificationModel> UpcomingCertificationsExpiry { get; set; }
+    public List<RecentLeaveRequestModel> RecentLeaveRequests { get; set; }
+    public List<UpcomingCertificationExpiryModel> UpcomingCertificationsExpiry { get; set; }
 }

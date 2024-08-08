@@ -55,10 +55,8 @@ public class CertificationService(IUnitOfWork unitOfWork,IMapper mapper):ICertif
         return await unitOfWork.Certifications.DeleteAsync(id);
     }
 
-    public async Task<List<CertificationModel>> GetUpcomingCertificateExpiry()
+    public async Task<List<UpcomingCertificationExpiryModel>> GetUpcomingCertificateExpiry()
     {
-        var certificates = await unitOfWork.Certifications.UpcomingCertificationExpiry();
-        var certificateModel = mapper.Map<IEnumerable<CertificationModel>>(certificates);
-        return certificateModel.ToList();
+      return await unitOfWork.Certifications.UpcomingCertificationExpiry();
     }
 }

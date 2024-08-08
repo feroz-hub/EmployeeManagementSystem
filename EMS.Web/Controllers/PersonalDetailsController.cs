@@ -10,7 +10,8 @@ public class PersonalDetailsController(IPersonalDetailsService personalDetailsSe
         var personalDetails = await personalDetailsService.GetPersonalDetailsByEmployeeIdAsync(employeeId);
         if (personalDetails==null)
         {
-            return NotFound();
+            
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_EditPersonalDetails", personalDetails);
@@ -22,9 +23,10 @@ public class PersonalDetailsController(IPersonalDetailsService personalDetailsSe
         if (ModelState.IsValid)
         {
             await personalDetailsService.UpdatePersonalDetailsAsync(employeeId, personalDetails);
+            TempData["success"] = "Personal details updated successfully.";
             return RedirectToAction("Details", "Employee",new {id=employeeId});
         }
-
+        TempData["error"] = "Failed to update personal details.";
         return PartialView("_EditPersonalDetails", personalDetails);
     }
 }

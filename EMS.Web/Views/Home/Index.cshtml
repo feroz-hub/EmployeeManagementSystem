@@ -1,8 +1,145 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model DashBoardViewModel
+
+@{
+ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <!-- KPIs and Summary Statistics -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <div class="card-title">Total Employees</div>
+                <h2>@Model.TotalEmployees</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <div class="card-title">Total Leaves Applied</div>
+                <h2>@Model.TotalLeavesApplied</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <div class="card-title">Pending Leave Requests</div>
+                <h2>@Model.PendingLeaveRequests</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <div class="card-title">Average Employee Salary</div>
+                <h2>@Model.AverageEmployeeSalary.ToString("C", new System.Globalization.CultureInfo("hi-IN"))</h2>
+
+            </div>
+        </div>
+    </div>
 </div>
+<div class="row">
+    <!-- Graphical Representations -->
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                Employee Distribution by Department
+            </div>
+            <div class="card-body">
+                <canvas id="employeeDepartmentChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                Employee Distribution by Type
+            </div>
+            <div class="card-body">
+                <canvas id="employeeTypeChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Detailed Sections -->
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                Latest Employee Additions
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    @foreach (var employee in Model.RecentEmployees)
+                    {
+                    <li class="list-group-item">@employee.Name</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                Recent Leave Requests
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    @foreach (var leaveRequest in Model.RecentLeaveRequests)
+                    {
+                    <li class="list-group-item">@leaveRequest.EmployeeName - @leaveRequest.DaysRequested days</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                Upcoming Certifications Expiry
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    @foreach (var certification in Model.UpcomingCertificationsExpiry)
+                    {
+                    <li class="list-group-item">@certification.EmployeeName - @certification.CertificationName expires on @certification.ExpiryDate?.ToShortDateString()</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctxDept = document.getElementById('employeeDepartmentChart').getContext('2d');
+    var employeeDepartmentChart = new Chart(ctxDept, {
+        type: 'pie',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.EmployeesByDepartment.Keys)),
+            datasets: [{
+                data: @Html.Raw(Json.Serialize(Model.EmployeesByDepartment.Values)),
+                backgroundColor: ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8', '#6c757d', '#fd7e14', '#6610f2']
+            }]
+        }
+    });
+
+    var ctxType = document.getElementById('employeeTypeChart').getContext('2d');
+    var employeeTypeChart = new Chart(ctxType, {
+        type: 'pie',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.EmployeesByType.Keys)),
+            datasets: [{
+                data: @Html.Raw(Json.Serialize(Model.EmployeesByType.Values)),
+                backgroundColor: ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8', '#6c757d', '#fd7e14', '#6610f2']
+            }]
+        }
+    });
+</script>
+}

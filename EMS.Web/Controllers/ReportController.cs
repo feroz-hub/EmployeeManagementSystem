@@ -9,6 +9,7 @@ public class ReportController (IReportService reportService, IOptions<ReportSett
     public async Task<IActionResult> Index()
     {
         var reports = await reportService.GetDepartmentReportsAsync();
+        
         return View(reports);
     }
     
@@ -17,6 +18,7 @@ public class ReportController (IReportService reportService, IOptions<ReportSett
     {
         var reports = await reportService.GetDepartmentReportsAsync();
         reportService.GenerateDepartmentReport(reports, reportSettings.Value.FilePath);
+        TempData["success"] = "Report generated successfully.";
         ViewBag.Message = "Report generated successfully.";
         ViewBag.FilePath = reportSettings.Value.FilePath;
         return RedirectToAction("Index");

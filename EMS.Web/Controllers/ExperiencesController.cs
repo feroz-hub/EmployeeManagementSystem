@@ -19,9 +19,11 @@ public class ExperiencesController(IExperienceService experienceService) : Contr
         if (ModelState.IsValid)
         {
             await experienceService.AddExperienceAsync(experience.EmployeeId,experience);
+            TempData["success"] = "Experience added successfully.";
             return RedirectToAction("Details", "Employee", new { id = experience.EmployeeId });
         }
         ViewBag.EmployeeId = experience.EmployeeId;
+        TempData["error"] = "Failed to add experience.";
         return PartialView("_CreateExperience", experience);
     }
 
@@ -31,8 +33,10 @@ public class ExperiencesController(IExperienceService experienceService) : Contr
         var experience = await experienceService.GetExperienceByIdAsync(id);
         if (experience == null)
         {
-            return NotFound();
+            TempData["error"] = "Experience not found.";
+            return RedirectToAction("Error", "Home");
         }
+        
         ViewBag.EmployeeId = employeeId;
         return PartialView("_EditExperience", experience);
     }
@@ -45,6 +49,7 @@ public class ExperiencesController(IExperienceService experienceService) : Contr
         if (ModelState.IsValid)
         {
             await experienceService.UpdateExperienceAsync(experience.ExperienceId, experience);
+            TempData["success"] = "Experience updated successfully.";
             return RedirectToAction("Details", "Employee", new { id = experience.EmployeeId });
         }
         ViewBag.EmployeeId = experience.EmployeeId;
@@ -57,7 +62,8 @@ public class ExperiencesController(IExperienceService experienceService) : Contr
         var experience = await experienceService.GetExperienceByIdAsync(id);
         if (experience == null)
         {
-            return NotFound();
+            TempData["error"] = "Experience not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_DeleteExperience", experience);
@@ -69,6 +75,7 @@ public class ExperiencesController(IExperienceService experienceService) : Contr
     public async Task<IActionResult> Delete(ExperienceModel experience)
     {
         await experienceService.DeleteExperienceAsync(experience.ExperienceId);
+        TempData["success"] = "Experience deleted successfully.";
         return RedirectToAction("Details", "Employee", new { id = experience.EmployeeId });
     }
 }

@@ -43,8 +43,10 @@ public class EmployeeController (IEmployeeService employeeService): Controller
         var employee = await employeeService.GetEmployeeByIdAsync(id);
         if (employee == null)
         {
-            return NotFound();
+            TempData["error"] = "Employee not found.";
+            return RedirectToAction("Error", "Home");
         }
+        TempData["success"] = "Employee found successfully.";
         return View(employee);
     }
     
@@ -73,8 +75,10 @@ public class EmployeeController (IEmployeeService employeeService): Controller
         var employee = await employeeService.GetEmployeeByIdAsync(id);
         if (employee == null)
         {
-            return NotFound();
+            TempData["error"] = "Employee not found.";
+            return RedirectToAction("Error", "Home");
         }
+        TempData["success"] = "Employee found successfully.";
         return View(employee);
     }
     // GET: Employee/Delete/5
@@ -83,7 +87,8 @@ public class EmployeeController (IEmployeeService employeeService): Controller
         var employee = await employeeService.GetEmployeeByIdAsync(id);
         if (employee == null)
         {
-            return NotFound();
+            TempData["error"] = "Employee not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_DeleteEmployee", employee);

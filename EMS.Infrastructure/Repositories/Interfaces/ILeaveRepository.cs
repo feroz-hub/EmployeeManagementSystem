@@ -8,5 +8,7 @@ public interface ILeaveRepository:IGenericRepository<Leave>
     Task<int> GetTotalLeavesAppliedAsync();
     Task<int> GetTotalLeavesPendingAsync();
 
-    Task<IEnumerable<Leave>> RecentLeaveRequests();
+    Task<List<RecentLeaveRequestModel>> RecentLeaveRequests();
+    Task<List<LeaveStatusUpdateViewModel>> GetAllLeaveStatusAsync();
+    Task UpdateLeaveStatusAsync(int leaveId, LeaveStatus status);
 }

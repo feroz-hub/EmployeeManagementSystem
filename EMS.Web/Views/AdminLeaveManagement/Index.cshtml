@@ -1,0 +1,44 @@
+@model List<LeaveStatusUpdateViewModel>
+
+<h2>Update Leave Status</h2>
+
+@foreach (var employee in Model)
+{
+<h3>@employee.EmployeeName</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Total Days</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var leave in employee.Leaves)
+    {
+    <tr>
+        <td>@leave.StartDate.ToShortDateString()</td>
+        <td>@leave.EndDate.ToShortDateString()</td>
+        <td>@leave.TotalDays</td>
+        <td>@leave.Reason</td>
+        <td>@leave.Status</td>
+        <td>
+            <form asp-action="UpdateStatus" method="post">
+                <input type="hidden" name="leaveId" value="@leave.LeaveId" />
+                <select name="status" asp-for="@leave.Status">
+                    <option value="Requested" @(leave.Status == LeaveStatus.Requested ? "selected" : "")>Requested</option>
+                    <option value="Approved" @(leave.Status == LeaveStatus.Approved ? "selected" : "")>Approved</option>
+                    <option value="Rejected" @(leave.Status == LeaveStatus.Rejected ? "selected" : "")>Rejected</option>
+                    <option value="Cancelled" @(leave.Status == LeaveStatus.Cancelled ? "selected" : "")>Cancelled</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+}

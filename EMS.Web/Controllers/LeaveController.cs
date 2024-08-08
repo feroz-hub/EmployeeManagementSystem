@@ -18,9 +18,10 @@ public class LeaveController(ILeaveService leaveService) : Controller
         if (ModelState.IsValid)
         {
             await leaveService.AddLeaveAsync(employeeId, leaveModel);
+            TempData["success"] = "Leave applied successfully.";
             return RedirectToAction("Details", "Employee", new { id = leaveModel.EmployeeId });
         }
-
+        TempData["error"] = "Failed to apply leave.";
         return PartialView("_ApplyLeave", leaveModel);
     }
     
@@ -30,7 +31,8 @@ public class LeaveController(ILeaveService leaveService) : Controller
         var leave = leaveService.GetLeaveByIdAsync(id).Result; // Use async properly in real code
         if (leave == null)
         {
-            return NotFound();
+            TempData["error"] = "Leave not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_CancelLeave", leave);
@@ -42,6 +44,7 @@ public class LeaveController(ILeaveService leaveService) : Controller
     public async Task<IActionResult> CancelLeaveConfirmed(Guid id, Guid employeeId)
     {
             await leaveService.DeleteLeaveAsync(id);
+            TempData["success"] = "Leave canceled successfully.";
             return RedirectToAction("Details", "Employee", new { id = employeeId });
     }
 

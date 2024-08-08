@@ -16,8 +16,10 @@ public class GovernmentDocumentController(IGovernmentDocumentService governmentD
         if (ModelState.IsValid)
         {
             await governmentDocumentService.AddGovernmentDocumentAsync(governmentDocument.EmployeeId,governmentDocument);
+            TempData["success"] = "Government document added successfully.";
             return RedirectToAction("Details", "Employee",new {id=governmentDocument.EmployeeId});
         }
+        TempData["error"] = "Failed to add government document.";
         return PartialView("_CreateGovernmentDocument",governmentDocument);
     }
     
@@ -26,7 +28,8 @@ public class GovernmentDocumentController(IGovernmentDocumentService governmentD
         var  governmentDocument = await governmentDocumentService.GetGovernmentDocumentByIdAsync(id);
         if (governmentDocument == null)
         {
-            return NotFound();
+            TempData["error"] = "Government document not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_EditGovernmentDocument", governmentDocument);
@@ -38,6 +41,7 @@ public class GovernmentDocumentController(IGovernmentDocumentService governmentD
         if (ModelState.IsValid)
         {
             await governmentDocumentService.UpdateGovernmentDocumentAsync(governmentDocument.DocumentId,governmentDocument);
+            TempData["success"] = "Government document updated successfully.";
             return RedirectToAction("Details", "Employee", new {id=governmentDocument.EmployeeId});
         }
         ViewBag.EmployeeId = employeeId;
@@ -50,7 +54,8 @@ public class GovernmentDocumentController(IGovernmentDocumentService governmentD
         var governmentDocumentModel = await governmentDocumentService.GetGovernmentDocumentByIdAsync(id);
         if (governmentDocumentModel == null)
         {
-            return NotFound();
+            TempData["error"] = "Government document not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = EmployeeId;
         return PartialView("_DeleteGovernmentDocument", governmentDocumentModel);
@@ -60,6 +65,7 @@ public class GovernmentDocumentController(IGovernmentDocumentService governmentD
     public async Task<IActionResult> DeleteConfirmed(Guid documentId, Guid employeeId)
     {
         await governmentDocumentService.DeleteGovernmentDocumentAsync(documentId);
+        TempData["success"] = "Government document deleted successfully.";
         return RedirectToAction("Details", "Employee", new {id=employeeId});
     }
 }

@@ -17,8 +17,11 @@ public class QualificationsController(IQualificationService qualificationService
         if (ModelState.IsValid)
         {
             await qualificationService.AddQualificationAsync(employeeId,qualification);
+            TempData["success"] = "Qualification added successfully.";
             return RedirectToAction("Details", "Employee", new { id = qualification.EmployeeId });
         }
+        
+        TempData["error"] = "Failed to add qualification.";
         return PartialView("_CreateQualification", qualification);
     }
     
@@ -28,7 +31,8 @@ public class QualificationsController(IQualificationService qualificationService
         var qualification = await qualificationService.GetQualificationByIdAsync(id);
         if (qualification == null)
         {
-            return NotFound();
+            TempData["error"] = "Qualification not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_EditQualification", qualification);
@@ -46,13 +50,14 @@ public class QualificationsController(IQualificationService qualificationService
         
             // Update the qualification in the repository
             await qualificationService.UpdateQualificationAsync(qualification.QualificationId, qualification);
-
+            TempData["success"] = "Qualification updated successfully.";
             // Redirect to the employee details page
             return RedirectToAction("Details", "Employee", new { id = employeeId });
         }
 
         // Return to the partial view if the model state is invalid
         ViewBag.EmployeeId = employeeId;
+        TempData["error"] = "Failed to update qualification.";
         return PartialView("_EditQualification", qualification);
     }
     
@@ -62,7 +67,8 @@ public class QualificationsController(IQualificationService qualificationService
         var qualification = await qualificationService.GetQualificationByIdAsync(id);
         if (qualification == null)
         {
-            return NotFound();
+            TempData["error"] = "Qualification not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_DeleteQualification", qualification);
@@ -75,6 +81,7 @@ public class QualificationsController(IQualificationService qualificationService
     public async Task<IActionResult> DeleteConfirmed(Guid id, Guid employeeId)
     {
         await qualificationService.DeleteQualificationAsync(id);
+        TempData["success"] = "Qualification deleted successfully.";
         return RedirectToAction("Details", "Employee", new { id = employeeId });
     }
 

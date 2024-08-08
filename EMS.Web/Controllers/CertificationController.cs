@@ -13,6 +13,7 @@ public class CertificationController(ICertificationService certificationService)
     {
         if (!ModelState.IsValid) return PartialView("_CreateCertificate", certificationModel);
         await certificationService.AddCertificationAsync(employeeId,certificationModel);
+        TempData["success"] = "Certification added successfully.";
         return RedirectToAction("Details", "Employee", new { id = certificationModel.EmployeeId });
     }
     
@@ -22,7 +23,8 @@ public class CertificationController(ICertificationService certificationService)
         var certification = await certificationService.GetCertificationByIdAsync(id);
         if (certification == null)
         {
-            return NotFound();
+            TempData["error"] = "Certification not found.";
+            return RedirectToAction("Error", "Home");
         }
         ViewBag.EmployeeId = employeeId;
         return PartialView("_EditCertificate", certification);
@@ -39,6 +41,7 @@ public class CertificationController(ICertificationService certificationService)
             certification.EmployeeId = employeeId;
             // Update the certification in the repository
             await certificationService.UpdateCertificationAsync(certification.CertificationId, certification);
+            TempData["success"] = "Certification updated successfully.";
             // Redirect to the employee details page
             return RedirectToAction("Details", "Employee", new { id = employeeId });
         }
@@ -54,8 +57,10 @@ public class CertificationController(ICertificationService certificationService)
         var certification = await certificationService.GetCertificationByIdAsync(id);
         if (certification == null)
         {
-            return NotFound();
+            TempData["error"] = "Certification not found.";
+            return RedirectToAction("Error", "Home");
         }
+        TempData["success"] = "Certification found successfully.";
         ViewBag.EmployeeId = employeeId;
         return PartialView("_DeleteCertificate", certification);
     }
@@ -66,6 +71,7 @@ public class CertificationController(ICertificationService certificationService)
     public async Task<IActionResult> DeleteConfirmed(Guid id, Guid employeeId)
     {
         await certificationService.DeleteCertificationAsync(id);
+        TempData["success"] = "Certification deleted successfully.";
         return RedirectToAction("Details", "Employee", new { id = employeeId });
     }
     

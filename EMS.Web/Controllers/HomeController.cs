@@ -21,8 +21,14 @@ public class HomeController(IEmployeeService employeeService,ILeaveService leave
             RecentLeaveRequests = await leaveService.GetRecentLeaveRequestAsync()
 
         };
+        
         return View(dashBoardData);
     }
+    public IActionResult Error()
+    {
+        return View();
+    }
+
 
   
 }

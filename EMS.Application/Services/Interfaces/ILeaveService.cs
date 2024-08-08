@@ -11,6 +11,8 @@ public interface ILeaveService
     Task<bool> DeleteLeaveAsync(Guid id);
     Task<int> GetTotalLeaveAppliedAsync();
     Task<int> GetPendingLeaveRequest();
-    Task<List<LeaveModel>> GetRecentLeaveRequestAsync();
+    Task<List<RecentLeaveRequestModel>> GetRecentLeaveRequestAsync();
+    Task<List<LeaveStatusUpdateViewModel>> GetAllLeaveStatusAsync();
+    Task UpdateLeaveStatusAsync(int leaveId, LeaveStatus status);
 
 }
