@@ -18,10 +18,15 @@ th, td {
 th {
     background-color: #f4f4f4;
 }
-.generate-report-button {
+.generate-excel-button {
     position: absolute;
     top: 20px;
     right: 20px;
+}
+.generate-pdf-button{
+    position: absolute;
+    top: 20px;
+    right: 200px;
 }
 .nested-table {
     width: 95%;

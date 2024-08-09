@@ -13,8 +13,8 @@ public class ReportController (IReportService reportService, IOptions<ReportSett
         return View(reports);
     }
     
-    [HttpGet("Generate")]
-    public async Task<IActionResult> GenerateReport()
+    [HttpGet("GenerateExcel")]
+    public async Task<IActionResult> GenerateExcelReport()
     {
         var reports = await reportService.GetDepartmentReportsAsync();
         reportService.GenerateDepartmentReport(reports, reportSettings.Value.FilePath);
@@ -22,5 +22,17 @@ public class ReportController (IReportService reportService, IOptions<ReportSett
         ViewBag.Message = "Report generated successfully.";
         ViewBag.FilePath = reportSettings.Value.FilePath;
         return RedirectToAction("Index");
+    }
+    
+    [HttpGet("GeneratePdf")]
+    public async Task<IActionResult> GeneratePdfReport()
+    {
+        var reports = await reportService.GetDepartmentReportsAsync();
+        using var stream = new MemoryStream();
+        reportService.GenerateDepartmentReportPdf(reports,stream);
+        stream.Position = 0;
+        TempData["success"] = "Report generated successfully.";
+        ViewBag.Message = "Report generated successfully.";
+        return File(stream,"application/pdf","DepartmentReport.pdf");
     }
 }

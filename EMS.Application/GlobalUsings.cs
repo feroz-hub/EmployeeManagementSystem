@@ -8,3 +8,5 @@ global using EMS.Infrastructure.Data;
 global using EMS.Infrastructure.Repositories.Interfaces;
 global using Microsoft.EntityFrameworkCore;
 global using OfficeOpenXml;
+global using PdfSharpCore.Drawing;
+global using PdfSharpCore.Pdf;
