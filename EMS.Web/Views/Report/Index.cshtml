@@ -15,10 +15,12 @@
 @* <div class="generate-pdf-button"> *@
 @*     <a href="@Url.Action("GeneratePdfReport", "Report")" class="btn btn-danger" target="_blank"><i class="bi bi-file-earmark-pdf-fill" style="color: white">Generate Pdf</i></a> *@
 @* </div> *@
-<button  id="generatePdfButton" class="btn btn-danger generate-pdf-button">
+<div class="generate-pdf-button">
+    <a href="@Url.Action("GeneratePdfReport", "Report")" class="btn btn-danger">
         <i class="bi bi-file-earmark-pdf-fill" style="color: white;"></i> Generate Pdf
-    </button>
-<input type="file" id="pdfFileInput" style="display: none;" />
+    </a>
+</div>
+
 
 @foreach (var departmentReport in Model)
 {
@@ -110,35 +112,35 @@
 }
 </body>
 </html>
-<script>
-document.getElementById('generatePdfButton').addEventListener('click', function() {
-    // Trigger the file input click event
-    document.getElementById('pdfFileInput').click();
-});
-
-document.getElementById('pdfFileInput').addEventListener('change', function(event) {
-    // Get the selected file path (or file object if needed)
-    const file = event.target.files[0];
-    
-    if (file) {
-        // Construct FormData
-        const formData = new FormData();
-        formData.append('file', file);
-        
-        // Send the file path to the server
-        fetch('@Url.Action("GeneratePdfReport", "Report")', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.blob())
-        .then(blob => {
-            // Create a link to download the PDF
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'DepartmentReport.pdf';
-            link.click();
-        })
-        .catch(error => console.error('Error:', error));
-    }
-});
-</script>
+@* <script> *@
+@*     document.getElementById('generatePdfButton').addEventListener('click', function() { *@
+@*         // Trigger the file input click event *@
+@*         document.getElementById('pdfFileInput').click(); *@
+@*     }); *@
+@* *@
+@*     document.getElementById('pdfFileInput').addEventListener('change', function(event) { *@
+@*         const file = event.target.files[0]; *@
+@*          *@
+@*         if (file) { *@
+@*             // Extract the folder path from the selected file *@
+@*             const folderPath = file.webkitRelativePath || file.name; *@
+@* *@
+@*             fetch('@Url.Action("GeneratePdfReport", "Report")', { *@
+@*                 method: 'POST', *@
+@*                 headers: { *@
+@*                     'Content-Type': 'application/json' *@
+@*                 }, *@
+@*                 body: JSON.stringify({ folderPath: folderPath }) *@
+@*             }) *@
+@*             .then(response => response.json()) *@
+@*             .then(data => { *@
+@*                 if (data.success) { *@
+@*                     alert('PDF generated successfully.'); *@
+@*                 } else { *@
+@*                     alert('Error generating PDF: ' + data.message); *@
+@*                 } *@
+@*             }) *@
+@*             .catch(error => console.error('Error:', error)); *@
+@*         } *@
+@*     }); *@
+@* </script> *@
