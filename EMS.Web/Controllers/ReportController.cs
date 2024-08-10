@@ -24,15 +24,19 @@ public class ReportController (IReportService reportService, IOptions<ReportSett
         return RedirectToAction("Index");
     }
     
-    [HttpGet("GeneratePdf")]
+    [HttpGet]
     public async Task<IActionResult> GeneratePdfReport()
     {
-        var reports = await reportService.GetDepartmentReportsAsync();
-        using var stream = new MemoryStream();
-        reportService.GenerateDepartmentReportPdf(reports,stream);
-        stream.Position = 0;
-        TempData["success"] = "Report generated successfully.";
-        ViewBag.Message = "Report generated successfully.";
-        return File(stream,"application/pdf","DepartmentReport.pdf");
+        var departmentReports = await reportService.GetDepartmentReportsAsync();
+
+        // Generate the PDF in-memory
+         var pdfStream = new MemoryStream();
+        reportService.GenerateDepartmentReportPdf(departmentReports, pdfStream);
+        pdfStream.Position = 0;
+
+        var fileName = $"Report_{DateTime.Now:yyyy-MM-dd}.pdf";
+
+        // Return the PDF as a FileResult
+        return File(pdfStream, "application/pdf", fileName);
     }
 }

@@ -106,48 +106,99 @@ public class ReportService(ApplicationDbContext context) : IReportService
             // // Specify the full file path (within the new folder)
             // string filePath = Path.Combine(reportsFolderPath, "DepartmentReport.pdf");
 
-            using PdfDocument document = new PdfDocument();
-            foreach (var department in departmentReports)
-            {
-                var page = document.AddPage();
-                XGraphics gfx = XGraphics.FromPdfPage(page);
-                XFont font = new XFont("Verdana", 12, XFontStyle.Regular);
-                int yPoint = 40;
+          using PdfDocument document = new PdfDocument();
+int departmentNumber = 1;
 
-                // Add Department Name
-                gfx.DrawString(department.Department, font, XBrushes.Black, new XRect(20, yPoint, page.Width, page.Height), XStringFormats.TopLeft);
-                yPoint += 40;
+foreach (var department in departmentReports)
+{
+    var page = document.AddPage();
+    XGraphics gfx = XGraphics.FromPdfPage(page);
+    XFont font = new XFont("Verdana", 10, XFontStyle.Regular);
+    XFont headerFont = new XFont("Verdana", 10, XFontStyle.Bold);
+    XFont departmentFont = new XFont("Verdana", 12, XFontStyle.Bold);
 
-                foreach (var employee in department.EmployeeReports)
-                {
-                    // Add Employee Details
-                    gfx.DrawString($"Employee Name: {employee.EmployeeName}", font, XBrushes.Black, new XRect(20, yPoint, page.Width, page.Height), XStringFormats.TopLeft);
-                    gfx.DrawString($"Job Title: {employee.JobTitle}", font, XBrushes.Black, new XRect(20, yPoint + 20, page.Width, page.Height), XStringFormats.TopLeft);
-                    gfx.DrawString($"Salary: {employee.Salary}", font, XBrushes.Black, new XRect(20, yPoint + 40, page.Width, page.Height), XStringFormats.TopLeft);
+    double yPoint = 40;
+    double xPoint = 20;
+    double tablePadding = 5;
+    double rowHeight = 20;
 
-                    yPoint += 80;
+    // Add Department Name with Number
+    gfx.DrawString($"{departmentNumber}. {department.Department}", departmentFont, XBrushes.Black, new XRect(xPoint, yPoint, page.Width, page.Height), XStringFormats.TopLeft);
+    yPoint += 40;
 
-                    // Add Qualifications
-                    gfx.DrawString("Qualifications:", font, XBrushes.Black, new XRect(20, yPoint, page.Width, page.Height), XStringFormats.TopLeft);
-                    yPoint += 20;
-                    foreach (var qualification in employee.QualificationsReports)
-                    {
-                        gfx.DrawString($"{qualification.Degree} ({qualification.Institution}, {qualification.GraduationDate.ToShortDateString()})", font, XBrushes.Black, new XRect(40, yPoint, page.Width, page.Height), XStringFormats.TopLeft);
-                        yPoint += 20;
-                    }
+    // Define column widths
+    double[] columnWidths = { 40, 160, 200, 100 };
 
-                    // Add Experiences
-                    gfx.DrawString("Experiences:", font, XBrushes.Black, new XRect(20, yPoint, page.Width, page.Height), XStringFormats.TopLeft);
-                    yPoint += 20;
-                    foreach (var experience in employee.ExperiencesReports)
-                    {
-                        gfx.DrawString($"{experience.JobTitle} at {experience.CompanyName} ({experience.StartDate.ToShortDateString()} - {(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() : "Present")})", font, XBrushes.Black, new XRect(40, yPoint, page.Width, page.Height), XStringFormats.TopLeft);
-                        yPoint += 20;
-                    }
+    // Table Headers
+    DrawTableCell(gfx, "No.", xPoint, yPoint, columnWidths[0], rowHeight, headerFont, true);
+    DrawTableCell(gfx, "Employee Name", xPoint + columnWidths[0], yPoint, columnWidths[1], rowHeight, headerFont, true);
+    DrawTableCell(gfx, "Job Title", xPoint + columnWidths[0] + columnWidths[1], yPoint, columnWidths[2], rowHeight, headerFont, true);
+    DrawTableCell(gfx, "Salary", xPoint + columnWidths[0] + columnWidths[1] + columnWidths[2], yPoint, columnWidths[3], rowHeight, headerFont, true, true); // Right-align salary
 
-                    yPoint += 40; // Add some space before the next employee
-                }
-            }
+    yPoint += rowHeight; // Move to the next row
+
+    int employeeNumber = 1;
+    foreach (var employee in department.EmployeeReports)
+    {
+        // Employee Details Row with numbering
+        DrawTableCell(gfx, employeeNumber.ToString(), xPoint, yPoint, columnWidths[0], rowHeight, font);
+        DrawTableCell(gfx, employee.EmployeeName, xPoint + columnWidths[0], yPoint, columnWidths[1], rowHeight, font);
+        DrawTableCell(gfx, employee.JobTitle, xPoint + columnWidths[0] + columnWidths[1], yPoint, columnWidths[2], rowHeight, font);
+        DrawTableCell(gfx, employee.Salary.ToString("C"), xPoint + columnWidths[0] + columnWidths[1] + columnWidths[2], yPoint, columnWidths[3], rowHeight, font, false, true); // Right-align salary
+
+        yPoint += rowHeight; // Move to the next row
+
+        // Qualifications Table Header
+        DrawTableCell(gfx, "Qualifications", xPoint, yPoint, columnWidths.Sum(), rowHeight, headerFont, true);
+        yPoint += rowHeight;
+
+        foreach (var qualification in employee.QualificationsReports)
+        {
+            // Qualifications Rows
+            DrawTableCell(gfx, $"{qualification.Degree} ({qualification.Institution}, {qualification.GraduationDate.ToShortDateString()})", xPoint + tablePadding, yPoint, columnWidths.Sum() - tablePadding * 2, rowHeight, font);
+            yPoint += rowHeight;
+        }
+
+        // Experiences Table Header
+        DrawTableCell(gfx, "Experiences", xPoint, yPoint, columnWidths.Sum(), rowHeight, headerFont, true);
+        yPoint += rowHeight;
+
+        foreach (var experience in employee.ExperiencesReports)
+        {
+            // Experiences Rows
+            DrawTableCell(gfx, $"{experience.JobTitle} at {experience.CompanyName} ({experience.StartDate.ToShortDateString()} - {(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() : "Present")})", xPoint + tablePadding, yPoint, columnWidths.Sum() - tablePadding * 2, rowHeight, font);
+            yPoint += rowHeight;
+        }
+
+        yPoint += 20; // Add some space before the next employee
+        employeeNumber++;
+
+        // Check if we need a new page
+        if (yPoint + 40 > page.Height)
+        {
+            page = document.AddPage();
+            gfx = XGraphics.FromPdfPage(page);
+            yPoint = 40;
+        }
+    }
+
+    departmentNumber++;
+    yPoint += 60; // Add some space before the next department
+}
+
+// Function to draw a cell with a border
+void DrawTableCell(XGraphics gfx, string text, double x, double y, double width, double height, XFont font, bool isHeader = false, bool rightAlign = false)
+{
+    if (isHeader)
+    {
+        gfx.DrawRectangle(XBrushes.LightGray, x, y, width, height);
+    }
+    gfx.DrawRectangle(XPens.Black, x, y, width, height);
+    var format = rightAlign ? XStringFormats.TopRight : XStringFormats.TopLeft;
+    gfx.DrawString(text, font, XBrushes.Black, new XRect(x + (rightAlign ? -5 : 5), y + 5, width - 10, height - 10), format);
+}
+
+
 
             document.Save(stream);
         }
