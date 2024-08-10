@@ -10,137 +10,119 @@
 <body>
 <h2>Department Reports</h2>
 <div class="generate-excel-button">
-    <a href="@Url.Action("GenerateExcelReport", "Report")" class="btn btn-success"><i class="bi bi-file-earmark-excel-fill " style="color: white">Generate Excel</i></a>
+    <a href="@Url.Action("GenerateExcelReport", "Report")" class="btn btn-success"><i class="bi bi-file-earmark-excel-fill" style="color: white">Generate Excel</i></a>
 </div>
-@* <div class="generate-pdf-button"> *@
-@*     <a href="@Url.Action("GeneratePdfReport", "Report")" class="btn btn-danger" target="_blank"><i class="bi bi-file-earmark-pdf-fill" style="color: white">Generate Pdf</i></a> *@
-@* </div> *@
 <div class="generate-pdf-button">
     <a href="@Url.Action("GeneratePdfReport", "Report")" class="btn btn-danger">
         <i class="bi bi-file-earmark-pdf-fill" style="color: white;"></i> Generate Pdf
     </a>
 </div>
 
-
 @foreach (var departmentReport in Model)
 {
-<div class="report-section">
-    <h3>Department: @departmentReport.Department</h3>
-    <table>
-        <thead>
-        <tr>
-            <th>Employee Name</th>
-            <th>Job Title</th>
-            <th>Salary</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var employeeReport in departmentReport.EmployeeReports)
-        {
-        <tr>
-            <td>@employeeReport.EmployeeName</td>
-            <td>@employeeReport.JobTitle</td>
-            <td>@employeeReport.Salary.ToString("C", new CultureInfo("hi-IN"))</td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <div class="employee-details">
-                    <h3>Qualifications</h3>
-                    @if (employeeReport.QualificationsReports != null && employeeReport.QualificationsReports.Count > 0)
-                    {
-                    <table class="nested-table">
-                        <thead>
-                        <tr>
-                            <th>Degree</th>
-                            <th>Institution</th>
-                            <th>Graduation Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach (var qualification in employeeReport.QualificationsReports)
-                        {
-                        <tr>
-                            <td>@qualification.Degree</td>
-                            <td>@qualification.Institution</td>
-                            <td>@qualification.GraduationDate.ToString("d")</td>
-                        </tr>
-                        }
-                        </tbody>
-                    </table>
-                    }
-                    else
-                    {
-                    <p>No qualifications available.</p>
-                    }
+    <div class="report-section">
+        <h3>Department: @departmentReport.Department</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Employee Name</th>
+                <th>Job Title</th>
+                <th>Salary</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                var employeeIndex = 1;
+            }
+            @foreach (var employeeReport in departmentReport.EmployeeReports)
+            {
+                <tr>
+                    <td>@employeeIndex</td>
+                    <td>@employeeReport.EmployeeName</td>
+                    <td>@employeeReport.JobTitle</td>
+                    <td>@employeeReport.Salary.ToString("C", new CultureInfo("hi-IN"))</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <div class="employee-details">
+                            <h3>Qualifications</h3>
+                            @if (employeeReport.QualificationsReports != null && employeeReport.QualificationsReports.Count > 0)
+                            {
+                                <table class="nested-table">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Degree</th>
+                                        <th>Institution</th>
+                                        <th>Graduation Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @{
+                                        var qualificationIndex = 1;
+                                    }
+                                    @foreach (var qualification in employeeReport.QualificationsReports)
+                                    {
+                                        <tr>
+                                            <td>@qualificationIndex</td>
+                                            <td>@qualification.Degree</td>
+                                            <td>@qualification.Institution</td>
+                                            <td>@qualification.GraduationDate.ToString("d")</td>
+                                        </tr>
+                                        qualificationIndex++;
+                                    }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <p>No qualifications available.</p>
+                            }
 
-                    <h3>Experiences</h3>
-                    @if (employeeReport.ExperiencesReports != null && employeeReport.ExperiencesReports.Count > 0)
-                    {
-                    <table class="nested-table">
-                        <thead>
-                        <tr>
-                            <th>Company Name</th>
-                            <th>Job Title</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach (var experience in employeeReport.ExperiencesReports)
-                        {
-                        <tr>
-                            <td>@experience.CompanyName</td>
-                            <td>@experience.JobTitle</td>
-                            <td>@experience.StartDate.ToString("d")</td>
-                            <td>@(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() :  "Present")</td>
-                        </tr>
-                        }
-                        </tbody>
-                    </table>
-                    }
-                    else
-                    {
-                    <p>No experiences available.</p>
-                    }
-                </div>
-            </td>
-        </tr>
-        }
-        </tbody>
-    </table>
-</div>
+                            <h3>Experiences</h3>
+                            @if (employeeReport.ExperiencesReports != null && employeeReport.ExperiencesReports.Count > 0)
+                            {
+                                <table class="nested-table">
+                                    <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Company Name</th>
+                                        <th>Job Title</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @{
+                                        var experienceIndex = 1;
+                                    }
+                                    @foreach (var experience in employeeReport.ExperiencesReports)
+                                    {
+                                        <tr>
+                                            <td>@experienceIndex</td>
+                                            <td>@experience.CompanyName</td>
+                                            <td>@experience.JobTitle</td>
+                                            <td>@experience.StartDate.ToString("d")</td>
+                                            <td>@(experience.EndDate.HasValue ? experience.EndDate.Value.ToShortDateString() : "Present")</td>
+                                        </tr>
+                                        experienceIndex++;
+                                    }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <p>No experiences available.</p>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                employeeIndex++;
+            }
+            </tbody>
+        </table>
+    </div>
 }
 </body>
 </html>
-@* <script> *@
-@*     document.getElementById('generatePdfButton').addEventListener('click', function() { *@
-@*         // Trigger the file input click event *@
-@*         document.getElementById('pdfFileInput').click(); *@
-@*     }); *@
-@* *@
-@*     document.getElementById('pdfFileInput').addEventListener('change', function(event) { *@
-@*         const file = event.target.files[0]; *@
-@*          *@
-@*         if (file) { *@
-@*             // Extract the folder path from the selected file *@
-@*             const folderPath = file.webkitRelativePath || file.name; *@
-@* *@
-@*             fetch('@Url.Action("GeneratePdfReport", "Report")', { *@
-@*                 method: 'POST', *@
-@*                 headers: { *@
-@*                     'Content-Type': 'application/json' *@
-@*                 }, *@
-@*                 body: JSON.stringify({ folderPath: folderPath }) *@
-@*             }) *@
-@*             .then(response => response.json()) *@
-@*             .then(data => { *@
-@*                 if (data.success) { *@
-@*                     alert('PDF generated successfully.'); *@
-@*                 } else { *@
-@*                     alert('Error generating PDF: ' + data.message); *@
-@*                 } *@
-@*             }) *@
-@*             .catch(error => console.error('Error:', error)); *@
-@*         } *@
-@*     }); *@
-@* </script> *@

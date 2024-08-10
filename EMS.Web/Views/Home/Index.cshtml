@@ -118,8 +118,8 @@ ViewData["Title"] = "Dashboard";
 @section Scripts {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var ctxDept = document.getElementById('employeeDepartmentChart').getContext('2d');
-    var employeeDepartmentChart = new Chart(ctxDept, {
+    const ctxDept = document.getElementById('employeeDepartmentChart').getContext('2d');
+    const employeeDepartmentChart = new Chart(ctxDept, {
         type: 'pie',
         data: {
             labels: @Html.Raw(Json.Serialize(Model.EmployeesByDepartment.Keys)),
@@ -130,8 +130,8 @@ ViewData["Title"] = "Dashboard";
         }
     });
 
-    var ctxType = document.getElementById('employeeTypeChart').getContext('2d');
-    var employeeTypeChart = new Chart(ctxType, {
+    const ctxType = document.getElementById('employeeTypeChart').getContext('2d');
+    const employeeTypeChart = new Chart(ctxType, {
         type: 'pie',
         data: {
             labels: @Html.Raw(Json.Serialize(Model.EmployeesByType.Keys)),
