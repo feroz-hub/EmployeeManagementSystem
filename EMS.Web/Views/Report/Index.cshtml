@@ -2,7 +2,7 @@
 @using System.Globalization
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Department Reports</title>
     <link rel="stylesheet" href="~/css/ReportStyles.css" asp-append-version="true"/>
@@ -47,7 +47,7 @@
                     <td colspan="4">
                         <div class="employee-details">
                             <h3>Qualifications</h3>
-                            @if (employeeReport.QualificationsReports != null && employeeReport.QualificationsReports.Count > 0)
+                            @if (employeeReport.QualificationsReports is { Count: > 0 })
                             {
                                 <table class="nested-table">
                                     <thead>
@@ -81,7 +81,7 @@
                             }
 
                             <h3>Experiences</h3>
-                            @if (employeeReport.ExperiencesReports != null && employeeReport.ExperiencesReports.Count > 0)
+                            @if (employeeReport.ExperiencesReports is { Count: > 0 })
                             {
                                 <table class="nested-table">
                                     <thead>
